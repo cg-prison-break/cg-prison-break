@@ -98,6 +98,27 @@ Und bei fertigstellung einen Pull-Request zurück auf den `develop`-Branch erste
 
 ---
 
+## 🧠 Arbeiten ohne Mergekonflikte
+
+Unity-Szenen-Dateien (`.unity`) können leicht Merge-Konflikte verursachen, wenn
+mehrere Personen gleichzeitig an derselben Szene arbeiten.
+
+Um das zu vermeiden, gilt folgende Regel:
+
+- **Alle Szenen mit dem Suffix `TestScene.unity` werden nicht versioniert** (stehen in der `.gitignore`).
+- Jeder Entwickler kann sich **eine eigene Testszene** anlegen, z.B.:
+
+```markdown
+Local_TestScene.unity
+```
+
+- Diese Test-Szenen dienen ausschließlich zum **lokalen Testen von Features**.
+- Wenn ein Feature fertig ist, soltle es in eine gemeinsame Szene integriert werden, die versioniert wird (z.B. MainScene.unity)
+- Die Integration in die MainScene.unity **muss** unter Absprache mit dem Map-Building-Team erfolgen
+- Um eine neue Testszene zu erstellen, kann einfach die MainScene.unity kopiert und umbenannt werden
+
+> 🔒 So bleiben alle produktiven Szenen konfliktfrei, und jeder kann unabhängig entwickeln und testen.
+
 ## 💡 Hinweise
 
 Falls LSF-Dateien nicht automatisch geladen werden, führe manuell aus:
