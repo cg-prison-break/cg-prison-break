@@ -105,15 +105,14 @@ mehrere Personen gleichzeitig an derselben Szene arbeiten.
 
 Um das zu vermeiden, gilt folgende Regel:
 
-- **Alle Szenen mit dem Suffix `TestScene.unity` werden nicht versioniert** (stehen in der `.gitignore`).
+- **Alle Szenen mit dem Suffix `[Ii]nit[Tt]est[Ss]cene*.unity*` werden nicht versioniert** (stehen in der `.gitignore`).
 - Jeder Entwickler kann sich **eine eigene Testszene** anlegen, z.B.:
 
 ```markdown
-Local_TestScene.unity
-```
+InitTestScene-Local.unity
 
 - Diese Test-Szenen dienen ausschließlich zum **lokalen Testen von Features**.
-- Wenn ein Feature fertig ist, soltle es in eine gemeinsame Szene integriert werden, die versioniert wird (z.B. MainScene.unity)
+- Wenn ein Feature fertig ist, sollte es in eine gemeinsame Szene integriert werden, die versioniert wird (z.B. MainScene.unity)
 - Die Integration in die MainScene.unity **muss** unter Absprache mit dem Map-Building-Team erfolgen
 - Um eine neue Testszene zu erstellen, kann einfach die MainScene.unity kopiert und umbenannt werden
 
