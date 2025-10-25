@@ -105,11 +105,17 @@ mehrere Personen gleichzeitig an derselben Szene arbeiten.
 
 Um das zu vermeiden, gilt folgende Regel:
 
-- **Alle Szenen mit dem Suffix `TestScene.unity` werden nicht versioniert** (stehen in der `.gitignore`).
+- **Alle Szenen mit dem Suffix `[Ii]nit[Tt]est[Ss]cene.unity*` werden nicht versioniert** (stehen in der `.gitignore`).
 - Jeder Entwickler kann sich **eine eigene Testszene** anlegen, z.B.:
 
 ```markdown
-Local_TestScene.unity
+Inittestscene.unity
+```
+
+oder 
+
+```markdown
+inittestscene.unity
 ```
 
 - Diese Test-Szenen dienen ausschließlich zum **lokalen Testen von Features**.
