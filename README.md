@@ -109,14 +109,7 @@ Um das zu vermeiden, gilt folgende Regel:
 - Jeder Entwickler kann sich **eine eigene Testszene** anlegen, z.B.:
 
 ```markdown
-Inittestscene.unity
-```
-
-oder 
-
-```markdown
-inittestscene.unity
-```
+InitTestScene-Local.unity
 
 - Diese Test-Szenen dienen ausschließlich zum **lokalen Testen von Features**.
 - Wenn ein Feature fertig ist, sollte es in eine gemeinsame Szene integriert werden, die versioniert wird (z.B. MainScene.unity)
