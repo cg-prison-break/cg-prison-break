@@ -119,7 +119,7 @@ inittestscene.unity
 ```
 
 - Diese Test-Szenen dienen ausschließlich zum **lokalen Testen von Features**.
-- Wenn ein Feature fertig ist, soltle es in eine gemeinsame Szene integriert werden, die versioniert wird (z.B. MainScene.unity)
+- Wenn ein Feature fertig ist, sollte es in eine gemeinsame Szene integriert werden, die versioniert wird (z.B. MainScene.unity)
 - Die Integration in die MainScene.unity **muss** unter Absprache mit dem Map-Building-Team erfolgen
 - Um eine neue Testszene zu erstellen, kann einfach die MainScene.unity kopiert und umbenannt werden
 
