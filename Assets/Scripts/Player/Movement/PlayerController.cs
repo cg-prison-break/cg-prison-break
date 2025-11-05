@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
             ignoreInput.Enable();
             
             var enableInput = new InputAction(binding: "/Mouse/leftButton");
-            enableInput.performed += context => m_IgnoreInput = true;
+            enableInput.performed += context => m_IgnoreInput = false;
             enableInput.Enable();
             
             #endif
