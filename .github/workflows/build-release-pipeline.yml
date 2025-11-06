@@ -46,8 +46,12 @@ jobs:
       - name: Rename build folder
         run: |
           mkdir -p renamed_builds
-          mv "build/${{ matrix.targetPlatform }}" "renamed_builds/Prison Escape 3D - ${{ matrix.displayName }}"
-
+          src="build/${{ matrix.targetPlatform }}"
+          dest="renamed_builds/Prison Escape 3D - ${{ matrix.displayName }}"
+          echo "Moving from '$src' to '$dest'"
+          rm -rf "$dest"
+          mv "$src" "$dest"
+          
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
