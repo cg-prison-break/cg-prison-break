@@ -8,101 +8,113 @@ public class OptionsMenu : MonoBehaviour
 {
     [Header("Audio")]
     [SerializeField] private AudioMixer masterMixer;   // Expose "MasterVol" in mixer
+    [SerializeField] private Slider masterVolumeSlider;
 
     [Header("Display")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private Toggle fullscreenToggle;
 
-    [Header("Audio UI")]
-    [SerializeField] private Slider masterVolumeSlider;
-
     private Resolution[] _resolutions;
+
     private const string PREF_RES_INDEX = "res_index";
     private const string PREF_FULLSCREEN = "fullscreen";
     private const string PREF_MASTER_DB = "master_db";
 
+    private int _currentResIndex;
+
     void Awake()
     {
-        // Populate resolutions (unique width×height)
+        PopulateResolutions();
+        LoadSettings();
+        ApplyAudioImmediate(PlayerPrefs.GetFloat(PREF_MASTER_DB, 0f));
+
+        // Hook up listeners so changes can apply in real time if you like
+        if (resolutionDropdown)
+            resolutionDropdown.onValueChanged.AddListener(OnResolutionChanged);
+        if (fullscreenToggle)
+            fullscreenToggle.onValueChanged.AddListener(OnFullscreenToggled);
+        if (masterVolumeSlider)
+            masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeChanged);
+    }
+
+    // --- Resolution Picker Setup ---
+    private void PopulateResolutions()
+    {
         _resolutions = Screen.resolutions;
         var options = new List<string>();
-        int currentIndex = 0;
         var seen = new HashSet<string>();
+        int currentIndex = 0;
 
         resolutionDropdown.ClearOptions();
 
         for (int i = 0; i < _resolutions.Length; i++)
         {
-            string label = $"{_resolutions[i].width} x {_resolutions[i].height} @ {_resolutions[i].refreshRateRatio.value:0}Hz";
-            string key = $"{_resolutions[i].width}x{_resolutions[i].height}";
+            Resolution r = _resolutions[i];
+            string key = $"{r.width}x{r.height}";
             if (seen.Add(key))
             {
-                options.Add(label);
-                if (_resolutions[i].width == Screen.currentResolution.width &&
-                    _resolutions[i].height == Screen.currentResolution.height)
-                {
+                options.Add($"{r.width} x {r.height}");
+                if (r.width == Screen.currentResolution.width && r.height == Screen.currentResolution.height)
                     currentIndex = options.Count - 1;
-                }
             }
         }
 
         resolutionDropdown.AddOptions(options);
-
-        // Load saved prefs or defaults
-        int savedResIndex = PlayerPrefs.GetInt(PREF_RES_INDEX, currentIndex);
-        bool savedFullscreen = PlayerPrefs.GetInt(PREF_FULLSCREEN, Screen.fullScreen ? 1 : 0) == 1;
-        float savedMasterDb = PlayerPrefs.GetFloat(PREF_MASTER_DB, 0f); // 0 dB default
-
-        resolutionDropdown.value = Mathf.Clamp(savedResIndex, 0, options.Count - 1);
+        _currentResIndex = PlayerPrefs.GetInt(PREF_RES_INDEX, currentIndex);
+        resolutionDropdown.value = Mathf.Clamp(_currentResIndex, 0, options.Count - 1);
         resolutionDropdown.RefreshShownValue();
+    }
+
+    // --- Load saved settings ---
+    private void LoadSettings()
+    {
+        bool savedFullscreen = PlayerPrefs.GetInt(PREF_FULLSCREEN, Screen.fullScreen ? 1 : 0) == 1;
+        float savedMasterDb = PlayerPrefs.GetFloat(PREF_MASTER_DB, 0f);
 
         fullscreenToggle.isOn = savedFullscreen;
 
         if (masterVolumeSlider)
         {
-            // Convert dB to 0..1 slider roughly; store slider as linear 0..1, convert to dB on apply
-            // We’ll map slider [0.0001..1] to dB = 20*log10(x). Rebuild from saved dB:
             float lin = Mathf.Pow(10f, savedMasterDb / 20f);
             masterVolumeSlider.value = Mathf.Clamp01(lin);
         }
 
-        // Apply immediately so UI reflects actual state
-        ApplyAudioImmediate(savedMasterDb);
+        ApplyResolution(_currentResIndex, savedFullscreen);
+    }
+
+    // --- Callbacks ---
+    private void OnResolutionChanged(int index)
+    {
+        _currentResIndex = index;
+        ApplyResolution(_currentResIndex, fullscreenToggle.isOn);
+    }
+
+    private void OnFullscreenToggled(bool isFullscreen)
+    {
+        ApplyResolution(_currentResIndex, isFullscreen);
     }
 
     public void OnMasterVolumeChanged(float linear01)
     {
-        // Don’t set prefs yet; wait for Apply
         float clamped = Mathf.Clamp(linear01, 0.0001f, 1f);
         float db = 20f * Mathf.Log10(clamped);
         masterMixer.SetFloat("MasterVol", db);
     }
 
+    // --- Apply and Save ---
     public void Apply()
     {
-        // Resolution & fullscreen
-        int resIndex = resolutionDropdown.value;
-        // Map the dropdown index back to a Resolution choice:
-        // For simplicity, rebuild a unique list again (same as Awake)
-        var unique = new List<Resolution>();
-        var seen = new HashSet<string>();
-        foreach (var r in Screen.resolutions)
-        {
-            string key = $"{r.width}x{r.height}";
-            if (seen.Add(key)) unique.Add(r);
-        }
-        resIndex = Mathf.Clamp(resIndex, 0, unique.Count - 1);
-        var chosen = unique[resIndex];
-        Screen.SetResolution(chosen.width, chosen.height, fullscreenToggle.isOn);
+        bool isFullscreen = fullscreenToggle.isOn;
+        ApplyResolution(_currentResIndex, isFullscreen);
 
-        PlayerPrefs.SetInt(PREF_RES_INDEX, resIndex);
-        PlayerPrefs.SetInt(PREF_FULLSCREEN, fullscreenToggle.isOn ? 1 : 0);
+        // Save everything
+        PlayerPrefs.SetInt(PREF_RES_INDEX, _currentResIndex);
+        PlayerPrefs.SetInt(PREF_FULLSCREEN, isFullscreen ? 1 : 0);
 
-        // Audio
-        float lin = masterVolumeSlider ? Mathf.Clamp(masterVolumeSlider.value, 0.0001f, 1f) : 1f;
+        float lin = Mathf.Clamp(masterVolumeSlider.value, 0.0001f, 1f);
         float db = 20f * Mathf.Log10(lin);
-        ApplyAudioImmediate(db);
         PlayerPrefs.SetFloat(PREF_MASTER_DB, db);
+        ApplyAudioImmediate(db);
 
         PlayerPrefs.Save();
     }
@@ -112,8 +124,18 @@ public class OptionsMenu : MonoBehaviour
         menu.CloseOptions();
     }
 
+    // --- Helpers ---
+    private void ApplyResolution(int index, bool fullscreen)
+    {
+        if (index < 0 || index >= _resolutions.Length) return;
+
+        Resolution chosen = _resolutions[index];
+        Screen.SetResolution(chosen.width, chosen.height, fullscreen);
+    }
+
     private void ApplyAudioImmediate(float db)
     {
-        if (masterMixer) masterMixer.SetFloat("MasterVol", db);
+        if (masterMixer)
+            masterMixer.SetFloat("MasterVol", db);
     }
 }
