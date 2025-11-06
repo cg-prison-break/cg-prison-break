@@ -71,7 +71,6 @@ MonoBehaviour:
   m_Graph: {fileID: -6715191827051940676, guid: 4351b7a67ad6f364ca0c10bfc7770ff1, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 6487434838286794823
-  - rid: 6487434838286794824
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
@@ -86,15 +85,6 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 5982658287507094459}
-    - rid: 6487434838286794824
-      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 13359793311103094155
-          m_Value1: 3039795418001873238
-        Name: WayPoints
-        m_Value:
-        - {fileID: 0}
 --- !u!1001 &2777388420388708452
 PrefabInstance:
   m_ObjectHideFlags: 0
