@@ -95,10 +95,6 @@ public class PlayerController : MonoBehaviour
 
         if (value.isPressed)
         {
-            foreach (System.Delegate subscriber in OnInteractPerformed.GetInvocationList())
-            {
-                Debug.Log("Current subscriber: " + subscriber.Target.GetType().Name + " - "  + subscriber.Method.Name);
-            }
             OnInteractPerformed?.Invoke();
         }
     }

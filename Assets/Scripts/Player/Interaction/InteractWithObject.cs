@@ -13,12 +13,8 @@ public class InteractWithObject : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Camera playerCamera;
     
-    
-    
     private IInteractable currentInteractable;
-    
-    
-    
+  
     private void Awake()
     {
         if (playerController == null)
@@ -65,7 +61,8 @@ public class InteractWithObject : MonoBehaviour
     {
         Ray checkRay = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
         
-    
+        Debug.DrawRay(checkRay.origin, checkRay.direction, Color.red);
+        
         if (Physics.Raycast(checkRay, out RaycastHit hit, interactionDistance, interactionLayer))
         {
             if (hit.collider.TryGetComponent(out IInteractable interactable))
@@ -73,20 +70,14 @@ public class InteractWithObject : MonoBehaviour
                 currentInteractable = interactable;
                 
                 // TODO  call UI framework to display the interactable prompt
-            }
-            else
-            {
-                // TODO remove prompt from UI if present
                 
-                
-                currentInteractable = null;
+                return;
             }
             
         }
         else
         {
             // TODO remove prompt from UI if present
-            
             
             currentInteractable = null;
         }
