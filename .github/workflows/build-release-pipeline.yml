@@ -70,7 +70,7 @@ jobs:
       - name: Create Git tag for release
         id: tag_release
         run: |
-          TAG="build-$(date +'%Y%m%d-%H%M%S')"
+          TAG="prison-escape-3d-$(date +'%Y%m%d-%H%M%S')"
           git tag $TAG
           git push origin $TAG
           echo "tag=$TAG" >> $GITHUB_OUTPUT
