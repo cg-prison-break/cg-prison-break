@@ -7,23 +7,40 @@ public class Player : MonoBehaviour
     
     
     // INVENTROY 
-    public bool hasItem(Item item)
+    
+    private List<Item> inventory = new List<Item>();
+    
+    public bool HasItem(Item itemToFind)
     {
+        if (inventory.Contains(itemToFind))
+        {
+            return true;    
+        }
         return false;
     }
     
-    public bool addItem(Item item)
+    public bool AddItem(Item item)
     {
+        inventory.Add(item);
+        if (inventory.Contains(item))
+        {
+            return true;
+        }
         return false;
     }
     
-    public bool removeItem(Item item)
+    public bool RemoveItem(Item item)
     {
-        return false;
+        inventory.Remove(item);
+        if (inventory.Contains(item))
+        {
+            return false;
+        }
+        return true;
     }
     
-    public List<Item> getItems()
+    public List<Item> GetItems()
     {
-        return new List<Item>();
+        return inventory;
     }
 }
