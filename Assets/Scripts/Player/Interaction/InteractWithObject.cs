@@ -12,6 +12,7 @@ public class InteractWithObject : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Camera playerCamera;
+    [SerializeField] private Player player;
     
     private IInteractable currentInteractable;
   
@@ -88,7 +89,7 @@ public class InteractWithObject : MonoBehaviour
     {
         if (currentInteractable != null)
         {
-            currentInteractable.Interact();
+            currentInteractable.Interact(player);
         }
     }
 }

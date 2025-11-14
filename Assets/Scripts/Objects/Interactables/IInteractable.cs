@@ -6,7 +6,7 @@ namespace Objects.Interactables
     {
         string InteractionPrompt { get; }
         
-        void Interact();
+        void Interact(Player interactor);
     }
 
 }
