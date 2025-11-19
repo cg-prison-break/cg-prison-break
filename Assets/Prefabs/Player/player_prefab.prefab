@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 2992147709971987880}
   - component: {fileID: 7899978818018713745}
   - component: {fileID: 7530287405738346992}
+  - component: {fileID: 4179356624542940325}
   m_Layer: 0
   m_Name: player_prefab
   m_TagString: Untagged
@@ -276,3 +277,21 @@ MonoBehaviour:
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
+--- !u!114 &4179356624542940325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7221690338320798192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7125f68e0ce75dc7daa18eb976c3ecc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractWithObject
+  interactionDistance: 3
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerController: {fileID: 7530287405738346992}
+  playerCamera: {fileID: 1809051688060150335}

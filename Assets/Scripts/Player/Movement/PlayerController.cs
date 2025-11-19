@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +21,10 @@ public class PlayerController : MonoBehaviour
     
     
     private static bool m_FocusActionsSetUp;
+    
+    
+    // Events
+    public event Action OnInteractPerformed;
     
     private void Start()
     {
@@ -79,6 +84,19 @@ public class PlayerController : MonoBehaviour
     public void OnSprint(InputValue value)
     {
         SprintInput(value.isPressed);
+    }
+    
+    public void OnInteract(InputValue value)
+    {
+        if (m_IgnoreInput)
+        {
+            return;
+        }
+
+        if (value.isPressed)
+        {
+            OnInteractPerformed?.Invoke();
+        }
     }
 #endif
     
