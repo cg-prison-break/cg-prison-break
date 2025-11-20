@@ -90,6 +90,7 @@ public class InteractWithObject : MonoBehaviour
         if (currentInteractable != null)
         {
             currentInteractable.Interact(player);
+            Debug.Log(currentInteractable.InteractionPrompt);
         }
     }
 }
