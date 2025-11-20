@@ -4,9 +4,9 @@ namespace Objects.Interactables
 {
     public interface IInteractable
     {
-        string InteractionPrompt { get; }
+        string InteractionPrompt { get; set;}
         
-        void Interact();
+        void Interact(Player interactor);
     }
 
 }
