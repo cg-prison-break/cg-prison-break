@@ -15,7 +15,7 @@ To properly represent the items in game the logic is split into two:
 ## Game World representation
 
 ### Items
-To define an object as an Item the world it needs a script that implements the `IInteractableItem` interface.
+To define an object as an Item in the game world, it needs a script that implements the `IInteractableItem` interface.
 The interface extends the demands with a reference to a `ScriptableObject ItemData`.
 
 In C# the implementation looks like this:
