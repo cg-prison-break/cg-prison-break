@@ -28,7 +28,7 @@ public class InteractableObject : Monobehaviour, IInteractable
 The interface currently demands two implementations:
 
 - A string that can be displayed by the (currently not impelemented) UI system
-- A `Interact()` function that defines the behaviour of the object
+- A `Interact(Player interactor)` function that defines the behaviour of the object
 
 Both are to be implemented on a per object basis.
 
