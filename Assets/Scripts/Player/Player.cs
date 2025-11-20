@@ -4,13 +4,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     
-    
-    
     // INVENTROY 
     
-    private List<Item> inventory = new List<Item>();
+    private List<ItemData> inventory = new List<ItemData>();
     
-    public bool HasItem(Item itemToFind)
+    public bool HasItem(ItemData itemToFind)
     {
         if (inventory.Contains(itemToFind))
         {
@@ -19,7 +17,7 @@ public class Player : MonoBehaviour
         return false;
     }
     
-    public bool AddItem(Item item)
+    public bool AddItem(ItemData item)
     {
         inventory.Add(item);
         if (inventory.Contains(item))
@@ -29,17 +27,17 @@ public class Player : MonoBehaviour
         return false;
     }
     
-    public bool RemoveItem(Item item)
+    public bool RemoveItem(ItemData item)
     {
-        inventory.Remove(item);
         if (inventory.Contains(item))
         {
-            return false;
+            inventory.Remove(item);
+            return true;
         }
-        return true;
+        return false;
     }
     
-    public List<Item> GetItems()
+    public List<ItemData> GetItems()
     {
         return inventory;
     }
