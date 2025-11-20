@@ -2,7 +2,7 @@
 
 ## How it's set up
 
-To properly represent the items in game the logic is plit into two:
+To properly represent the items in game the logic is split into two:
 
 - The game world representation
   
