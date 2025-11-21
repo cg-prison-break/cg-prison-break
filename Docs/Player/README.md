@@ -1,0 +1,1 @@
+The player prefab now holds a `Player` script that exposes the inventory methods.
