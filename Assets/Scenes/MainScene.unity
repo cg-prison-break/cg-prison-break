@@ -113135,12 +113135,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1393316411241261298, guid: 8cbbe0686667475438a4688e7582ce6e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3975382360724877554, guid: 8cbbe0686667475438a4688e7582ce6e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869678195495720718, guid: 8cbbe0686667475438a4688e7582ce6e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7039451938762007142, guid: 8cbbe0686667475438a4688e7582ce6e, type: 3}
       propertyPath: m_Name
       value: hospital_evidenceroom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3514176172961993366, guid: 8cbbe0686667475438a4688e7582ce6e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cbbe0686667475438a4688e7582ce6e, type: 3}
