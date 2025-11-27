@@ -6,7 +6,6 @@ public class SuspiciousState : NPCState
 {
     private readonly float distanceThreshold = 0.2f;
     private readonly Vector3 suspiciousLocation;
-    private readonly float attention;
     private readonly float sightRange;
     private readonly float fieldOfViewAngle;
     private readonly float cooldownDuration;
@@ -14,10 +13,9 @@ public class SuspiciousState : NPCState
 
     private Coroutine searchCoroutine = null;
 
-    public SuspiciousState(Vector3 suspiciousLocation, float attention, float sightRange, float fieldOfViewAngle, float cooldownDuration = 8f, float searchRadius = 2f)
+    public SuspiciousState(Vector3 suspiciousLocation, float sightRange, float fieldOfViewAngle, float cooldownDuration = 8f, float searchRadius = 2f)
     {
         this.suspiciousLocation = suspiciousLocation;
-        this.attention = attention;
         this.sightRange = sightRange;
         this.fieldOfViewAngle = fieldOfViewAngle;
         this.cooldownDuration = cooldownDuration;
@@ -30,7 +28,7 @@ public class SuspiciousState : NPCState
         npc.navMeshAgent.ResetPath();
         npc.navMeshAgent.SetDestination(suspiciousLocation);
 
-        npc.navMeshAgent.speed = npc.speed + 0.2f;
+        npc.navMeshAgent.speed = npc.speed + 1.5f;
         npc.navMeshAgent.isStopped = false;
         npc.animator.SetBool("isWalking", true);
 
@@ -55,6 +53,7 @@ public class SuspiciousState : NPCState
         npc.animator.SetBool("isWalking", false);
         // Ensure agent rotation behavior is normal when exiting
         npc.navMeshAgent.updateRotation = true;
+        npc.navMeshAgent.speed = npc.speed;
     }
 
     public override void UpdateState(NPC npc)

@@ -36,7 +36,7 @@ public class PrisonGuard : NPC
 
         if (distance < attention * maxAttentionRange)
         {
-            ChangeState(new SuspiciousState(location, attention, sightRange, fieldOfViewAngle));
+            ChangeState(new SuspiciousState(location, sightRange, fieldOfViewAngle));
         }
     }
 
