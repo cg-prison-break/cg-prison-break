@@ -51,10 +51,14 @@ namespace Prefabs.Interactions.tunnel
 
         private void HandleTunnelInteraction(Player interactor, bool inTunnel, string logMessage)
         {
-            var enterPoint = gameObject.GetComponentInChildren<EnterPoint>().transform.position;
+            var enterPoint = tunnelState.GetInTunnel() ? gameObject.GetComponentInChildren<LeavePoint>().transform.position : gameObject.GetComponentInChildren<EnterPoint>().transform.position;
+            Debug.Log(enterPoint);
+
             interactor.transform.position = enterPoint;
+            Debug.Log(interactor.transform.position);
 
             tunnelState.SetInTunnel(inTunnel);
+            Debug.Log("Tunnel state changed to:" + tunnelState.GetInTunnel());
             Debug.Log(logMessage);
         }
 
