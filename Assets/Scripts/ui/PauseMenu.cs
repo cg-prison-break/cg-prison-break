@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject pausePanel;          // root of Resume/Options/Quit UI
     [SerializeField] private GameObject optionsPanelInGame;  // separate panel for options
     [SerializeField] private string mainMenuSceneName = "MainMenu";
+    [SerializeField] private MonoBehaviour[] scriptsToDisableOnPause;
 
     private bool _isPaused;
 
@@ -50,8 +51,18 @@ public class PauseMenu : MonoBehaviour
 
         Time.timeScale = 0f;
         _isPaused = true;
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        // Disable gameplay scripts
+        if (scriptsToDisableOnPause != null)
+        {
+            foreach (var s in scriptsToDisableOnPause)
+            {
+                if (s != null) s.enabled = false;
+            }
+        }
     }
 
     public void Resume()
@@ -61,7 +72,19 @@ public class PauseMenu : MonoBehaviour
         pauseCanvas.SetActive(false);
         Time.timeScale = 1f;
         _isPaused = false;
-        // re-lock cursor here if your game normally does that
+
+        // Re-enable gameplay scripts
+        if (scriptsToDisableOnPause != null)
+        {
+            foreach (var s in scriptsToDisableOnPause)
+            {
+                if (s != null) s.enabled = true;
+            }
+        }
+
+        // If your game normally locks the cursor, do it here again:
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
     }
 
     public void OpenOptions()
