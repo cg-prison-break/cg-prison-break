@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.AI;
-
 
 public class PrisonGuardSpawner : MonoBehaviour
 {
@@ -28,11 +26,16 @@ public class PrisonGuardSpawner : MonoBehaviour
 
             // spawn on navmesh
             Vector3 randomDir = UnityEngine.Random.insideUnitSphere * spawnRadius + spawnPoint.transform.position;
-            NavMesh.SamplePosition(randomDir, out NavMeshHit hit, spawnRadius, NavMesh.AllAreas);
-            GameObject guard = Instantiate(prisonGuardPrefab, hit.position, Quaternion.identity);
+            NavMesh.SamplePosition(randomDir, out var navMeshHit, spawnRadius, NavMesh.AllAreas);
 
-            var agent = guard.GetComponent<BehaviorGraphAgent>();
-            agent.Start();
+            // ensure spawning on the ground
+            Physics.Raycast(navMeshHit.position + Vector3.up * 10f, Vector3.down, out var hit, 100f);
+
+            GameObject guard = Instantiate(prisonGuardPrefab, hit.point, Quaternion.identity);
+
+            var agent = guard.GetComponent<NavMeshAgent>();
+            agent.speed = 2.0f;
+            guard.GetComponent<PrisonGuard>().navMeshAgent = agent;
 
             spawnedGuards.Add(guard);
         }
