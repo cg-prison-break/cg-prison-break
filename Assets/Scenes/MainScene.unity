@@ -11705,7 +11705,7 @@ Transform:
   m_GameObject: {fileID: 190883453}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.37, y: -0.65969086, z: -26.044857}
+  m_LocalPosition: {x: 17.37, y: -0.65969086, z: 1.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20017,7 +20017,7 @@ Transform:
   m_GameObject: {fileID: 329705833}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.04, y: 0, z: 20.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20168,7 +20168,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -53062,7 +53062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PrisonGuardSpawner
   maxGuards: 10
   spawnRadius: 3
-  prisonGuardPrefab: {fileID: 5982658287507094459, guid: 6a1bd1dd0ecc7fb42a08f15507e38a7f, type: 3}
+  prisonGuardPrefab: {fileID: 5349091927681148413, guid: 50376ebabd2da4845bce2776772dfed4, type: 3}
   spawnPoints:
   - {fileID: 1546146810}
   - {fileID: 190883453}
@@ -86103,7 +86103,7 @@ Transform:
   m_GameObject: {fileID: 1546146810}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -18.73, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
