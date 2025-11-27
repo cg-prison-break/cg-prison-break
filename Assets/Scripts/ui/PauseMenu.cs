@@ -5,13 +5,17 @@ using UnityEngine.InputSystem;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseCanvas;
+    [SerializeField] private GameObject pausePanel;          // root of Resume/Options/Quit UI
+    [SerializeField] private GameObject optionsPanelInGame;  // separate panel for options
+    [SerializeField] private string mainMenuSceneName = "MainMenu";
 
     private bool _isPaused;
 
     private void Start()
     {
-        if (pauseCanvas != null)
-            pauseCanvas.SetActive(false);
+        if (pauseCanvas != null) pauseCanvas.SetActive(false);
+        if (pausePanel != null) pausePanel.SetActive(true);
+        if (optionsPanelInGame != null) optionsPanelInGame.SetActive(false);
 
         _isPaused = false;
         Time.timeScale = 1f;
@@ -19,21 +23,20 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("PauseMenu.Update running");
+        if (Keyboard.current == null) return;
 
-        if (Keyboard.current == null)
-            return;
-
-        // Escape or P to toggle pause
-        if (Keyboard.current.escapeKey.wasPressedThisFrame ||
-            Keyboard.current.pKey.wasPressedThisFrame)
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            Debug.Log("Pause key pressed");
-
-            if (_isPaused)
-                Resume();
+            // If options are open, close them first on Escape
+            if (_isPaused && optionsPanelInGame != null && optionsPanelInGame.activeSelf)
+            {
+                CloseOptions();
+            }
             else
-                Pause();
+            {
+                if (_isPaused) Resume();
+                else Pause();
+            }
         }
     }
 
@@ -42,7 +45,10 @@ public class PauseMenu : MonoBehaviour
         if (pauseCanvas == null) return;
 
         pauseCanvas.SetActive(true);
-        Time.timeScale = 0f;   // freeze game
+        pausePanel.SetActive(true);
+        if (optionsPanelInGame != null) optionsPanelInGame.SetActive(false);
+
+        Time.timeScale = 0f;
         _isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -53,17 +59,28 @@ public class PauseMenu : MonoBehaviour
         if (pauseCanvas == null) return;
 
         pauseCanvas.SetActive(false);
-        Time.timeScale = 1f;   // unfreeze game
+        Time.timeScale = 1f;
         _isPaused = false;
-        // If you lock the cursor in your game, re-lock here:
-        // Cursor.lockState = CursorLockMode.Locked;
-        // Cursor.visible = false;
+        // re-lock cursor here if your game normally does that
     }
 
-    // We'll wire these later:
+    public void OpenOptions()
+    {
+        if (pausePanel != null) pausePanel.SetActive(false);
+        if (optionsPanelInGame != null) optionsPanelInGame.SetActive(true);
+    }
+
+    public void CloseOptions()
+    {
+        if (optionsPanelInGame != null) optionsPanelInGame.SetActive(false);
+        if (pausePanel != null) pausePanel.SetActive(true);
+    }
+
     public void QuitToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu"); // change name if needed
+        SceneManager.LoadScene(mainMenuSceneName);
     }
+
+    public bool IsPaused => _isPaused;
 }
