@@ -1,7 +1,5 @@
-using System;
 using Objects.Interactables;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Prefabs.Interactions
 {

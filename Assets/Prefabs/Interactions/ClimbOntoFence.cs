@@ -1,4 +1,3 @@
-using System.Collections;
 using Objects.Interactables;
 using UnityEngine;
 
@@ -10,18 +9,19 @@ namespace Prefabs.Interactions
         
         public void Interact(Player interactor)
         {
-            // CharacterController vorübergehend deaktivieren
             var cc = interactor.GetComponent<CharacterController>();
-            if (cc != null) cc.enabled = false;
+            SetCharacterController(cc, false);
 
-            // Teleport
             var climbingPoint = gameObject.GetComponentInChildren<ClimbingPoint>().transform.position;
             interactor.transform.position = climbingPoint;
-
-            // CharacterController wieder aktivieren
-            if (cc != null) cc.enabled = true;
-
-            Debug.Log("called climb");
+            
+            SetCharacterController(cc, true);
+            Debug.Log("Climbed onto fence.");
+        }
+        
+        private static void SetCharacterController(CharacterController cc, bool enabled)
+        {
+            if (cc != null) cc.enabled = enabled;
         }
     }
 }
