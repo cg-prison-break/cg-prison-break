@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     
     // INVENTROY 
     
-    private List<ItemData> inventory = new List<ItemData>();
+    private List<ItemData> inventory = new List<ItemData>(5);
     
     public bool HasItem(ItemData itemToFind)
     {
