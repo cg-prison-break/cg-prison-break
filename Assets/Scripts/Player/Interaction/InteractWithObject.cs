@@ -13,6 +13,8 @@ public class InteractWithObject : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Player player;
+    [SerializeField] private InteractPromptUI hudCanvas;
+
     
     private IInteractable currentInteractable;
   
@@ -70,7 +72,7 @@ public class InteractWithObject : MonoBehaviour
             {
                 currentInteractable = interactable;
                 
-                // TODO  call UI framework to display the interactable prompt
+                hudCanvas.Show(currentInteractable.InteractionPrompt);
                 
                 return;
             }
@@ -78,7 +80,7 @@ public class InteractWithObject : MonoBehaviour
         }
         else
         {
-            // TODO remove prompt from UI if present
+            hudCanvas.Hide();
             
             currentInteractable = null;
         }
