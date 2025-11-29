@@ -13355,23 +13355,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222838822}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &223597319 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1592360475635053705, guid: 383d664577dcff248bf46461d57ab996, type: 3}
-  m_PrefabInstance: {fileID: 951286588}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &223597324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223597319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 647b75d9af0084ebab27d7f588d4a951, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OpenDoor
 --- !u!1001 &224595877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50359,10 +50342,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1592360475635053705, guid: 383d664577dcff248bf46461d57ab996, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 223597324}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 383d664577dcff248bf46461d57ab996, type: 3}
 --- !u!1001 &952631277
 PrefabInstance:
