@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 554374292493943895}
   - component: {fileID: 2947716788054742425}
   - component: {fileID: 1841116814393548262}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ceiling
-  m_TagString: Untagged
+  m_TagString: Stone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -307,6 +307,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -8387291811051844897, guid: abf8fc298bddfc3408f6760e517abaa9, type: 3}
+      propertyPath: m_TagString
+      value: Stone
+      objectReference: {fileID: 0}
     - target: {fileID: -7342060502314031811, guid: abf8fc298bddfc3408f6760e517abaa9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -318,6 +322,10 @@ PrefabInstance:
     - target: {fileID: -4951680457007384610, guid: abf8fc298bddfc3408f6760e517abaa9, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -4951680457007384610, guid: abf8fc298bddfc3408f6760e517abaa9, type: 3}
+      propertyPath: m_TagString
+      value: Sand
       objectReference: {fileID: 0}
     - target: {fileID: -699060734858670531, guid: abf8fc298bddfc3408f6760e517abaa9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
