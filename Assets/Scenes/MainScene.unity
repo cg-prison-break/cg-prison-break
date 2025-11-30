@@ -26355,6 +26355,8 @@ Transform:
   - {fileID: 220529312}
   - {fileID: 391349581}
   - {fileID: 509833630}
+  - {fileID: 1441144229}
+  - {fileID: 1038340591}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &359079104
@@ -62431,27 +62433,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1637039454846982976, guid: 3d672b1b497d64e48aa47e37b86514bb, type: 3}
   m_PrefabInstance: {fileID: 1038340590}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1038388391 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6854417335471519675, guid: 24b789d27466dae47b53e9a0a7a65ac9, type: 3}
-  m_PrefabInstance: {fileID: 1791129717}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1038388392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1038388391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b206c2e7a3e683344ac3e36b23fda88c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPCSpawner
-  maxNPCs: 5
-  spawnRadius: 3
-  npcPrefab: {fileID: 0}
-  spawnPoints: []
 --- !u!1 &1038397345
 GameObject:
   m_ObjectHideFlags: 0
