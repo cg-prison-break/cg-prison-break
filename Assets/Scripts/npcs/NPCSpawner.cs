@@ -33,6 +33,7 @@ public class NPCSpawner : MonoBehaviour
             GameObject npc = Instantiate(npcPrefab, hit.point, Quaternion.identity);
 
             var agent = npc.GetComponent<NavMeshAgent>();
+            agent.Warp(npc.transform.position);
             agent.speed = 2.0f;
 
             spawnedNPCs.Add(npc);

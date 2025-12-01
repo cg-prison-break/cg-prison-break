@@ -10,7 +10,7 @@ public class Prisoner : NPC
         var rnd = new System.Random();
         var variant = variants[rnd.Next(variants.Length)];
 
-        foreach (Transform child in transform)
+        foreach (Transform child in transform.GetChild(0))
         {
             bool shouldBeActive = child.name == variant;
             child.gameObject.SetActive(shouldBeActive);
