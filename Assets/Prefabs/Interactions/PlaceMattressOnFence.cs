@@ -6,6 +6,7 @@ namespace Prefabs.Interactions
     public class PlaceMattressOnFence : MonoBehaviour, IInteractable
     {
         public GameObject fenceWithMattressPrefab;
+        public GameObject parent;
 
         public string InteractionPrompt
         {
@@ -15,8 +16,8 @@ namespace Prefabs.Interactions
 
         public void Interact(Player interactor)
         {
-            Instantiate(fenceWithMattressPrefab, transform.position, transform.rotation);
-            Destroy(gameObject);
+            Instantiate(fenceWithMattressPrefab, parent.transform.position, parent.transform.rotation);
+            Destroy(parent);
         }
     }
 }
