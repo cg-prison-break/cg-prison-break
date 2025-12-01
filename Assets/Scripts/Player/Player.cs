@@ -4,6 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     
+    [SerializeField] private ItemList itemHud;
     // INVENTROY 
     
     private List<ItemData> inventory = new List<ItemData>();
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     public bool AddItem(ItemData item)
     {
         inventory.Add(item);
+        itemHud.RefreshIcons();
         if (inventory.Contains(item))
         {
             return true;
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour
         if (inventory.Contains(item))
         {
             inventory.Remove(item);
+            itemHud.RefreshIcons();
             return true;
         }
         return false;
