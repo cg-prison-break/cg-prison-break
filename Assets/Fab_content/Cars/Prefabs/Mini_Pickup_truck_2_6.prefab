@@ -98,6 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1730005091553243033}
+  - component: {fileID: 3000679001066503875}
   m_Layer: 6
   m_Name: Mini_Pickup_truck_2_6
   m_TagString: Stone
@@ -129,6 +130,23 @@ Transform:
   - {fileID: 4889325644419404817}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3000679001066503875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389895785727243555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifierVolume
+  m_SerializedVersion: 0
+  m_Size: {x: 2.25, y: 3, z: 3.02}
+  m_Center: {x: 0, y: 1, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &2742947870363642798
 GameObject:
   m_ObjectHideFlags: 0

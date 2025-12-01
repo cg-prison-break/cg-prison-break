@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 554374292493943895}
   - component: {fileID: 2947716788054742425}
   - component: {fileID: 1841116814393548262}
+  - component: {fileID: 7864836826934685316}
   m_Layer: 6
   m_Name: ceiling
   m_TagString: Stone
@@ -89,6 +90,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7864836826934685316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186472480677647178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifierVolume
+  m_SerializedVersion: 0
+  m_Size: {x: 75.1, y: 2.2, z: 77.15}
+  m_Center: {x: 0, y: 1, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &6854417335471519675
 GameObject:
   m_ObjectHideFlags: 0
