@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3685679796343873247, guid: 0245f1d65ee014041a9c8a97862970e7, type: 3}
       propertyPath: m_Name
-      value: SM_floor_P (3) Variant
+      value: shower_floor_tile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685679796343873247, guid: 0245f1d65ee014041a9c8a97862970e7, type: 3}
+      propertyPath: m_TagString
+      value: Stone
       objectReference: {fileID: 0}
     - target: {fileID: 4066181551381628005, guid: 0245f1d65ee014041a9c8a97862970e7, type: 3}
       propertyPath: m_RootOrder

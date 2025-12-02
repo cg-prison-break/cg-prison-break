@@ -1,5 +1,73 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7396042333570228834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6201103638944516673}
+  - component: {fileID: 7672864017339907213}
+  - component: {fileID: 4361644549532146208}
+  m_Layer: 7
+  m_Name: FenceInteractCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6201103638944516673
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7396042333570228834}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.429, y: 1.69, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5497903086220027978}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7672864017339907213
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7396042333570228834}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.8, y: 3, z: 0.4}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4361644549532146208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7396042333570228834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06910bbe26af95d408772e5a94dd375a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Prefabs.Interactions.PlaceMattressOnFence
+  fenceWithMattressPrefab: {fileID: 2322378598721827269, guid: ce527661f98c932468491b16099a7a1d, type: 3}
+  parent: {fileID: 5118245417059578608}
 --- !u!1001 &6021316510395474680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10,7 +78,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1483841931926196232, guid: 39ad320e0609b2b41b8b08364a5cac30, type: 3}
       propertyPath: m_Name
-      value: SM_fence (13) Variant
+      value: fence
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483841931926196232, guid: 39ad320e0609b2b41b8b08364a5cac30, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2295844929026001586, guid: 39ad320e0609b2b41b8b08364a5cac30, type: 3}
       propertyPath: m_RootOrder
@@ -58,6 +130,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2295844929026001586, guid: 39ad320e0609b2b41b8b08364a5cac30, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6201103638944516673}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39ad320e0609b2b41b8b08364a5cac30, type: 3}
+--- !u!1 &5118245417059578608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1483841931926196232, guid: 39ad320e0609b2b41b8b08364a5cac30, type: 3}
+  m_PrefabInstance: {fileID: 6021316510395474680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5497903086220027978 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2295844929026001586, guid: 39ad320e0609b2b41b8b08364a5cac30, type: 3}
+  m_PrefabInstance: {fileID: 6021316510395474680}
+  m_PrefabAsset: {fileID: 0}
