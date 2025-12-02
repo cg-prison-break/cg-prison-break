@@ -13,6 +13,8 @@ public class SuspiciousState : NPCState
 
     private Coroutine searchCoroutine = null;
 
+    protected override Color? StateHintColor => Color.yellow;
+
     public SuspiciousState(Vector3 suspiciousLocation, float sightRange, float fieldOfViewAngle, float cooldownDuration = 8f, float searchRadius = 2f)
     {
         this.suspiciousLocation = suspiciousLocation;
@@ -38,6 +40,7 @@ public class SuspiciousState : NPCState
             npc.StopCoroutine(searchCoroutine);
             searchCoroutine = null;
         }
+        UpdateStateHint(npc);
     }
 
     public override void ExitState(NPC npc)

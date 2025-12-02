@@ -6,6 +6,8 @@ public class RandomMovementState : NPCState
     private readonly float distanceThreshold = 0.2f;
     private Vector3 currentTarget;
 
+    protected override Color? StateHintColor => Color.green;
+
     public override void EnterState(NPC npc)
     {
         npc.navMeshAgent.isStopped = true;
@@ -24,6 +26,7 @@ public class RandomMovementState : NPCState
 
         npc.navMeshAgent.isStopped = false;
         npc.animator.SetBool("isWalking", true);
+        UpdateStateHint(npc);
     }
 
     public override void ExitState(NPC npc)

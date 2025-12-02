@@ -8,6 +8,8 @@ public class AlertedState : NPCState
     private float catchTimer = 0f;
     private bool isCatching = false;
 
+    protected override Color? StateHintColor => Color.red;
+
     public override void EnterState(NPC npc)
     {
         npc.navMeshAgent.speed = npc.speed + 2.5f;
@@ -18,6 +20,8 @@ public class AlertedState : NPCState
 
         isCatching = false;
         catchTimer = 0f;
+
+        UpdateStateHint(npc);
     }
 
     public override void ExitState(NPC npc)
