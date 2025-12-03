@@ -17,6 +17,30 @@ public class Player : MonoBehaviour
         return false;
     }
     
+    public bool HasOneOf(List<ItemData> items)
+    {
+        foreach (ItemData item in items)
+        {
+            if (inventory.Contains(item))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public bool HasAll(List<ItemData> items)
+    {
+        foreach (ItemData item in items)
+        {
+            if (!inventory.Contains(item))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public bool AddItem(ItemData item)
     {
         inventory.Add(item);
@@ -27,6 +51,12 @@ public class Player : MonoBehaviour
         return false;
     }
     
+    public bool AddItem(List<ItemData> items)
+    {
+        inventory.AddRange(items);
+        return HasAll(items);
+    }
+    
     public bool RemoveItem(ItemData item)
     {
         if (inventory.Contains(item))
@@ -35,6 +65,16 @@ public class Player : MonoBehaviour
             return true;
         }
         return false;
+    }
+    
+    public bool RemoveAll(List<ItemData> items)
+    {
+        foreach (ItemData item in items)
+        {
+            inventory.Remove(item);
+        }
+        
+        return !HasOneOf(items);
     }
     
     public List<ItemData> GetItems()
