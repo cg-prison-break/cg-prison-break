@@ -44,4 +44,9 @@ public class Player : MonoBehaviour
     {
         return inventory;
     }
+
+    public void OnCaught()
+    {
+        Debug.LogWarning("Player caught!");
+    }
 }
