@@ -35,6 +35,8 @@ namespace Prefabs.Interactions.screwdriver
         {
             var leavePoint = gameObject.GetComponentInChildren<LeavePoint>();
             interactor.transform.position = leavePoint.transform.position;
+            var audioSourceLeavePoint = leavePoint.gameObject.GetComponent<AudioSource>();
+            audioSourceLeavePoint.Play();
             tunnelState.SetInTunnel(true);
         }
 
@@ -42,6 +44,8 @@ namespace Prefabs.Interactions.screwdriver
         {
             var enterPoint = gameObject.GetComponentInChildren<EnterPoint>();
             interactor.transform.position = enterPoint.transform.position;
+            var audioSourceEnterPoint = enterPoint.gameObject.GetComponent<AudioSource>();
+            audioSourceEnterPoint.Play();
             tunnelState.SetInTunnel(false);
         }
     }

@@ -107,6 +107,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4917515957530284589, guid: 0e8c9c2be70143e4692b55d1541c9d06, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7805451283522624543}
+    - targetCorrespondingSourceObject: {fileID: 4917515957530284589, guid: 0e8c9c2be70143e4692b55d1541c9d06, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7872372498840429408}
   m_SourcePrefab: {fileID: 100100000, guid: 0e8c9c2be70143e4692b55d1541c9d06, type: 3}
 --- !u!1 &2488705941191021042 stripped
 GameObject:
@@ -134,3 +137,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.07, y: 0.25, z: 0.07}
   m_Center: {x: 0, y: 0.07, z: 0}
+--- !u!114 &7872372498840429408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2488705941191021042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c15f7fd50a27264fbe487d276f411c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableScrewDriver
+  _itemData: {fileID: 11400000, guid: d33ba423a4ea8194ab2882090b5af3fd, type: 2}
+  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}

@@ -9,6 +9,7 @@ public class InteractableScrew : MonoBehaviour, IInteractableConnected
     public GameObject parent;
     public GameObject animatedScrewDriver;
     public WindowScrewHandler windowScrewHandler;
+    public AudioSource audioSource;
     private bool _isScrewing;
     
     public string InteractionPrompt
@@ -33,6 +34,7 @@ public class InteractableScrew : MonoBehaviour, IInteractableConnected
         Debug.Log("Screwing...");
         animatedScrewDriver.SetActive(true);
         _isScrewing = true;
+        audioSource.Play();
         animator.Play("ScrewAnimation");
     }
     
