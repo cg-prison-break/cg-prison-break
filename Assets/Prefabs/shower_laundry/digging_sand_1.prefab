@@ -97,7 +97,8 @@ MonoBehaviour:
   parent: {fileID: 3143809410645325195}
   animator: {fileID: 1446385274489315197}
   shovel: {fileID: 3520082199335454307}
-  _shovelItem: {fileID: 11400000, guid: 3a370c544c248cc479e12c438d061401, type: 2}
+  _connectedItems:
+  - {fileID: 11400000, guid: 3a370c544c248cc479e12c438d061401, type: 2}
 --- !u!1 &3143809410645325195
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +407,8 @@ MonoBehaviour:
   parent: {fileID: 3143809410645325195}
   animator: {fileID: 5814223440804479611}
   shovel: {fileID: 8393314185990953829}
-  _shovelItem: {fileID: 11400000, guid: 3a370c544c248cc479e12c438d061401, type: 2}
+  _connectedItems:
+  - {fileID: 11400000, guid: 3a370c544c248cc479e12c438d061401, type: 2}
 --- !u!1001 &1584794273535244417
 PrefabInstance:
   m_ObjectHideFlags: 0

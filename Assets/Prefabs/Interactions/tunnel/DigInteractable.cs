@@ -1,6 +1,6 @@
-﻿using Objects.Interactables;
+﻿using System.Collections.Generic;
+using Objects.Interactables;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Prefabs.Interactions.tunnel
 {
@@ -10,16 +10,11 @@ namespace Prefabs.Interactions.tunnel
         public Animator animator;
         public GameObject shovel;
         
-        [SerializeField] private ItemData _shovelItem;
+        [SerializeField] private List<ItemData> _connectedItems;
 
-        public ItemData ConnectedItem
-        {
-            get { return _shovelItem; }
-            set { _shovelItem = value; }
-        }
+        public List<ItemData> ConnectedItems => _connectedItems;
 
-        private bool isDigging = false;
-
+        private bool _isDigging;
 
         public string InteractionPrompt
         {
@@ -27,14 +22,13 @@ namespace Prefabs.Interactions.tunnel
             set => InteractionPrompt = value;
         }
 
-
         public void Interact(Player interactor)
         {
-            if (isDigging) return;
-            if (!interactor.HasItem(_shovelItem))
+            if (_isDigging) return;
+            if (!interactor.HasAll(_connectedItems))
                 return;
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
-            isDigging = true;
+            _isDigging = true;
             shovel.SetActive(true);
         }
 
@@ -42,7 +36,5 @@ namespace Prefabs.Interactions.tunnel
         {
             Destroy(parent);
         }
-
-        public ItemData shovelItem { get; }
     }
 }
