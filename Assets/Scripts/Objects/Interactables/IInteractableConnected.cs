@@ -4,6 +4,6 @@ namespace Objects.Interactables
 {
     public interface IInteractableConnected: IInteractable
     {
-        List<ItemData> ConnectedItem {get;}
+        List<ItemData> ConnectedItems {get;}
     }
 }
