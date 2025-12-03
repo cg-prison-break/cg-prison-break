@@ -19,9 +19,6 @@ public class TalkingState : NPCState
 
     public override void EnterState(NPC npc)
     {
-        npc.navMeshAgent.isStopped = true;
-        npc.animator.SetBool("isWalking", false);
-
         // look into direction of player
         npc.transform.LookAt(player.transform);
 
@@ -33,23 +30,20 @@ public class TalkingState : NPCState
         }
         else
         {
-            ExitState(npc);
+            npc.ChangeState(previousState);
         }
     }
 
     public override void ExitState(NPC npc)
     {
-        npc.navMeshAgent.isStopped = false;
-        npc.animator.SetBool("isWalking", true);
-
-        npc.ChangeState(previousState);
+        
     }
 
     public override void UpdateState(NPC npc)
     {
         if (!audioSource.isPlaying)
         {
-            ExitState(npc);
+            npc.ChangeState(previousState);
         }
     }
 }

@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fee06c4ebfb9ab41bd59fc362227ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StateHintPulseEffect
+  rotateSpeed: 90
   pulseSpeed: 2
   pulseAmount: 0.2
 --- !u!1 &1555075926364277031
@@ -1699,7 +1700,10 @@ MonoBehaviour:
   audioSource: {fileID: 395253039301189741}
   soundSet:
     interactionSounds:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: dca15eb5701f52e4494abc436d66edb7, type: 3}
+    - {fileID: 8300000, guid: 63b66495d3c8ed64e8b882b161a03c5c, type: 3}
+    - {fileID: 8300000, guid: 80b208850bc3ea54e9eaa62b3bef5d6c, type: 3}
+    - {fileID: 8300000, guid: 4fab98b1d53e1234d886f007b548cfd7, type: 3}
 --- !u!82 &395253039301189741
 AudioSource:
   m_ObjectHideFlags: 0
