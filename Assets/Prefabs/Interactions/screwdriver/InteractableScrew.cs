@@ -32,6 +32,7 @@ public class InteractableScrew : MonoBehaviour, IInteractableConnected
 
         Debug.Log("Screwing...");
         Debug.Log("Screwing...");
+        NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
         animatedScrewDriver.SetActive(true);
         _isScrewing = true;
         audioSource.Play();

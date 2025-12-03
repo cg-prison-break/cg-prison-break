@@ -26,6 +26,7 @@ namespace Prefabs.Interactions.screwdriver
         public void Interact(Player interactor)
         {
             Instantiate(windowWithoutGridWindow, transform.position, transform.rotation);
+            NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
             Destroy(gameObject);
         }
         

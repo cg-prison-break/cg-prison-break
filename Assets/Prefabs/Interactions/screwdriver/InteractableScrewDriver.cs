@@ -23,6 +23,7 @@ public class InteractableScrewDriver : MonoBehaviour, IInteractableItem
     {
         interactor.AddItem(itemData);
         interactor.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
+        NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
         Destroy(gameObject);
     }
 }

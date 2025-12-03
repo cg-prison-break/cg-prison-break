@@ -19,6 +19,7 @@ namespace Prefabs.Interactions.screwdriver
             var characterController = interactor.GetComponent<CharacterController>();
             characterController.enabled = false;
 
+            NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
             if (tunnelState.GetInTunnel())
             {
                 HandleEnterCell(interactor);
