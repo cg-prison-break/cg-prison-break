@@ -26,6 +26,7 @@ namespace Prefabs.Interactions.truck
             if (!interactor.HasAll(_connectedItems)) return;
             
             interactor.RemoveItem(_connectedItems[0]);
+            NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
             
             var characterController = interactor.GetComponent<CharacterController>();
             characterController.enabled = false;
@@ -47,7 +48,7 @@ namespace Prefabs.Interactions.truck
             newTruckAtOtherPosition.SetActive(true);
             
             characterController.enabled = true;
-            
+            NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
             Destroy(gameObject);
         }
     }
