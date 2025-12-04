@@ -32,12 +32,13 @@ public class EscapeRoutePanel : MonoBehaviour
     {
         var keyboard = Keyboard.current;
         if (keyboard == null) return;
+        if (PauseMenu.InputsBlocked) return;
 
-        if (keyboard.mKey.wasPressedThisFrame)
+        if (keyboard.mKey.wasPressedThisFrame && !isActive)
         {
             SetEscapeRoutePanelActive(true);
         }
-        else if (keyboard.escapeKey.wasPressedThisFrame || keyboard.nKey.wasPressedThisFrame)
+        else if (keyboard.escapeKey.wasPressedThisFrame || keyboard.mKey.wasPressedThisFrame && isActive)
         {
             SetEscapeRoutePanelActive(false);
         }

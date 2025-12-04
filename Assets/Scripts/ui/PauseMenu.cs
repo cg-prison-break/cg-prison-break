@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private MonoBehaviour[] scriptsToDisableOnPause;
 
     private bool _isPaused;
+    public static bool InputsBlocked { get; private set; }
 
     private void Start()
     {
@@ -19,6 +20,7 @@ public class PauseMenu : MonoBehaviour
         if (optionsPanelInGame != null) optionsPanelInGame.SetActive(false);
 
         _isPaused = false;
+        InputsBlocked = false;
         Time.timeScale = 1f;
     }
 
@@ -51,6 +53,7 @@ public class PauseMenu : MonoBehaviour
 
         Time.timeScale = 0f;
         _isPaused = true;
+        InputsBlocked = true;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -72,6 +75,7 @@ public class PauseMenu : MonoBehaviour
         pauseCanvas.SetActive(false);
         Time.timeScale = 1f;
         _isPaused = false;
+        InputsBlocked = false;
 
         // Re-enable gameplay scripts
         if (scriptsToDisableOnPause != null)
