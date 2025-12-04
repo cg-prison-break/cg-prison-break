@@ -14,6 +14,9 @@ public class InteractWithObject : MonoBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Player player;
     
+    [Header("Selection Visuals")]
+    [SerializeField] private Material selectionMaterial;
+    
     private IInteractable currentInteractable;
   
     private void Awake()
@@ -62,15 +65,32 @@ public class InteractWithObject : MonoBehaviour
     {
         Ray checkRay = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
         
-        Debug.DrawRay(checkRay.origin, checkRay.direction, Color.red);
+        Debug.DrawRay(checkRay.origin, checkRay.direction.normalized * interactionDistance, Color.red);
         
         if (Physics.Raycast(checkRay, out RaycastHit hit, interactionDistance, interactionLayer))
         {
-            if (hit.collider.TryGetComponent(out IInteractable interactable))
+            Collider targetCollider = hit.collider;
+            GameObject targetObject = targetCollider.gameObject;
+            
+            if (targetCollider.TryGetComponent(out IInteractable interactable))
             {
                 currentInteractable = interactable;
                 
                 // TODO  call UI framework to display the interactable prompt
+                
+                
+                
+                MeshFilter[] meshFilters = targetObject.GetComponentsInChildren<MeshFilter>();
+                
+                foreach (MeshFilter mesh in meshFilters)
+                {
+                    Graphics.DrawMesh(
+                        mesh.sharedMesh,
+                        mesh.transform.localToWorldMatrix,
+                        selectionMaterial,
+                        0
+                        );
+                }
                 
                 return;
             }
