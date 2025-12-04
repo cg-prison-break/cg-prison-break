@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4612692526026700814, guid: 274deb2904e9ba940bce69f585e1ffe8, type: 3}
       propertyPath: m_Name
-      value: wall_tile
+      value: wall_tile_grey
       objectReference: {fileID: 0}
     - target: {fileID: 5424660265987465908, guid: 274deb2904e9ba940bce69f585e1ffe8, type: 3}
       propertyPath: m_RootOrder
@@ -60,8 +60,21 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0da42f37180c9924fb6cb0e71b03278e, type: 2}
+    - target: {fileID: 6945163233644859169, guid: 274deb2904e9ba940bce69f585e1ffe8, type: 3}
+      propertyPath: parentWall
+      value: 
+      objectReference: {fileID: 2232206043938384889}
+    - target: {fileID: 7258551970614608357, guid: 274deb2904e9ba940bce69f585e1ffe8, type: 3}
+      propertyPath: parentWall
+      value: 
+      objectReference: {fileID: 2232206043938384889}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 274deb2904e9ba940bce69f585e1ffe8, type: 3}
+--- !u!1 &2232206043938384889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4612692526026700814, guid: 274deb2904e9ba940bce69f585e1ffe8, type: 3}
+  m_PrefabInstance: {fileID: 6843766057606763511}
+  m_PrefabAsset: {fileID: 0}
