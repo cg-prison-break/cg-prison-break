@@ -37,6 +37,7 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
             return;
         }
 
+
         // open the door
         door.Open();
     }

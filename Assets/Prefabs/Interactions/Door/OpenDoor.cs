@@ -15,20 +15,13 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
 
     [SerializeField] private Animator animator;
 
-    // Configurable parameters
-    [Header("Rotation")]
-    [SerializeField] private Vector3 rotationAngle = new Vector3(0f, -90f, 0f); // default (0, -90, 0)
-    [SerializeField] private float duration = 1.0f;
-
     [Header("Auto close")]
     [Tooltip("If < 0: no auto close")]
-    [SerializeField] private float autoCloseDelay = 5.0f; // seconds before auto-close
+    [SerializeField] private float autoCloseDelay = 5.0f;
+    [SerializeField] private float closeDuration = 1.0f;
 
     // internal state
-    private Quaternion initialRotation;
-    private bool m_IsRotating = false;
     private bool isOpen = false;
-    private bool locked = true;
     private Coroutine autoCloseCoroutine;
 
     // Interaction prompt (read-only external)
@@ -36,8 +29,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     {
         get
         {
-            if (locked) return "Locked";
-            return isOpen ? "Press F to Close" : "Press F to Open";
+            return "Press F to Open";
         }
         set
         {
@@ -47,14 +39,10 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
 
     void Start()
     {
-        initialRotation = transform.rotation;
-        locked = ConnectedItem != null; // start locked if door requires an item
     }
 
     public void Interact(Player player)
     {
-        if (m_IsRotating) return;
-
         if (isOpen)
         {
             // if open, allow closing by anyone (or require item if you prefer to enforce)
@@ -75,12 +63,10 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
 
     public void Open()
     {
-        if (m_IsRotating || isOpen) return;
+        if (isOpen) return;
 
-        locked = false; // unlocking when opened
-        animator?.SetBool("locked", locked);
-        Quaternion target = initialRotation * Quaternion.Euler(rotationAngle);
-        StartCoroutine(RotateTo(target, () =>
+        animator.SetBool("locked", false);
+        StartCoroutine(InvokeAfter(closeDuration, () =>
         {
             isOpen = true;
             // start auto close timer if enabled
@@ -89,12 +75,13 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
                 if (autoCloseCoroutine != null) StopCoroutine(autoCloseCoroutine);
                 autoCloseCoroutine = StartCoroutine(AutoCloseAfterDelay());
             }
+            animator.SetBool("open", true);
         }));
     }
 
     public void Close()
     {
-        if (m_IsRotating || !isOpen) return;
+        if (!isOpen) return;
 
         // stop pending auto-close if any
         if (autoCloseCoroutine != null)
@@ -103,41 +90,34 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
             autoCloseCoroutine = null;
         }
 
-        StartCoroutine(RotateTo(initialRotation, () =>
+        StartCoroutine(InvokeAfter(closeDuration, () =>
         {
             isOpen = false;
-            locked = true;
-            animator?.SetBool("locked", locked);
+            animator.SetBool("locked", true);
         }));
+        animator.SetBool("open", false);
     }
 
     private IEnumerator AutoCloseAfterDelay()
     {
         yield return new WaitForSeconds(autoCloseDelay);
         // Only close if still open and not rotating
-        if (isOpen && !m_IsRotating)
+        if (isOpen)
         {
             Close();
         }
     }
 
-    private IEnumerator RotateTo(Quaternion targetRotation, System.Action onComplete = null)
+    private IEnumerator InvokeAfter(float duration, System.Action onComplete)
     {
-        m_IsRotating = true;
-
-        Quaternion startRotation = transform.rotation;
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
             float t = elapsedTime / duration;
-            transform.rotation = Quaternion.Lerp(startRotation, targetRotation, t);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
-        transform.rotation = targetRotation;
-        m_IsRotating = false;
-        onComplete?.Invoke();
+        onComplete.Invoke();
     }
 }
