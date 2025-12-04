@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 437421364439322598}
   - component: {fileID: 7151766814916394758}
   m_Layer: 7
-  m_Name: AccessCardRed
+  m_Name: AccessCardGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 681d82b36dc1cbb4d8c661895d6d7c0b, type: 2}
+  - {fileID: 2100000, guid: da8b0eec65118d44bb96759d6650b213, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2ea519aba8f254ba44707a8e061fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _itemData: {fileID: 11400000, guid: 43052342911dd7942b2e92f68bd82b7e, type: 2}
+  _itemData: {fileID: 11400000, guid: 3064b7cb1102237409f45039e487979a, type: 2}
 --- !u!65 &7151766814916394758
 BoxCollider:
   m_ObjectHideFlags: 0
