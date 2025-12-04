@@ -4,17 +4,12 @@ using UnityEngine;
 public class DynamiteItem : MonoBehaviour, IInteractableItem
 {
     [SerializeField] private ItemData _itemData;
+    public AudioClip pickupSoundClip;
     
     public ItemData itemData
     {
         get { return _itemData; }
         set { _itemData = value; }
-    }
-
-    public void SetParticleSystemActive()
-    {
-        GameObject particleObject = transform.GetChild(0).gameObject;
-        particleObject.SetActive(true);
     }
 
     public string InteractionPrompt
@@ -25,9 +20,10 @@ public class DynamiteItem : MonoBehaviour, IInteractableItem
     
     public void Interact(Player interactor)
     {   
-        bool pickedUp = interactor.AddItem(itemData);
+        var pickedUp = interactor.AddItem(itemData);
         Debug.Log($"Item Name: {_itemData.itemName}");
+        interactor.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
+        NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
         if (pickedUp) Destroy(gameObject);
-       
     }
 }

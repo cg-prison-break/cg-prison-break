@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7208558596351519221}
   - component: {fileID: 5696015009865449260}
   m_Layer: 7
-  m_Name: dynamite_without_particles
+  m_Name: DynamiteItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6411623747838446336, guid: c8a18a5b0fb2cf54f891b9b70dfe16a5, type: 3}
 --- !u!114 &5696015009865449260
@@ -125,4 +125,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd511832722dae648b5ba7b8a6ccda01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DynamiteItem
-  _itemData: {fileID: 0}
+  _itemData: {fileID: 11400000, guid: 02d05bce80508aa4797f5502efe84e10, type: 2}
+  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
