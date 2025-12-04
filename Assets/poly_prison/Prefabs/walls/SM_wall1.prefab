@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: parentWall
       value: 
       objectReference: {fileID: 4612692526026700814}
+    - target: {fileID: 8541242431544223203, guid: 4193c335885b9b845b6b9bcc091f8888, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -199,7 +203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3077561793192000805, guid: 4193c335885b9b845b6b9bcc091f8888, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.103
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 3077561793192000805, guid: 4193c335885b9b845b6b9bcc091f8888, type: 3}
       propertyPath: m_LocalRotation.w
@@ -237,6 +241,10 @@ PrefabInstance:
       propertyPath: parentWall
       value: 
       objectReference: {fileID: 4612692526026700814}
+    - target: {fileID: 8541242431544223203, guid: 4193c335885b9b845b6b9bcc091f8888, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
