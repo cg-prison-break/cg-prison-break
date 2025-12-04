@@ -53,7 +53,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 3, y: 2.91, z: 0.01}
-  m_Center: {x: 0, y: 0.03, z: -0.03}
+  m_Center: {x: 0, y: 0.03, z: 0.01}
 --- !u!114 &5154577302383782072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,3 +69,4 @@ MonoBehaviour:
   _connectedItems:
   - {fileID: 11400000, guid: 02d05bce80508aa4797f5502efe84e10, type: 2}
   placeDynamiteSoundClip: {fileID: 8300000, guid: 397f0b7cf4cc6a142b400313bcdfffd5, type: 3}
+  parentWall: {fileID: 0}

@@ -11,6 +11,8 @@ namespace Prefabs.Interactions.Mattress
         public GameObject fenceWithMattressPrefab;
         public GameObject fenceWithWholePrefab;
         public GameObject parent;
+        public GameObject animatedWireCutter;
+        public AudioClip cutWireClip;
         public List<ItemData> ConnectedItems => _connectedItems;
 
 
@@ -24,11 +26,10 @@ namespace Prefabs.Interactions.Mattress
         {
             if (interactor.HasItem(wireCutterItemData))
             {
-                var fenceWithWhole = Instantiate(fenceWithWholePrefab, parent.transform.position, parent.transform.rotation);
-                var audioSourceFenceRattle = fenceWithWhole.GetComponent<AudioSource>();
                 NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
-                audioSourceFenceRattle.Play();
-                Destroy(parent);
+                var audioSourceFenceRattle = interactor.GetComponents<AudioSource>()[0];
+                audioSourceFenceRattle.PlayOneShot(cutWireClip);
+                animatedWireCutter.SetActive(true);
             }
             else if (interactor.HasAll(_connectedItems))
             {
@@ -46,6 +47,12 @@ namespace Prefabs.Interactions.Mattress
                 audioSourcePlaceMattress.Play();
                 Destroy(parent);
             }
+        }
+
+        public void OnAnimationFinished()
+        {
+            Instantiate(fenceWithWholePrefab, parent.transform.position, parent.transform.rotation);
+            Destroy(parent);
         }
     }
 }

@@ -79,6 +79,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8708049175513355444, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6559113699691797845}
+    - targetCorrespondingSourceObject: {fileID: 8708049175513355444, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 140266228678355129}
   m_SourcePrefab: {fileID: 100100000, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
 --- !u!1 &2945781750542575600 stripped
 GameObject:
@@ -106,3 +109,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17, y: 0.27, z: 0.05}
   m_Center: {x: 0, y: 0.07, z: 0}
+--- !u!114 &140266228678355129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2945781750542575600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331fa6ab2642cf04eb0b422473908123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WireCutterInteractbale
+  _itemData: {fileID: 11400000, guid: 5fa56feb408cad44ebef3182b5fcdf5c, type: 2}
+  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}

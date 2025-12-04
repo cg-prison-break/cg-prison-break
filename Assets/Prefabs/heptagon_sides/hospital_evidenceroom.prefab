@@ -343,10 +343,6 @@ Transform:
   - {fileID: 5856004386623881268}
   - {fileID: 4011000831696514275}
   - {fileID: 764079663808027235}
-  - {fileID: 4927411459231589254}
-  - {fileID: 4528687854935081179}
-  - {fileID: 5652184575353569796}
-  - {fileID: 7413629124639471876}
   - {fileID: 8175035521261860570}
   - {fileID: 6964799309792518291}
   - {fileID: 4170963295456406561}
@@ -528,6 +524,8 @@ Transform:
   - {fileID: 1123137125859761899}
   - {fileID: 650798103337496462}
   - {fileID: 8254573460180653693}
+  - {fileID: 8413970418949359267}
+  - {fileID: 4358118048676901711}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8266084246521115962
@@ -7063,6 +7061,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8892400468000349239, guid: 7eb50641b22421a40bfe2074e814bd75, type: 3}
   m_PrefabInstance: {fileID: 2255353991210552980}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2292737998653066757
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 722079541011236306}
+    m_Modifications:
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.8780241
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3846535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.827795
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710784
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945781750542575600, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_Name
+      value: WireCutterItem (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+--- !u!4 &4358118048676901711 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+  m_PrefabInstance: {fileID: 2292737998653066757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2376747484098002032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11661,68 +11721,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 688723397587571872, guid: 2324f321293299742b5d4ebeaf6013b8, type: 3}
   m_PrefabInstance: {fileID: 4080888647526380084}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4130813376751560496
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1923291938676670484}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.039
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.408
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 16.001
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_Name
-      value: WireCutters (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
---- !u!4 &4528687854935081179 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-  m_PrefabInstance: {fileID: 4130813376751560496}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4134561191091784664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13731,68 +13729,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5424660265987465908, guid: 274deb2904e9ba940bce69f585e1ffe8, type: 3}
   m_PrefabInstance: {fileID: 4852103399035468731}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4894031674784695405
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1923291938676670484}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.891
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.408
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 16.001
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_Name
-      value: WireCutters
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
---- !u!4 &4927411459231589254 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-  m_PrefabInstance: {fileID: 4894031674784695405}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4901035717015264514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14961,68 +14897,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5546106683947239664, guid: 401301db7292fb745a6cfc69d2cf5088, type: 3}
   m_PrefabInstance: {fileID: 5274139312316663653}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5330624312545715695
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1923291938676670484}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.199
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.408
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 16.001
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_Name
-      value: WireCutters (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
---- !u!4 &5652184575353569796 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-  m_PrefabInstance: {fileID: 5330624312545715695}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5342762317492055904
 PrefabInstance:
@@ -17429,6 +17303,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3383596537937699729, guid: 7450f7508b50b914ab4c8994463e42e8, type: 3}
   m_PrefabInstance: {fileID: 6248649598309076205}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6300036484661804009
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 722079541011236306}
+    m_Modifications:
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.9816713
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.406
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.018225
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945781750542575600, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+      propertyPath: m_Name
+      value: WireCutterItem
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+--- !u!4 &8413970418949359267 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2569959212299550026, guid: 10736b65171dfeb46b8ed7041ca4809f, type: 3}
+  m_PrefabInstance: {fileID: 6300036484661804009}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6309357651321642099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18581,68 +18517,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3383596537937699729, guid: 7450f7508b50b914ab4c8994463e42e8, type: 3}
   m_PrefabInstance: {fileID: 7012589127561397139}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &7018922784166076143
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1923291938676670484}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.359
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.408
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 16.001
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-      propertyPath: m_Name
-      value: WireCutters (3)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
---- !u!4 &7413629124639471876 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
-  m_PrefabInstance: {fileID: 7018922784166076143}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7018932716668646838
 PrefabInstance:
