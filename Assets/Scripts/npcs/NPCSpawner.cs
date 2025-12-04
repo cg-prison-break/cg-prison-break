@@ -1,28 +1,27 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PrisonGuardSpawner : MonoBehaviour
+public class NPCSpawner : MonoBehaviour
 {
     [Range(1, 20)]
-    public int maxGuards = 5;
+    public int maxNPCs = 5;
     public float spawnRadius = 3f;
-    public GameObject prisonGuardPrefab;
-    public List<GameObject> spawnPoints = new();
+    public GameObject npcPrefab;
+    public List<GameObject> spawnPoints;
 
-    private readonly List<GameObject> spawnedGuards = new();
+    private readonly List<GameObject> spawnedNPCs = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         var rnd = new System.Random();
-        spawnedGuards.Clear();
+        spawnedNPCs.Clear();
 
-        for (int i = 0; i < maxGuards; i++)
+        for (int i = 0; i < maxNPCs; i++)
         {
-            var spawnPoint = spawnPoints.OrderBy(x => rnd.Next()).Take(1).First();
+            var spawnPoint = spawnPoints[rnd.Next(spawnPoints.Count)];
 
             // spawn on navmesh
             Vector3 randomDir = UnityEngine.Random.insideUnitSphere * spawnRadius + spawnPoint.transform.position;
@@ -31,13 +30,13 @@ public class PrisonGuardSpawner : MonoBehaviour
             // ensure spawning on the ground
             Physics.Raycast(navMeshHit.position + Vector3.up * 10f, Vector3.down, out var hit, 100f);
 
-            GameObject guard = Instantiate(prisonGuardPrefab, hit.point, Quaternion.identity);
+            GameObject npc = Instantiate(npcPrefab, hit.point, Quaternion.identity);
 
-            var agent = guard.GetComponent<NavMeshAgent>();
+            var agent = npc.GetComponent<NavMeshAgent>();
+            agent.Warp(npc.transform.position);
             agent.speed = 2.0f;
-            guard.GetComponent<PrisonGuard>().navMeshAgent = agent;
 
-            spawnedGuards.Add(guard);
+            spawnedNPCs.Add(npc);
         }
     }
 
