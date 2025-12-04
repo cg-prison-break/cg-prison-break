@@ -9,6 +9,8 @@ namespace Prefabs.Interactions.tunnel
         private bool _manipulatedBox;
         private string _interactionPromptWhenOutOfTunnel = "Press F to climb into tunnel.";
         private string _interactionPromptWhenInTunnel = "Press F to climb out of tunnel.";
+        public AudioSource audioSource;
+        public PlayEnterEscapeSoundTunnel playEnterEscapeSoundTunnel;
 
         public string InteractionPrompt
         {
@@ -21,6 +23,7 @@ namespace Prefabs.Interactions.tunnel
 
         public void Interact(Player interactor)
         {
+            NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
             var cc = interactor.GetComponent<CharacterController>();
             SetCharacterController(cc, false);
 
@@ -46,6 +49,7 @@ namespace Prefabs.Interactions.tunnel
             var woodPlate = gameObject.GetComponentInChildren<WoodenTunnelPlate>().transform;
             woodPlate.transform.rotation = Quaternion.Euler(0, 30, 0);
             woodPlate.transform.position += new Vector3(0, 0, -0.5f);
+            audioSource.Play();
             _manipulatedBox = true;
         }
 
@@ -56,6 +60,7 @@ namespace Prefabs.Interactions.tunnel
 
             interactor.transform.position = enterPoint;
             Debug.Log(interactor.transform.position);
+            playEnterEscapeSoundTunnel.PlayInteractionSound();
 
             tunnelState.SetInTunnel(inTunnel);
             Debug.Log("Tunnel state changed to:" + tunnelState.GetInTunnel());

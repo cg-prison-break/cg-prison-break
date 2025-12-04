@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private ItemList itemHud;
     // INVENTROY 
     
-    private List<ItemData> inventory = new List<ItemData>();
+    private List<ItemData> inventory = new List<ItemData>(5);
     
     public bool HasItem(ItemData itemToFind)
     {
