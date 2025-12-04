@@ -1,15 +1,20 @@
 using System.Collections;
+using System.Collections.Generic;
 using Objects.Interactables;
 using UnityEngine;
 
 namespace Prefabs.Interactions.truck
 {
-    public class InteractableTruck : MonoBehaviour, IInteractable
+    public class InteractableTruck : MonoBehaviour, IInteractableConnected
     {
         public Transform newPlayerTransform;
         public GameObject newTruckAtOtherPosition;
         public Transform waitingPlayerPosition; 
+        
+        [SerializeField] private List<ItemData> _connectedItems;
     
+        public List<ItemData> ConnectedItems => _connectedItems;
+        
         public string InteractionPrompt
         {
             get => "Press F escape with truck.";
@@ -18,6 +23,10 @@ namespace Prefabs.Interactions.truck
 
         public void Interact(Player interactor)
         {
+            if (!interactor.HasAll(_connectedItems)) return;
+            
+            interactor.RemoveItem(_connectedItems[0]);
+            
             var characterController = interactor.GetComponent<CharacterController>();
             characterController.enabled = false;
             
@@ -31,7 +40,7 @@ namespace Prefabs.Interactions.truck
 
         private IEnumerator WaitForEndOfAudio(Player interactor, CharacterController characterController)
         {
-            yield return new WaitForSeconds(7.5f);
+            yield return new WaitForSeconds(7f);
         
             interactor.transform.position = newPlayerTransform.position;
             interactor.transform.rotation = newPlayerTransform.rotation;
