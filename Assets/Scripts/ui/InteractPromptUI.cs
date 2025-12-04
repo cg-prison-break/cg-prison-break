@@ -7,6 +7,7 @@ public class InteractPromptUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text promptText;
     [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject escapeRoutePanel;
     [SerializeField] private RectTransform panelRect;
     [SerializeField] private Vector2 padding = new Vector2(24f, 12f);
     [SerializeField] private Vector2 minSize = new Vector2(100f, 40f);
@@ -24,7 +25,7 @@ public class InteractPromptUI : MonoBehaviour
 
     public void Show(string prompt)
     {
-        if (string.IsNullOrWhiteSpace(prompt))
+        if (string.IsNullOrWhiteSpace(prompt) || escapeRoutePanel.activeSelf)
         {
             Hide();
             return;
