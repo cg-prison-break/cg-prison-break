@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 using Objects.Interactables;
 
 public class AccessScanner : MonoBehaviour, IInteractableConnected
@@ -15,43 +15,16 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
     [Header("Door Interaction")]
     [SerializeField] private OpenDoor door;
 
-    [SerializeField] private Material lockedMat;
-    [SerializeField] private Material unlockedMat;
-
-    [SerializeField] private float lockedIntensity = 0.5f;
-    [SerializeField] private float unlockedIntensity = 0.5f;
-
-    private bool locked = true;
-
     // Interaction prompt (read-only external)
     public string InteractionPrompt
     {
         get
         {
-            if (locked) return "Locked";
-            return "Press F to open door";
+            return "Press F to scan Access Card";
         }
         set
         {
             // intentionally left empty
-        }
-    }
-
-    void Start()
-    {
-        locked = ConnectedItem != null; // start locked if door requires an item
-    }
-
-    void Update()
-    {
-        // update material based on locked state
-        if (locked)
-        {
-            lockedMat.SetColor("_EmissionColor", lockedMat.color * lockedIntensity);
-        }
-        else
-        {
-            unlockedMat.SetColor("_EmissionColor", unlockedMat.color * unlockedIntensity);
         }
     }
 

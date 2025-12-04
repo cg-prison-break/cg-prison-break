@@ -32,7 +32,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: 0.5
+        value: 0.1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -52,7 +52,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Intensity
-    path: Scanner/Red Light
+    path: Scanner/Front/Red Light
     classID: 108
     script: {fileID: 0}
     flags: 16
@@ -71,7 +71,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: 0.5
+        value: 0.1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -90,11 +90,11 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: lockedIntensity
-    path: Scanner
-    classID: 114
-    script: {fileID: 11500000, guid: 729eeb019f9c09e42a9ed299769dff1b, type: 3}
-    flags: 0
+    attribute: m_Intensity
+    path: Scanner/Back/Red Light
+    classID: 108
+    script: {fileID: 0}
+    flags: 16
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -104,7 +104,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 4036459519
+      path: 1334351445
       attribute: 898800009
       script: {fileID: 0}
       typeID: 108
@@ -113,11 +113,11 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2589124277
-      attribute: 2490178118
-      script: {fileID: 11500000, guid: 729eeb019f9c09e42a9ed299769dff1b, type: 3}
-      typeID: 114
-      customType: 0
+      path: 2478127968
+      attribute: 898800009
+      script: {fileID: 0}
+      typeID: 108
+      customType: 25
       isPPtrCurve: 0
       isIntCurve: 0
       isSerializeReferenceCurve: 0
@@ -158,7 +158,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: 0.5
+        value: 0.1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -178,7 +178,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Intensity
-    path: Scanner/Red Light
+    path: Scanner/Front/Red Light
     classID: 108
     script: {fileID: 0}
     flags: 16
@@ -197,7 +197,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: 0.5
+        value: 0.1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -216,11 +216,11 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: lockedIntensity
-    path: Scanner
-    classID: 114
-    script: {fileID: 11500000, guid: 729eeb019f9c09e42a9ed299769dff1b, type: 3}
-    flags: 0
+    attribute: m_Intensity
+    path: Scanner/Back/Red Light
+    classID: 108
+    script: {fileID: 0}
+    flags: 16
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0

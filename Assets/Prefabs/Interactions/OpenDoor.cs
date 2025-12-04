@@ -106,11 +106,8 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         StartCoroutine(RotateTo(initialRotation, () =>
         {
             isOpen = false;
-            // when fallen back into the frame, lock again if required
-            if (ConnectedItem != null) {
-                locked = true;
-                animator?.SetBool("locked", locked);
-            }
+            locked = true;
+            animator?.SetBool("locked", locked);
         }));
     }
 
