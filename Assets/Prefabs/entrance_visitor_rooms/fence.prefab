@@ -66,6 +66,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06910bbe26af95d408772e5a94dd375a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Prefabs.Interactions.PlaceMattressOnFence
+  _connectedItems:
+  - {fileID: 11400000, guid: 2c8c3fdd76048394eb5236a32bfa81a7, type: 2}
+  - {fileID: 11400000, guid: 2963b93d5c21d484e8cc265655b103ac, type: 2}
   fenceWithMattressPrefab: {fileID: 2322378598721827269, guid: ce527661f98c932468491b16099a7a1d, type: 3}
   parent: {fileID: 5118245417059578608}
 --- !u!1001 &6021316510395474680
@@ -129,7 +132,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6150604759025356268, guid: 39ad320e0609b2b41b8b08364a5cac30, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2295844929026001586, guid: 39ad320e0609b2b41b8b08364a5cac30, type: 3}
       insertIndex: -1

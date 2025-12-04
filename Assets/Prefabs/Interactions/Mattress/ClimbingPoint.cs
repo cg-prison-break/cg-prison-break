@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Prefabs.Interactions
+namespace Prefabs.Interactions.Mattress
 {
     public class ClimbingPoint : MonoBehaviour
     {
