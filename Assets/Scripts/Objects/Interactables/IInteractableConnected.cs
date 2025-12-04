@@ -1,7 +1,9 @@
+using System.Collections.Generic;
+
 namespace Objects.Interactables
 {
     public interface IInteractableConnected: IInteractable
     {
-        ItemData ConnectedItem {get;}
+        List<ItemData> ConnectedItems {get;}
     }
 }
