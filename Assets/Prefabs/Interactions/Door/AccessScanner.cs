@@ -12,6 +12,11 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
         set { _connectedItem = value; }
     }
 
+    [SerializeField] private ItemData MasterCard;
+
+    [SerializeField] private string _interactionPrompt = "Press F to scan Access Card";
+
+
     [Header("Door Interaction")]
     [SerializeField] private OpenDoor door;
 
@@ -20,7 +25,7 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
     {
         get
         {
-            return "Press F to scan Access Card";
+            return _interactionPrompt;
         }
         set
         {
@@ -30,13 +35,25 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
 
     public void Interact(Player player)
     {
-        // closed -> try to open
-        if (ConnectedItem != null && !player.HasItem(ConnectedItem))
-        {
-            Debug.Log("Door is locked, you need the required item.");
-            return;
-        }
+        GameObject usedCardPrefab = player.HasItem(ConnectedItem) ? ConnectedItem.prefab :
+                              player.HasItem(MasterCard) ? MasterCard.prefab : null;
+        if (usedCardPrefab == null) return; // no valid card
 
+        // get used card material
+        Material usedCardMesh = usedCardPrefab.GetComponent<MeshRenderer>().sharedMaterial;
+
+        // set card material for each side
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var side = transform.GetChild(i);
+            for (int j = 0; j < side.childCount; j++)
+            {
+                var card = side.GetChild(j);
+                if (card.name != "AccessCard") continue;
+                // set material on access card
+                card.GetComponent<MeshRenderer>().material = usedCardMesh;
+            }
+        }
 
         // open the door
         door.Open();
