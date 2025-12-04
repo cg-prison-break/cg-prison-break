@@ -7917,8 +7917,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8823513115562972899}
   - {fileID: 6709140809174373606}
+  - {fileID: 8823513115562972899}
   - {fileID: 6633952678434311496}
   - {fileID: 6317972909153035490}
   m_Father: {fileID: 2418169548693556364}
@@ -9478,6 +9478,8 @@ Transform:
   - {fileID: 5604556094375649989}
   - {fileID: 331616458302842259}
   - {fileID: 2019288451986568752}
+  - {fileID: 8814654585178598487}
+  - {fileID: 1914985835537936201}
   - {fileID: 1094335474596143227}
   - {fileID: 382210996417190018}
   - {fileID: 2548347483002796811}
@@ -25295,47 +25297,47 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2595888060853566893}
     m_Modifications:
-    - target: {fileID: 2784249081241230278, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+    - target: {fileID: 2784249081241230278, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
       propertyPath: m_Name
-      value: secured_door_3x3_card
+      value: secured_door_red_card
       objectReference: {fileID: 0}
-    - target: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+    - target: {fileID: 3258870750762222540, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.487
       objectReference: {fileID: 0}
-    - target: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+    - target: {fileID: 3258870750762222540, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+    - target: {fileID: 3258870750762222540, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
       propertyPath: m_LocalPosition.z
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+    - target: {fileID: 3258870750762222540, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+    - target: {fileID: 3258870750762222540, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+    - target: {fileID: 3258870750762222540, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+    - target: {fileID: 3258870750762222540, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+    - target: {fileID: 3258870750762222540, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+    - target: {fileID: 3258870750762222540, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+    - target: {fileID: 3258870750762222540, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -25343,10 +25345,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
 --- !u!4 &2182069921382703324 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3258870750762222540, guid: ca7403f6e6da7c84f9f82aa51597bd81, type: 3}
   m_PrefabInstance: {fileID: 3706903011864568592}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3707542405383371693
@@ -33718,7 +33720,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2784249081241230278, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
       propertyPath: m_Name
-      value: secured_door_3x3_card (1)
+      value: secured_door_blue_card (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
       propertyPath: m_LocalPosition.x
@@ -42159,7 +42161,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2784249081241230278, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
       propertyPath: m_Name
-      value: secured_door_3x3_card
+      value: secured_door_blue_card
       objectReference: {fileID: 0}
     - target: {fileID: 3258870750762222540, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
       propertyPath: m_LocalPosition.x
