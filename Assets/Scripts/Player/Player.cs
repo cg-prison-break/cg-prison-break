@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
     public bool AddItem(List<ItemData> items)
     {
         inventory.AddRange(items);
+        itemHud.RefreshIcons();
         return HasAll(items);
     }
     
@@ -76,7 +77,7 @@ public class Player : MonoBehaviour
         {
             inventory.Remove(item);
         }
-        
+        itemHud.RefreshIcons();
         return !HasOneOf(items);
     }
     
