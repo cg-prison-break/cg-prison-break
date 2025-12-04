@@ -20,6 +20,9 @@ namespace Prefabs.Interactions.truck
         {
             var characterController = interactor.GetComponent<CharacterController>();
             characterController.enabled = false;
+            
+            interactor.transform.position = waitingPlayerPosition.position;
+            interactor.transform.rotation = waitingPlayerPosition.rotation;
         
             var audioSourceTruck = gameObject.GetComponent<AudioSource>();
             audioSourceTruck.Play();
@@ -28,7 +31,7 @@ namespace Prefabs.Interactions.truck
 
         private IEnumerator WaitForEndOfAudio(Player interactor, CharacterController characterController)
         {
-            yield return new WaitForSeconds(6.5f);
+            yield return new WaitForSeconds(7.5f);
         
             interactor.transform.position = newPlayerTransform.position;
             interactor.transform.rotation = newPlayerTransform.rotation;
