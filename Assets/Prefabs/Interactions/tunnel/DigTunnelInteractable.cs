@@ -9,6 +9,9 @@ namespace Prefabs.Interactions.tunnel
         private bool _manipulatedBox;
         private string _interactionPromptWhenOutOfTunnel = "Press F to climb into tunnel.";
         private string _interactionPromptWhenInTunnel = "Press F to climb out of tunnel.";
+        public AudioSource audioSource;
+        public AudioClip enterSound;
+        public AudioClip escapeSound;
 
         public string InteractionPrompt
         {
@@ -27,10 +30,12 @@ namespace Prefabs.Interactions.tunnel
             if (!tunnelState.GetInTunnel())
             {
                 HandleTunnelInteraction(interactor, true, "Climbed into tunnel.");
+                audioSource.PlayOneShot(enterSound);
             }
             else
             {
                 HandleTunnelInteraction(interactor, false, "Climbed out of tunnel.");
+                audioSource.PlayOneShot(escapeSound);
             }
 
             SetCharacterController(cc, true);
