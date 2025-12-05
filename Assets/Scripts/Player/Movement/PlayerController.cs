@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
     
     public void OnInteract(InputValue value)
     {
-        if (m_IgnoreInput)
+        if (m_IgnoreInput || PauseMenu.InputsBlocked)
         {
             return;
         }
