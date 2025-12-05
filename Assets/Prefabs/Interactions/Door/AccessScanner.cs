@@ -50,7 +50,9 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
                 card.GetComponent<MeshRenderer>().material = usedCardMesh;
             }
         }
-
+        // notify about suspicious action
+        NPCEventManager.NotifyNPCsAboutSuspiciousAction(player.transform.position);
+        
         // open the door
         door.Open();
     }
