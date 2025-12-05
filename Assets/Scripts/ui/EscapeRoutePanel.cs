@@ -1,3 +1,5 @@
+using System;
+using Unity.AppUI.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +10,7 @@ public class EscapeRoutePanel : MonoBehaviour
     [SerializeField] private GameObject itemPanel;
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject playerObject;
+    [SerializeField] private EscapeRouteDetailPanel detailPanel;
 
     private PlayerInput playerInput;
     private PlayerController playerController;
@@ -23,6 +26,7 @@ public class EscapeRoutePanel : MonoBehaviour
 
         isActive = false;
         escapeRoutePanel?.SetActive(false);
+        detailPanel?.Hide();
         interactPanel?.SetActive(true);
         itemPanel?.SetActive(true);
         crosshair?.SetActive(true);
@@ -50,6 +54,7 @@ public class EscapeRoutePanel : MonoBehaviour
 
         isActive = active;
         escapeRoutePanel?.SetActive(active);
+        detailPanel?.Hide();
         interactPanel?.SetActive(!active);
         itemPanel?.SetActive(!active);
         crosshair?.SetActive(!active);
@@ -105,6 +110,23 @@ public class EscapeRoutePanel : MonoBehaviour
     {
         Cursor.lockState = previousLockMode;
         Cursor.visible = previousCursorVisible;
+    }
+
+    public void ShowRouteDetail(string title, string description, Texture image)
+    {
+        if (!isActive)
+        {
+            SetEscapeRoutePanelActive(true);
+        }
+
+        escapeRoutePanel?.SetActive(false);
+        detailPanel?.Show(title, description, image);
+    }
+
+    public void ShowRoutesList()
+    {
+        detailPanel?.Hide();
+        escapeRoutePanel?.SetActive(true);
     }
 
     private void CachePlayerComponents()
