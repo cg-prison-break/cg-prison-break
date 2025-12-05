@@ -37,6 +37,10 @@ PrefabInstance:
       value: Purple
       objectReference: {fileID: 0}
     - target: {fileID: 4122396300889117092, guid: f683183d18393574ebc41dfe1d69b596, type: 3}
+      propertyPath: m_fontSize
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122396300889117092, guid: f683183d18393574ebc41dfe1d69b596, type: 3}
       propertyPath: m_fontColor.b
       value: 0.67058825
       objectReference: {fileID: 0}
@@ -57,6 +61,10 @@ PrefabInstance:
       value: Purple
       objectReference: {fileID: 0}
     - target: {fileID: 4193591047306859826, guid: f683183d18393574ebc41dfe1d69b596, type: 3}
+      propertyPath: m_fontSize
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193591047306859826, guid: f683183d18393574ebc41dfe1d69b596, type: 3}
       propertyPath: m_fontColor.b
       value: 0.67058825
       objectReference: {fileID: 0}
@@ -74,6 +82,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4317129984087623619, guid: f683183d18393574ebc41dfe1d69b596, type: 3}
       propertyPath: _connectedItem
+      value: 
+      objectReference: {fileID: 11400000, guid: fe077a6767ce14344946fb2f5170b748, type: 2}
+    - target: {fileID: 4317129984087623619, guid: f683183d18393574ebc41dfe1d69b596, type: 3}
+      propertyPath: '_connectedItems.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: fe077a6767ce14344946fb2f5170b748, type: 2}
     - target: {fileID: 8395370374176527039, guid: f683183d18393574ebc41dfe1d69b596, type: 3}

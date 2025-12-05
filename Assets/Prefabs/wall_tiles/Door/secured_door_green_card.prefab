@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6957565448767914199, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
       propertyPath: m_fontSize
-      value: 0.85
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 6957565448767914199, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
       propertyPath: m_fontColor.b
@@ -104,13 +104,17 @@ PrefabInstance:
       propertyPath: _connectedItem
       value: 
       objectReference: {fileID: 11400000, guid: 3064b7cb1102237409f45039e487979a, type: 2}
+    - target: {fileID: 7084737986365855408, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
+      propertyPath: '_connectedItems.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3064b7cb1102237409f45039e487979a, type: 2}
     - target: {fileID: 7172314078211032129, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
       propertyPath: m_text
       value: Green
       objectReference: {fileID: 0}
     - target: {fileID: 7172314078211032129, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
       propertyPath: m_fontSize
-      value: 0.85
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7172314078211032129, guid: 9f706447c1ecfaf428ac07d8d8584406, type: 3}
       propertyPath: m_fontColor.b

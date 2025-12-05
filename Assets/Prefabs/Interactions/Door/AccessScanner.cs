@@ -5,12 +5,8 @@ using Objects.Interactables;
 
 public class AccessScanner : MonoBehaviour, IInteractableConnected
 {
-    [SerializeField] private ItemData _connectedItem;
-    public ItemData ConnectedItem
-    {
-        get { return _connectedItem; }
-        set { _connectedItem = value; }
-    }
+    [SerializeField] private List<ItemData> _connectedItems;
+    public List<ItemData> ConnectedItems => _connectedItems;
 
     [SerializeField] private ItemData MasterCard;
 
@@ -35,7 +31,7 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
 
     public void Interact(Player player)
     {
-        GameObject usedCardPrefab = player.HasItem(ConnectedItem) ? ConnectedItem.prefab :
+        GameObject usedCardPrefab = player.HasOneOf(ConnectedItems) ? ConnectedItems[0].prefab :
                               player.HasItem(MasterCard) ? MasterCard.prefab : null;
         if (usedCardPrefab == null) return; // no valid card
 

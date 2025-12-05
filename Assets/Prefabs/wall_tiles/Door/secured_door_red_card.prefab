@@ -29,6 +29,10 @@ PrefabInstance:
       value: Red
       objectReference: {fileID: 0}
     - target: {fileID: 2929261577260785508, guid: 50bfd4698da022242aa517e879223c3e, type: 3}
+      propertyPath: m_fontSize
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929261577260785508, guid: 50bfd4698da022242aa517e879223c3e, type: 3}
       propertyPath: m_fontColor.b
       value: 0.14901961
       objectReference: {fileID: 0}
@@ -44,9 +48,17 @@ PrefabInstance:
       propertyPath: _connectedItem
       value: 
       objectReference: {fileID: 11400000, guid: 43052342911dd7942b2e92f68bd82b7e, type: 2}
+    - target: {fileID: 2989816123141426581, guid: 50bfd4698da022242aa517e879223c3e, type: 3}
+      propertyPath: '_connectedItems.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 43052342911dd7942b2e92f68bd82b7e, type: 2}
     - target: {fileID: 3144008061368065010, guid: 50bfd4698da022242aa517e879223c3e, type: 3}
       propertyPath: m_text
       value: Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144008061368065010, guid: 50bfd4698da022242aa517e879223c3e, type: 3}
+      propertyPath: m_fontSize
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 3144008061368065010, guid: 50bfd4698da022242aa517e879223c3e, type: 3}
       propertyPath: m_fontColor.b

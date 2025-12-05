@@ -12,9 +12,17 @@ PrefabInstance:
       propertyPath: _connectedItem
       value: 
       objectReference: {fileID: 11400000, guid: c7aa8a5e6d4b0c3458abfe4192b53aaf, type: 2}
+    - target: {fileID: 1479881225491238902, guid: 7bee409a578f43244bcbe47905292f62, type: 3}
+      propertyPath: '_connectedItems.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c7aa8a5e6d4b0c3458abfe4192b53aaf, type: 2}
     - target: {fileID: 1536499520927177991, guid: 7bee409a578f43244bcbe47905292f62, type: 3}
       propertyPath: m_text
       value: Pink
+      objectReference: {fileID: 0}
+    - target: {fileID: 1536499520927177991, guid: 7bee409a578f43244bcbe47905292f62, type: 3}
+      propertyPath: m_fontSize
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 1536499520927177991, guid: 7bee409a578f43244bcbe47905292f62, type: 3}
       propertyPath: m_fontColor.b
@@ -35,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 1609385279653058961, guid: 7bee409a578f43244bcbe47905292f62, type: 3}
       propertyPath: m_text
       value: Pink
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609385279653058961, guid: 7bee409a578f43244bcbe47905292f62, type: 3}
+      propertyPath: m_fontSize
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 1609385279653058961, guid: 7bee409a578f43244bcbe47905292f62, type: 3}
       propertyPath: m_fontColor.b

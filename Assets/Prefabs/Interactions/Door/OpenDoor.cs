@@ -1,17 +1,14 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor.Animations;
 
 using Objects.Interactables;
 
 public class OpenDoor : MonoBehaviour, IInteractableConnected
 {
-    [SerializeField] private ItemData _connectedItem;
-    public ItemData ConnectedItem
-    {
-        get { return _connectedItem; }
-        set { _connectedItem = value; }
-    }
+    [SerializeField] private List<ItemData> _connectedItems;
+    public List<ItemData> ConnectedItems => _connectedItems;
 
     [SerializeField] private Animator animator;
 
@@ -51,7 +48,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         }
 
         // closed -> try to open
-        if (ConnectedItem != null && !player.HasItem(ConnectedItem))
+        if (ConnectedItems != null && !player.HasOneOf(ConnectedItems))
         {
             Debug.Log("Door is locked, you need the required item.");
             return;
