@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class SuspiciousArea : MonoBehaviour
 {
-    [SerializeField] private bool IsCameraArea;
-    [SerializeField] private ItemData Flashlight;
+    [SerializeField] private bool CanBeBypassed;
+    [SerializeField] private ItemData BypassItem;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,9 +13,9 @@ public class SuspiciousArea : MonoBehaviour
         }
 
         var player = other.GetComponentInParent<Player>();
-        bool playerHasFlashlight = Flashlight is not null ? player.HasItem(Flashlight) : false;
+        bool playerHasBypassItem = BypassItem is not null ? player.HasItem(BypassItem) : false;
 
-        if ((IsCameraArea && !playerHasFlashlight) || !IsCameraArea)
+        if ((CanBeBypassed && !playerHasBypassItem) || !CanBeBypassed)
         {
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(transform.position, true);
         }
