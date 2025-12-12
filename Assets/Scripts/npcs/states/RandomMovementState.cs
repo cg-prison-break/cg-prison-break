@@ -20,7 +20,7 @@ public class RandomMovementState : NPCState
         {
             npc.navMeshAgent.ResetPath();
 
-            currentTarget = FindRandomTargetPoint();
+            currentTarget = FindRandomTargetPoint(npc);
             npc.navMeshAgent.SetDestination(currentTarget);
         }
 
@@ -42,16 +42,16 @@ public class RandomMovementState : NPCState
 
         if (destinationReached && !npc.navMeshAgent.pathPending)
         {
-            currentTarget = FindRandomTargetPoint();
+            currentTarget = FindRandomTargetPoint(npc);
             npc.navMeshAgent.SetDestination(currentTarget);
         }
     }
 
-    private Vector3 FindRandomTargetPoint()
+    private Vector3 FindRandomTargetPoint(NPC npc)
     {
-        Vector3 randomDirection = Random.insideUnitSphere * 20f;
+        Vector3 randomDirection = npc.transform.position + Random.insideUnitSphere * 10f;
         NavMeshHit hit;
-        NavMesh.SamplePosition(randomDirection, out hit, 20f, NavMesh.AllAreas);
+        NavMesh.SamplePosition(randomDirection, out hit, 1, NavMesh.AllAreas);
         return hit.position;
     }
 }
