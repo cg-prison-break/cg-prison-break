@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class NPCSpawner : MonoBehaviour
 {
-    [Range(1, 20)]
+    [Range(1, 40)]
     public int maxNPCs = 5;
     public float spawnRadius = 3f;
     public GameObject npcPrefab;
-    public List<GameObject> spawnPoints;
+    public GameObject spawnPointContainer;
 
     private readonly List<GameObject> spawnedNPCs = new();
 
@@ -21,7 +21,8 @@ public class NPCSpawner : MonoBehaviour
 
         for (int i = 0; i < maxNPCs; i++)
         {
-            var spawnPoint = spawnPoints[rnd.Next(spawnPoints.Count)];
+            var spawnPoints = spawnPointContainer.GetComponentsInChildren<SpawnPoint>();
+            var spawnPoint = spawnPoints[rnd.Next(spawnPoints.Length)];
 
             // spawn on navmesh
             Vector3 randomDir = UnityEngine.Random.insideUnitSphere * spawnRadius + spawnPoint.transform.position;
