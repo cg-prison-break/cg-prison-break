@@ -86,9 +86,8 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
-        // If your game normally locks the cursor, do it here again:
-        // Cursor.lockState = CursorLockMode.Locked;
-        // Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void OpenOptions()
