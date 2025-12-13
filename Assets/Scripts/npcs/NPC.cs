@@ -9,7 +9,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
     public float speed = 1.0f;
 
     protected NPCState currentState;
-    private NPCState previousState;
+    protected NPCState previousState;
 
     public abstract string InteractionPrompt { get; set; }
 

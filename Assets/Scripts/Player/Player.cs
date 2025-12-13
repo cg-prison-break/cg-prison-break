@@ -4,9 +4,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     
+    [SerializeField] private ItemList itemHud;
     // INVENTROY 
     
-    private List<ItemData> inventory = new List<ItemData>();
+    private List<ItemData> inventory = new List<ItemData>(5);
     
     public bool HasItem(ItemData itemToFind)
     {
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
     public bool AddItem(ItemData item)
     {
         inventory.Add(item);
+        itemHud.RefreshIcons();
         if (inventory.Contains(item))
         {
             return true;
@@ -54,6 +56,7 @@ public class Player : MonoBehaviour
     public bool AddItem(List<ItemData> items)
     {
         inventory.AddRange(items);
+        itemHud.RefreshIcons();
         return HasAll(items);
     }
     
@@ -62,6 +65,7 @@ public class Player : MonoBehaviour
         if (inventory.Contains(item))
         {
             inventory.Remove(item);
+            itemHud.RefreshIcons();
             return true;
         }
         return false;
@@ -73,7 +77,7 @@ public class Player : MonoBehaviour
         {
             inventory.Remove(item);
         }
-        
+        itemHud.RefreshIcons();
         return !HasOneOf(items);
     }
     

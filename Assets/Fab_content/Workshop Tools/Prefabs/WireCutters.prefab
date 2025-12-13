@@ -52,8 +52,77 @@ PrefabInstance:
       propertyPath: m_Name
       value: WireCutters
       objectReference: {fileID: 0}
+    - target: {fileID: 1551317498687954001, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551317498687954001, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 4.4408916e-16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551317498687954001, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000014901161
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551317498687954001, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000029802319
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551317498687954001, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551317498687954001, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -7466554599296974279, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6336515749120148494}
+    - targetCorrespondingSourceObject: {fileID: -7466554599296974279, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4144149974642017395}
   m_SourcePrefab: {fileID: 100100000, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
+--- !u!1 &837244977374183323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7466554599296974279, guid: 0b0b6e29b35bb8a42af6d4131f4d4ca4, type: 3}
+  m_PrefabInstance: {fileID: 1440876969540877730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6336515749120148494
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837244977374183323}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26ea5b1c11fa191468be7465d47a4e11, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4144149974642017395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837244977374183323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ae16753dd62d141b9a059939058e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'

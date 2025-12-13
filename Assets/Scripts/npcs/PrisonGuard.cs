@@ -1,3 +1,4 @@
+using Sounds.NPCs;
 using UnityEngine;
 
 public class PrisonGuard : NPC
@@ -7,6 +8,10 @@ public class PrisonGuard : NPC
     public float maxAttentionRange = 30.0f;
     public float sightRange = 3f;
     public float fieldOfViewAngle = 30f;
+
+    [Header("Sounds")]
+    public AudioSource audioSource;
+    public NPCInteractionSoundSet soundSet;
 
     protected override void Start()
     {
@@ -40,10 +45,17 @@ public class PrisonGuard : NPC
         }
     }
 
-    public override string InteractionPrompt { get; set; }
+    public override string InteractionPrompt {
+        get => "Press F to interact!";
+        set => InteractionPrompt = value;
+    }
 
     public override void Interact(Player interactor)
     {
-        
+        // allow interaction only during random movement
+        if (currentState is RandomMovementState)
+        {
+            ChangeState(new TalkingState(audioSource, soundSet, currentState, interactor));
+        }
     }
 }
