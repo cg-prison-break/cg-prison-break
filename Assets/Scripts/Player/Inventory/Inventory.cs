@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class BoundedList
+public class Inventory
 {
     private readonly List<ItemData> _list;
     private readonly int _maxSize;
 
-    public BoundedList(int maxSize)
+    public Inventory(int maxSize)
     {
         if (maxSize <= 0)
             throw new ArgumentOutOfRangeException(nameof(maxSize));
@@ -39,4 +39,9 @@ public class BoundedList
     }
 
     public bool Remove(ItemData item) => _list.Remove(item);
+
+    public ItemData FindByKeyPressed(int keyPressed) =>
+        (keyPressed < 1 || keyPressed > _list.Count)
+            ? throw new KeyNotMappedToItemException(keyPressed)
+            : _list[keyPressed - 1];
 }

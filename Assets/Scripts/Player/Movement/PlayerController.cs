@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerController : MonoBehaviour
 {
@@ -131,5 +132,30 @@ public class PlayerController : MonoBehaviour
     private void SetCursorState(bool newState)
     {
         Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+    }
+    
+    private void OnDropItem(InputValue value)
+    {
+        var player = GetComponent<Player>();
+        if (!value.isPressed)
+            return;
+
+        
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        {
+            player.DropItem(1);
+        }
+        else if (Keyboard.current.digit2Key.wasPressedThisFrame)
+        {
+            player.DropItem(2);
+        }
+        else if (Keyboard.current.digit3Key.wasPressedThisFrame)
+        {
+            player.DropItem(3);
+        }
+        else if (Keyboard.current.digit4Key.wasPressedThisFrame)
+        {
+            player.DropItem(4);
+        }
     }
 }

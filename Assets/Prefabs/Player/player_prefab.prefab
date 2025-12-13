@@ -5163,7 +5163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   itemHud: {fileID: 6652811549134869485}
   audioSource: {fileID: 5110061265835975478}
-  inventoryFullSound: {fileID: 8300000, guid: 949af4a85ff91924ca15340a24255578, type: 3}
+  inventoryFullErrorSound: {fileID: 8300000, guid: 949af4a85ff91924ca15340a24255578, type: 3}
+  dropItemSound: {fileID: 8300000, guid: d1e0aafef13eb38479ec5223635d3841, type: 3}
 --- !u!136 &3035454368720368881
 CapsuleCollider:
   m_ObjectHideFlags: 0

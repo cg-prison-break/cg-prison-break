@@ -7,19 +7,20 @@ public class Player : MonoBehaviour
     
     [SerializeField] private ItemList itemHud;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip inventoryFullSound;
+    [SerializeField] private AudioClip inventoryFullErrorSound;
+    [SerializeField] private AudioClip dropItemSound;
     
     private void PlayInventoryFullSound()
     {
-        if (audioSource != null && inventoryFullSound != null)
+        if (audioSource != null && inventoryFullErrorSound != null)
         {
-            audioSource.PlayOneShot(inventoryFullSound);
+            audioSource.PlayOneShot(inventoryFullErrorSound);
         }
     }
     
     // INVENTROY 
     
-    private BoundedList inventory = new BoundedList(4);
+    private Inventory inventory = new Inventory(4);
     
     public bool HasItem(ItemData itemToFind)
     {
@@ -95,5 +96,21 @@ public class Player : MonoBehaviour
     public void OnCaught()
     {
         Debug.LogWarning("Player caught!");
+    }
+    
+    public void DropItem(int itemKey)
+    {
+        try
+        {
+            var byPressedKey = inventory.FindByKeyPressed(itemKey);
+            Instantiate(byPressedKey.prefab, transform.position, byPressedKey.prefab.transform.rotation);
+            RemoveItem(byPressedKey);
+            audioSource.PlayOneShot(dropItemSound);
+        }
+        catch (KeyNotMappedToItemException)
+        {
+            Debug.LogError("Key not mapped to item!");
+            audioSource.PlayOneShot(inventoryFullErrorSound);
+        }
     }
 }
