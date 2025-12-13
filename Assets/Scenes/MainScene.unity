@@ -13352,6 +13352,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 6203159625864291666, guid: 8166c501127674747ab4c1cdb56e6b40, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6265385018858009190, guid: 8166c501127674747ab4c1cdb56e6b40, type: 3}
       propertyPath: m_LocalRotation.w
       value: -1
@@ -19015,7 +19019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifierVolume
   m_SerializedVersion: 0
-  m_Size: {x: 1.15, y: 3, z: 4}
+  m_Size: {x: 1.15, y: 3, z: 2.25}
   m_Center: {x: 0, y: 1, z: 0}
   m_Area: 1
   m_AffectedAgents: ffffffff
@@ -35833,7 +35837,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.11666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: c8f518286f869d94e83938e8d019bad0, type: 2}
   m_BuildHeightMesh: 0
@@ -60864,8 +60868,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifierVolume
   m_SerializedVersion: 0
-  m_Size: {x: 1.15, y: 3, z: 4}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1.15, y: 3, z: 2.8}
+  m_Center: {x: 0, y: 1, z: -0.33}
   m_Area: 1
   m_AffectedAgents: ffffffff
 --- !u!1 &935454436
@@ -93829,8 +93833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifierVolume
   m_SerializedVersion: 0
-  m_Size: {x: 1.15, y: 3, z: 4}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1.15, y: 3, z: 2.73}
+  m_Center: {x: 0, y: 1, z: 0.41}
   m_Area: 1
   m_AffectedAgents: ffffffff
 --- !u!1001 &1467414520

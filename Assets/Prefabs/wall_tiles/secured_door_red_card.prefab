@@ -517,7 +517,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729eeb019f9c09e42a9ed299769dff1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _connectedItem: {fileID: 11400000, guid: 43052342911dd7942b2e92f68bd82b7e, type: 2}
+  _connectedItems: []
+  MasterCard: {fileID: 0}
+  _interactionPrompt: Press F to scan Access Card
   door: {fileID: 8643196746903089201}
 --- !u!1 &6204472469231113551
 GameObject:
@@ -864,7 +866,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6899914466925912920, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
       propertyPath: m_Name
-      value: secured_door_3x3_card
+      value: secured_door_red_card
+      objectReference: {fileID: 0}
+    - target: {fileID: 6899914466925912920, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7724164413488347449, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
       propertyPath: m_LocalRotation.y
@@ -887,6 +893,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6199513208271934406, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8643196746903089201}
+    - targetCorrespondingSourceObject: {fileID: 6199513208271934406, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3657007403337229983}
   m_SourcePrefab: {fileID: 100100000, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
 --- !u!1 &2784249081241230278 stripped
 GameObject:
@@ -937,7 +946,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d6f5c719d50a34c98457f5dfaf8c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenDoor
-  _connectedItem: {fileID: 0}
+  _connectedItems: []
   animator: {fileID: 4194216185938241805}
   autoCloseDelay: 5
   closeDuration: 1
+--- !u!208 &3657007403337229983
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417053463513787224}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.50100005, y: 0.994, z: 0.147}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.47800002, y: 0.9990001, z: -0.086}
+  m_TimeToStationary: 0.5
