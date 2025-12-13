@@ -111,6 +111,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door Frame Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 798217070592983467, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1158315993814442110, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -183,6 +187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: secured_door_blue_card
       objectReference: {fileID: 0}
+    - target: {fileID: 6899914466925912920, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7724164413488347449, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
@@ -204,6 +212,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6899914466925912920, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2318066535460785027}
+    - targetCorrespondingSourceObject: {fileID: 798217070592983467, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6689894958505420387}
     - targetCorrespondingSourceObject: {fileID: 6199513208271934406, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8643196746903089201}
@@ -216,6 +227,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6199513208271934406, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1517152260188826956}
+    - targetCorrespondingSourceObject: {fileID: 6199513208271934406, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5780502977811564303}
   m_SourcePrefab: {fileID: 100100000, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
 --- !u!1 &2784249081241230278 stripped
 GameObject:
@@ -577,3 +591,40 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!208 &5780502977811564303
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417053463513787224}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.50100005, y: 0.994, z: 0.147}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.47800002, y: 0.9990001, z: -0.086}
+  m_TimeToStationary: 0.5
+--- !u!1 &8246405779662108981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 798217070592983467, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
+  m_PrefabInstance: {fileID: 8746773808865999006}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &6689894958505420387
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8246405779662108981}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 1.5000001, z: 0.116000004}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 1, y: 1.5000001, z: 0}
+  m_TimeToStationary: 0.5

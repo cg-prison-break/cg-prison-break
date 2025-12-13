@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
 public class RandomMovementState : NPCState
 {
@@ -20,8 +19,16 @@ public class RandomMovementState : NPCState
         {
             npc.navMeshAgent.ResetPath();
 
-            currentTarget = FindRandomTargetPoint();
-            npc.navMeshAgent.SetDestination(currentTarget);
+            if (NavMeshUtils.TryFindValidNavMeshPosition(npc.transform.position, 10f, out var nextTarget))
+            {
+                currentTarget = nextTarget;
+                npc.navMeshAgent.SetDestination(currentTarget);
+            }
+            else
+            {
+                // no target found, try again in next update
+                npc.navMeshAgent.ResetPath();
+            }
         }
 
         npc.navMeshAgent.isStopped = false;
@@ -42,17 +49,17 @@ public class RandomMovementState : NPCState
 
         if (destinationReached && !npc.navMeshAgent.pathPending)
         {
-            currentTarget = FindRandomTargetPoint();
-            npc.navMeshAgent.SetDestination(currentTarget);
+            if (NavMeshUtils.TryFindValidNavMeshPosition(npc.transform.position, 10f, out var nextTarget))
+            {
+                currentTarget = nextTarget;
+                npc.navMeshAgent.SetDestination(currentTarget);
+            }
+            else
+            {
+                // no target found, try again in next update
+                npc.navMeshAgent.ResetPath();
+            }
         }
-    }
-
-    private Vector3 FindRandomTargetPoint()
-    {
-        Vector3 randomDirection = Random.insideUnitSphere * 20f;
-        NavMeshHit hit;
-        NavMesh.SamplePosition(randomDirection, out hit, 20f, NavMesh.AllAreas);
-        return hit.position;
     }
 }
 
