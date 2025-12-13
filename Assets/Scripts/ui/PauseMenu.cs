@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject optionsPanelInGame;  // separate panel for options
     [SerializeField] private string mainMenuSceneName = "MainMenu";
     [SerializeField] private MonoBehaviour[] scriptsToDisableOnPause;
+    [SerializeField] private GameObject retryPanel;
 
     private bool _isPaused;
     public static bool InputsBlocked { get; private set; }
@@ -16,8 +17,9 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         if (pauseCanvas != null) pauseCanvas.SetActive(false);
-        if (pausePanel != null) pausePanel.SetActive(true);
+        if (pausePanel != null) pausePanel.SetActive(false);
         if (optionsPanelInGame != null) optionsPanelInGame.SetActive(false);
+        if (retryPanel != null) retryPanel.SetActive(false);
 
         _isPaused = false;
         InputsBlocked = false;
@@ -38,7 +40,30 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 if (_isPaused) Resume();
-                else Pause();
+                else openRetryMenu();
+            }
+        }
+    }
+
+    public void openRetryMenu()
+    {
+        if (retryPanel == null) return;
+
+        pauseCanvas.SetActive(true);
+        retryPanel.SetActive(true);
+        Time.timeScale = 0f;
+        _isPaused = true;
+        InputsBlocked = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // Disable gameplay scripts
+        if (scriptsToDisableOnPause != null)
+        {
+            foreach (var s in scriptsToDisableOnPause)
+            {
+                if (s != null) s.enabled = false;
             }
         }
     }
@@ -73,6 +98,8 @@ public class PauseMenu : MonoBehaviour
         if (pauseCanvas == null) return;
 
         pauseCanvas.SetActive(false);
+        pausePanel.SetActive(false);
+        retryPanel.SetActive(false);
         Time.timeScale = 1f;
         _isPaused = false;
         InputsBlocked = false;
