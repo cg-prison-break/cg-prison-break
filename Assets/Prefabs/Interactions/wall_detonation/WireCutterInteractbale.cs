@@ -22,8 +22,10 @@ public class WireCutterInteractbale : MonoBehaviour, IInteractableItem
     public void Interact(Player player)
     {
         var pickedUp = player.AddItem(itemData);
-        player.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
-        if (pickedUp) Destroy(gameObject);
+
+        if (!pickedUp) return;
+        player.GetComponents<AudioSource>()[1].PlayOneShot(pickupSoundClip);
+        Destroy(gameObject);
     }
     
 }

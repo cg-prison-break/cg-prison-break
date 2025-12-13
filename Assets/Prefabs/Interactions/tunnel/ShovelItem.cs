@@ -17,8 +17,10 @@ public class ShovelItem : MonoBehaviour, IInteractableItem
     
     public void Interact(Player interactor)
     {
-        interactor.AddItem(_shovelItemData);    
-        interactor.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
+        var pickedUp = interactor.AddItem(itemData);
+
+        if (!pickedUp) return;
+        interactor.GetComponents<AudioSource>()[1].PlayOneShot(pickupSoundClip);
         Destroy(gameObject);
     }
 }

@@ -23,9 +23,10 @@ namespace Prefabs.Interactions.truck
         public void Interact(Player interactor)
         {   
             var pickedUp = interactor.AddItem(itemData);
-            Debug.Log($"Item Name: {_itemData.itemName}");
-            interactor.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
-            if (pickedUp) Destroy(gameObject);
+
+            if (!pickedUp) return;
+            interactor.GetComponents<AudioSource>()[1].PlayOneShot(pickupSoundClip);
+            Destroy(gameObject);
         }
     }
 }

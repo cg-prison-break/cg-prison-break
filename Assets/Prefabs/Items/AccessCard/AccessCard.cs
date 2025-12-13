@@ -36,9 +36,11 @@ public class AccessCard : MonoBehaviour, IInteractableItem
 
     public void Interact(Player player)
     {
-        bool pickedUp = player.AddItem(itemData);
-        player.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
-        if (pickedUp) Destroy(gameObject);
+        var pickedUp = player.AddItem(itemData);
+
+        if (!pickedUp) return;
+        player.GetComponents<AudioSource>()[1].PlayOneShot(pickupSoundClip);
+        Destroy(gameObject);
     }
     
 }

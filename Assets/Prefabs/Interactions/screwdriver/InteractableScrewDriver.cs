@@ -21,9 +21,10 @@ public class InteractableScrewDriver : MonoBehaviour, IInteractableItem
 
     public void Interact(Player interactor)
     {
-        interactor.AddItem(itemData);
-        interactor.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
-        NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
+        var pickedUp = interactor.AddItem(itemData);
+
+        if (!pickedUp) return;
+        interactor.GetComponents<AudioSource>()[1].PlayOneShot(pickupSoundClip);
         Destroy(gameObject);
     }
 }
