@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1114525206961371757}
   - component: {fileID: -1771781337664648296}
   - component: {fileID: 124935183935036031}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6492427120234770954, guid: 3f5539a7eb4c7e449afcbd132312b174, type: 3}
 --- !u!114 &124935183935036031
