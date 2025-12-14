@@ -26,7 +26,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     {
         get
         {
-            return "Press F to Open";
+            return "Drücke F, um zu öffnen.";
         }
         set
         {

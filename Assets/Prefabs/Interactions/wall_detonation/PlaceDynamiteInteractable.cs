@@ -13,8 +13,24 @@ namespace Prefabs.Interactions.wall_detonation
         
         public string InteractionPrompt
         {
-            get => "Press F to place dynamite on wall.";
-            set => InteractionPrompt = value;
+            get
+            {
+                var interactionPrompt = "";
+                var playerForItemChecking = PlayerRegistry.Player;
+                if (playerForItemChecking == null)
+                {
+                    Debug.LogError("Player was not found.");
+                }
+                if (playerForItemChecking.HasAll(_connectedItems))
+                {
+                    interactionPrompt = "Drücke F, um Wand zu sprengen.";
+                }
+                return interactionPrompt;
+            }
+            set
+            {
+                // intentionally left empty
+            }
         }
 
         public void Interact(Player interactor)

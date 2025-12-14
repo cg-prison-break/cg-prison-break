@@ -10,7 +10,7 @@ namespace Prefabs.Interactions.screwdriver
         
         public string InteractionPrompt
         {
-            get => "Press F to climb through window.";
+            get => "Drücke F, um durch das Fenster zu klettern.";
             set => InteractionPrompt = value;   
         }
 

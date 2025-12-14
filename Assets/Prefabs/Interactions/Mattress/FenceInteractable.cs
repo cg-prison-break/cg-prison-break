@@ -18,8 +18,28 @@ namespace Prefabs.Interactions.Mattress
 
         public string InteractionPrompt
         {
-            get => "Press F to place mattress on fence.";
-            set => InteractionPrompt = value;
+            get
+            {
+                var interactionPrompt = "";
+                var playerForItemChecking = PlayerRegistry.Player;
+                if (playerForItemChecking == null)
+                {
+                    Debug.LogError("Player was not found.");
+                }
+                if (playerForItemChecking.HasItem(wireCutterItemData))
+                {
+                    interactionPrompt = "Drücke F, um den Zaun durchzuschneiden.";
+                }
+                else if (playerForItemChecking.HasAll(_connectedItems))
+                {
+                    interactionPrompt = "Drücke F, Matratze und Seil zu platzieren.";
+                }
+                return interactionPrompt;
+            }
+            set
+            {
+                // intentionally left empty
+            }
         }
 
         public void Interact(Player interactor)

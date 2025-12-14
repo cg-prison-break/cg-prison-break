@@ -16,8 +16,24 @@ namespace Prefabs.Interactions.screwdriver
     
         public string InteractionPrompt
         {
-            get => "Press F to unscrew.";
-            set => InteractionPrompt = value;   
+            get
+            {
+                var interactionPrompt = "";
+                var playerForItemChecking = PlayerRegistry.Player;
+                if (playerForItemChecking == null)
+                {
+                    Debug.LogError("Player was not found.");
+                }
+                if (playerForItemChecking.HasAll(_connectedItems))
+                {
+                    interactionPrompt = "Drücke F, um Schraube abzuschrauben.";
+                }
+                return interactionPrompt;
+            }
+            set
+            {
+                // intentionally left empty
+            }
         }
 
 

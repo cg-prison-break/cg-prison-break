@@ -73,7 +73,7 @@ public class PrisonGuard : NPC
 
     public override string InteractionPrompt
     {
-        get => "Press F to interact!";
+        get => "Drücke F zum Interagieren.";
         set => InteractionPrompt = value;
     }
 

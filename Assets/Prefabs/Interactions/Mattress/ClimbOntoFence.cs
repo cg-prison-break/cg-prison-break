@@ -8,7 +8,7 @@ namespace Prefabs.Interactions
     {
         public AudioSource metalRattleSource;
         
-        public string InteractionPrompt { get; set; } = "Press F to climb onto fence.";
+        public string InteractionPrompt { get; set; } = "Drücke F, um auf den Zaun zu klettern.";
         
         public void Interact(Player interactor)
         {   

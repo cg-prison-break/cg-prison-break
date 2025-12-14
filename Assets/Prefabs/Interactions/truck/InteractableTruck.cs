@@ -17,8 +17,24 @@ namespace Prefabs.Interactions.truck
         
         public string InteractionPrompt
         {
-            get => "Press F escape with truck.";
-            set => InteractionPrompt = value;
+            get
+            {
+                var interactionPrompt = "";
+                var playerForItemChecking = PlayerRegistry.Player;
+                if (playerForItemChecking == null)
+                {
+                    Debug.LogError("Player was not found.");
+                }
+                if (playerForItemChecking.HasAll(_connectedItems))
+                {
+                    interactionPrompt = "Drücke F, um dich mit Truck rauszuschmuggeln.";
+                }
+                return interactionPrompt;
+            }
+            set
+            {
+                // intentionally left empty
+            }
         }
 
         public void Interact(Player interactor)

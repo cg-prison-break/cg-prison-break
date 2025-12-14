@@ -13,7 +13,11 @@ public class ShovelItem : MonoBehaviour, IInteractableItem
         set { _shovelItemData = value; }
     }
 
-    public string InteractionPrompt { get; set; }
+    public string InteractionPrompt
+    {
+        get => $"Drücke F, um \"{_shovelItemData.itemName}\" aufzunehmen.";
+        set => InteractionPrompt = value;   
+    }
     
     public void Interact(Player interactor)
     {

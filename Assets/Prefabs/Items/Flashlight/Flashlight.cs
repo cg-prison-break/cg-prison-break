@@ -27,7 +27,7 @@ public class Flashlight : MonoBehaviour, IInteractableItem
 
     public string InteractionPrompt
     {
-        get => "Click F to pick up!";
+        get => $"Drücke F, um \"{_itemData.itemName}\" aufzunehmen.";
         set => InteractionPrompt = value;
     }
 

@@ -14,7 +14,7 @@ public class DynamiteItem : MonoBehaviour, IInteractableItem
 
     public string InteractionPrompt
     {
-        get => "Press F to pick up dynamite.";
+        get => $"Drücke F, um \"{_itemData.itemName}\" aufzunehmen.";
         set => InteractionPrompt = value;
     }
     
