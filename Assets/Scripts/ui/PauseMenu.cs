@@ -40,7 +40,7 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 if (_isPaused) Resume();
-                else openRetryMenu();
+                else Pause();
             }
         }
     }
