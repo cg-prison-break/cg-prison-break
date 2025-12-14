@@ -11,6 +11,7 @@ public class EscapeRoutePanel : MonoBehaviour
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject playerObject;
     [SerializeField] private EscapeRouteDetailPanel detailPanel;
+    [SerializeField] private GameObject minimap;
 
     private PlayerInput playerInput;
     private PlayerController playerController;
@@ -30,6 +31,7 @@ public class EscapeRoutePanel : MonoBehaviour
         interactPanel?.SetActive(true);
         itemPanel?.SetActive(true);
         crosshair?.SetActive(true);
+        minimap?.SetActive(true);
     }
 
     private void Update()
@@ -58,6 +60,7 @@ public class EscapeRoutePanel : MonoBehaviour
         interactPanel?.SetActive(!active);
         itemPanel?.SetActive(!active);
         crosshair?.SetActive(!active);
+        minimap?.SetActive(!active);
 
         if (active)
         {
