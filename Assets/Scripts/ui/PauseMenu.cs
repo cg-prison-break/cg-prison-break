@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject optionsPanelInGame;  // separate panel for options
     [SerializeField] private string mainMenuSceneName = "MainMenu";
     [SerializeField] private MonoBehaviour[] scriptsToDisableOnPause;
+    [SerializeField] private GameObject retryPanel;
 
     private bool _isPaused;
     public static bool InputsBlocked { get; private set; }
@@ -16,8 +17,9 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         if (pauseCanvas != null) pauseCanvas.SetActive(false);
-        if (pausePanel != null) pausePanel.SetActive(true);
+        if (pausePanel != null) pausePanel.SetActive(false);
         if (optionsPanelInGame != null) optionsPanelInGame.SetActive(false);
+        if (retryPanel != null) retryPanel.SetActive(false);
 
         _isPaused = false;
         InputsBlocked = false;
@@ -39,6 +41,29 @@ public class PauseMenu : MonoBehaviour
             {
                 if (_isPaused) Resume();
                 else Pause();
+            }
+        }
+    }
+
+    public void OpenRetryMenu()
+    {
+        if (retryPanel == null) return;
+
+        pauseCanvas.SetActive(true);
+        retryPanel.SetActive(true);
+        Time.timeScale = 0f;
+        _isPaused = true;
+        InputsBlocked = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // Disable gameplay scripts
+        if (scriptsToDisableOnPause != null)
+        {
+            foreach (var s in scriptsToDisableOnPause)
+            {
+                if (s != null) s.enabled = false;
             }
         }
     }
@@ -73,6 +98,8 @@ public class PauseMenu : MonoBehaviour
         if (pauseCanvas == null) return;
 
         pauseCanvas.SetActive(false);
+        pausePanel.SetActive(false);
+        retryPanel.SetActive(false);
         Time.timeScale = 1f;
         _isPaused = false;
         InputsBlocked = false;
@@ -86,9 +113,8 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
-        // If your game normally locks the cursor, do it here again:
-        // Cursor.lockState = CursorLockMode.Locked;
-        // Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void OpenOptions()
