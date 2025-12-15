@@ -45,7 +45,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void openRetryMenu()
+    public void OpenRetryMenu()
     {
         if (retryPanel == null) return;
 
