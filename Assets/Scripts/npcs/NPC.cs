@@ -6,7 +6,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
 {
     public Animator animator;
     public NavMeshAgent navMeshAgent;
-    public float speed = 1.0f;
+    public float speed = 2.0f;
 
     protected NPCState currentState;
     protected NPCState previousState;

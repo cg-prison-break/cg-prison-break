@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class NPCSpawner : MonoBehaviour
 {
-    [Range(1, 20)]
+    [Range(1, 40)]
     public int maxNPCs = 5;
     public float spawnRadius = 3f;
     public GameObject npcPrefab;
-    public List<GameObject> spawnPoints;
+    public GameObject spawnPointContainer;
 
     private readonly List<GameObject> spawnedNPCs = new();
 
@@ -21,20 +21,30 @@ public class NPCSpawner : MonoBehaviour
 
         for (int i = 0; i < maxNPCs; i++)
         {
-            var spawnPoint = spawnPoints[rnd.Next(spawnPoints.Count)];
+            var spawnPoints = spawnPointContainer.GetComponentsInChildren<SpawnPoint>();
+            var spawnPoint = spawnPoints[rnd.Next(spawnPoints.Length)];
 
             // spawn on navmesh
-            Vector3 randomDir = UnityEngine.Random.insideUnitSphere * spawnRadius + spawnPoint.transform.position;
-            NavMesh.SamplePosition(randomDir, out var navMeshHit, spawnRadius, NavMesh.AllAreas);
+            if (!NavMeshUtils.TryFindValidNavMeshPosition(spawnPoint.transform.position, spawnRadius, out var validPos))
+            {
+                // fallback to spawn point position
+                validPos = spawnPoint.transform.position;
+            }
 
-            // ensure spawning on the ground
-            Physics.Raycast(navMeshHit.position + Vector3.up * 10f, Vector3.down, out var hit, 100f);
-
-            GameObject npc = Instantiate(npcPrefab, hit.point, Quaternion.identity);
+            GameObject npc = Instantiate(npcPrefab, validPos, Quaternion.identity);
 
             var agent = npc.GetComponent<NavMeshAgent>();
             agent.Warp(npc.transform.position);
-            agent.speed = 2.0f;
+
+            if (npc.TryGetComponent<NPC>(out var npcComponent))
+            {
+                agent.speed = npcComponent.speed;
+            }
+            else
+            {
+                // fallback to default speed
+                agent.speed = 2.0f;
+            }
 
             spawnedNPCs.Add(npc);
         }
