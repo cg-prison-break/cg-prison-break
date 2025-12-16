@@ -32,7 +32,7 @@ namespace Prefabs.Interactions.screwdriver
         
         public string InteractionPrompt
         {
-            get => "Press F to remove Window";
+            get => "Drücke F, um Fenster zu entfernen.";
             set => InteractionPrompt = value;   
         }
     }

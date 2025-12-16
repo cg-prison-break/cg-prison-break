@@ -15,7 +15,7 @@ public class InteractableScrewDriver : MonoBehaviour, IInteractableItem
 
     public string InteractionPrompt
     {
-        get => "Press F to pick up screw driver";
+        get => $"Drücke F, um \"{_itemData.itemName}\" aufzunehmen.";
         set => InteractionPrompt = value;   
     }
 

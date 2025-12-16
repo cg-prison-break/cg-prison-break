@@ -7,8 +7,8 @@ namespace Prefabs.Interactions.tunnel
     {
         public TunnelState tunnelState;
         private bool _manipulatedBox;
-        private string _interactionPromptWhenOutOfTunnel = "Press F to climb into tunnel.";
-        private string _interactionPromptWhenInTunnel = "Press F to climb out of tunnel.";
+        private string _interactionPromptWhenOutOfTunnel = "Drücke F, um den Tunnel zu betreten.";
+        private string _interactionPromptWhenInTunnel = "Drücke F, um den Tunnel zu verlassen.";
         public AudioSource audioSource;
         public AudioClip enterSound;
         public AudioClip escapeSound;

@@ -15,7 +15,7 @@ public class WireCutterInteractbale : MonoBehaviour, IInteractableItem
 
     public string InteractionPrompt
     {
-        get => "Click F to pick up wirecutter!";
+        get => $"Drücke F, um \"{_itemData.itemName}\" aufzunehmen.";
         set => InteractionPrompt = value;   
     }
 

@@ -16,7 +16,7 @@ namespace Prefabs.Interactions.truck
 
         public string InteractionPrompt
         {
-            get => "Press F to pick up conceilment.";
+            get => $"Drücke F, um \"{_itemData.itemName}\" aufzunehmen.";
             set => InteractionPrompt = value;
         }
     

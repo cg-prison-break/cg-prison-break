@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,9 +11,6 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
 
     [SerializeField] private ItemData MasterCard;
 
-    [SerializeField] private string _interactionPrompt = "Press F to scan Access Card";
-
-
     [Header("Door Interaction")]
     [SerializeField] private OpenDoor door;
 
@@ -21,7 +19,17 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
     {
         get
         {
-            return _interactionPrompt;
+            var interactionPrompt = "";
+            var playerForItemChecking = PlayerRegistry.Player;
+            if (playerForItemChecking == null)
+            {
+                Debug.LogError("Player was not found.");
+            }
+            if (playerForItemChecking.HasOneOf(ConnectedItems) || playerForItemChecking.HasItem(MasterCard))
+            {
+                interactionPrompt = "Drücke F, um mit der Sicherheitskarte die Tür zu öffnen.";
+            }
+            return interactionPrompt;
         }
         set
         {

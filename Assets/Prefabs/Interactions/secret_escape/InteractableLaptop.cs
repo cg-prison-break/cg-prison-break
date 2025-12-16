@@ -9,7 +9,7 @@ namespace Prefabs.Interactions.secret_escape
     
         public string InteractionPrompt
         {
-            get => "Press F to hack into laptop and apply for immediate release from prison.";
+            get => "Drücke F, um dich in den Laptop zu hacken und die sofortige Freilassung zu genehmigen.";
             set => InteractionPrompt = value;
         }
 

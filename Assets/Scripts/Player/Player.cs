@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,12 @@ public class Player : MonoBehaviour
     // INVENTROY 
     
     private List<ItemData> inventory = new List<ItemData>(5);
-    
+
+    public void Awake()
+    {
+        PlayerRegistry.RegisterPlayer(this);
+    }
+
     public bool HasItem(ItemData itemToFind)
     {
         if (inventory.Contains(itemToFind))
