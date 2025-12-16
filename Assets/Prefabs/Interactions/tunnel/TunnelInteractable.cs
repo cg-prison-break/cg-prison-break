@@ -1,0 +1,75 @@
+using Objects.Interactables;
+using UnityEngine;
+
+namespace Prefabs.Interactions.tunnel
+{
+    public class TunnelInteractable : MonoBehaviour, IInteractable
+    {
+        public TunnelState tunnelState;
+        private bool _manipulatedBox;
+        private string _interactionPromptWhenOutOfTunnel = "Drücke F, um den Tunnel zu betreten.";
+        private string _interactionPromptWhenInTunnel = "Drücke F, um den Tunnel zu verlassen.";
+        public AudioSource audioSource;
+        public PlayEnterEscapeSoundTunnel playEnterEscapeSoundTunnel;
+
+        public string InteractionPrompt
+        {
+            get =>
+                tunnelState.GetInTunnel()
+                    ? _interactionPromptWhenInTunnel
+                    : _interactionPromptWhenOutOfTunnel;
+            set => InteractionPrompt = value;
+        }
+
+        public void Interact(Player interactor)
+        {
+            NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
+            var cc = interactor.GetComponent<CharacterController>();
+            SetCharacterController(cc, false);
+
+            if (!tunnelState.GetInTunnel())
+            {
+                HandleTunnelInteraction(interactor, true, "Climbed into tunnel.");
+            }
+            else
+            {
+                HandleTunnelInteraction(interactor, false, "Climbed out of tunnel.");
+            }
+            
+            if (!_manipulatedBox)
+            {
+                AdjustWoodenTunnelPlateWhenFirstEntered();
+            }
+
+            SetCharacterController(cc, true);
+        }
+
+        private void AdjustWoodenTunnelPlateWhenFirstEntered()
+        {
+            var woodPlate = gameObject.GetComponentInChildren<WoodenTunnelPlate>().transform;
+            woodPlate.transform.rotation = Quaternion.Euler(0, 30, 0);
+            woodPlate.transform.position += new Vector3(0, 0, -0.5f);
+            audioSource.Play();
+            _manipulatedBox = true;
+        }
+
+        private void HandleTunnelInteraction(Player interactor, bool inTunnel, string logMessage)
+        {
+            var enterPoint = tunnelState.GetInTunnel() ? gameObject.GetComponentInChildren<LeavePoint>().transform.position : gameObject.GetComponentInChildren<EnterPoint>().transform.position;
+            Debug.Log(enterPoint);
+
+            interactor.transform.position = enterPoint;
+            Debug.Log(interactor.transform.position);
+            playEnterEscapeSoundTunnel.PlayInteractionSound();
+
+            tunnelState.SetInTunnel(inTunnel);
+            Debug.Log("Tunnel state changed to:" + tunnelState.GetInTunnel());
+            Debug.Log(logMessage);
+        }
+
+        private static void SetCharacterController(CharacterController cc, bool enabled)
+        {
+            if (cc != null) cc.enabled = enabled;
+        }
+    }
+}

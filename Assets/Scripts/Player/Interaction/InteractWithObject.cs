@@ -13,6 +13,8 @@ public class InteractWithObject : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Player player;
+    [SerializeField] private InteractPromptUI hudCanvas;
+
     
     private IInteractable currentInteractable;
   
@@ -48,7 +50,9 @@ public class InteractWithObject : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        hudCanvas.Hide();
+            
+        currentInteractable = null;
     }
 
     // Update is called once per frame
@@ -64,23 +68,28 @@ public class InteractWithObject : MonoBehaviour
         
         Debug.DrawRay(checkRay.origin, checkRay.direction, Color.red);
         
-        if (Physics.Raycast(checkRay, out RaycastHit hit, interactionDistance, interactionLayer))
+        if (Physics.Raycast(checkRay, out RaycastHit hit, interactionDistance))
         {
-            if (hit.collider.TryGetComponent(out IInteractable interactable))
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
             {
-                currentInteractable = interactable;
+                Collider targetCollider = hit.collider;
+                GameObject targetObject = targetCollider.gameObject;
                 
-                // TODO  call UI framework to display the interactable prompt
-                
-                return;
+                if (targetCollider.TryGetComponent(out IInteractable interactable))
+                {
+                    currentInteractable = interactable;
+                    
+                    hudCanvas.Show(currentInteractable.InteractionPrompt);
+                    
+                    return;
+                }
             }
+            else
+            {
+                hudCanvas.Hide();
             
-        }
-        else
-        {
-            // TODO remove prompt from UI if present
-            
-            currentInteractable = null;
+                currentInteractable = null;
+            }
         }
     }
     

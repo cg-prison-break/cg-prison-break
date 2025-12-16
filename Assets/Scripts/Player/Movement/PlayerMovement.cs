@@ -1,6 +1,10 @@
 using System;
+using System.Linq;
+using Sounds.Walking;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,6 +28,20 @@ public class PlayerMovement : MonoBehaviour
     public GameObject CinemachineCameraTarget;
     public float TopClamp = 90.0f;
     public float BottomClamp = -90.0f;
+
+    [Header("Audio and Sound")] 
+    public AudioSource walkingAudioSource;
+    public FootstepSet[] walkingFootStepSet;
+    public FootstepSet[] runningFootStepSet;
+    public JumpSet[] jumpingFootStepSet;
+    public AudioSource jumpAudioSource;
+    
+    public float walkStepInterval = 0.5f;
+    public float runStepInterval = 0.35f;
+
+    private float footstepTimer = 0f;
+
+    private bool jumped = false;
     
     
     private float _cineMachineTargetPitch;
@@ -41,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController _controller;
     private PlayerController _input;
     private GameObject _mainCamera;
+    
+    private string currentSurfaceTag = "Default";
 
 
     private const float _threshold = 0.01f;
@@ -84,6 +104,48 @@ public class PlayerMovement : MonoBehaviour
         GroundedCheck();
         Move();
     }
+    
+    private FootstepSet GetFootstepSet(FootstepSet[] sets, string tag)
+    {
+        foreach (var set in sets)
+        {
+            if (set.surfaceTag == tag)
+                return set;
+        }
+        return null;
+    }
+    
+    private JumpSet GetJumpSet(JumpSet[] sets, string tag)
+    {
+        foreach (var set in sets)
+        {
+            if (set.surfaceTag == tag)
+                return set;
+        }
+        return null;
+    }
+    
+    private void PlayJumpSound()
+    {
+        JumpSet set = GetJumpSet(jumpingFootStepSet, currentSurfaceTag);
+
+        if (set == null || set.jumpSounds == null || set.jumpSounds.Length == 0)
+            return;
+
+        AudioClip clip = set.jumpSounds[Random.Range(0, set.jumpSounds.Length)];
+        jumpAudioSource.PlayOneShot(clip);
+    }
+    
+    private void PlayLandingSound()
+    {
+        JumpSet set = GetJumpSet(jumpingFootStepSet, currentSurfaceTag);
+
+        if (set == null || set.landingSounds == null || set.landingSounds.Length == 0)
+            return;
+
+        AudioClip clip = set.landingSounds[Random.Range(0, set.landingSounds.Length)];
+        jumpAudioSource.PlayOneShot(clip);
+    }
 
     private void LateUpdate()
     {
@@ -95,7 +157,25 @@ public class PlayerMovement : MonoBehaviour
         Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
             transform.position.z);
         Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+        Debug.Log("Grounded: " + Grounded);
+        if (Grounded)
+        {
+            Collider[] hits = Physics.OverlapSphere(spherePosition, GroundedRadius, GroundLayers)
+                .OrderBy(item =>
+                    item.CompareTag("Stone") ? 0 :
+                    item.CompareTag("Sand")  ? 2 :
+                    1).ToArray();
+            if (hits.Length > 0)
+                // if multiple hits, take the one that says "Stone"
+                
+                currentSurfaceTag = hits[0].tag;
+
+            if (!jumped) return;
+            PlayLandingSound();
+            jumped = false;
+        }
     }
+
 
     private void CameraRotation()
     {
@@ -144,18 +224,49 @@ public class PlayerMovement : MonoBehaviour
         
         
         Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-        
+
+        var isMoving = false;
         
         if (_input.move != Vector2.zero)
         {
             inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
+            isMoving = true;
         }
         
         if (_controller.enabled)
         {
             _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            if (isMoving && Grounded)
+            {
+                HandleFootsteps();
+            }
         }
     }
+    
+    private void HandleFootsteps()
+    {
+        footstepTimer -= Time.deltaTime;
+
+        float interval = _input.sprint ? runStepInterval : walkStepInterval;
+
+        if (footstepTimer > 0f)
+            return;
+
+        FootstepSet set = _input.sprint 
+            ? GetFootstepSet(runningFootStepSet, currentSurfaceTag)
+            : GetFootstepSet(walkingFootStepSet, currentSurfaceTag);
+
+        if (set == null || set.footsteps.Length == 0)
+            return;
+
+        AudioClip clip = set.footsteps[Random.Range(0, set.footsteps.Length)];
+
+        Debug.Log("Should Play: " + clip.name);
+        walkingAudioSource.PlayOneShot(clip);
+
+        footstepTimer = interval;
+    }
+
     
     private void JumpAndGravity()
     {
@@ -172,6 +283,9 @@ public class PlayerMovement : MonoBehaviour
             if (_input.jump && _jumpTimeoutDelta <= 0.0f)
             {
                 _verticalVelocity = Mathf.Sqrt(JumpHeight * -2.0f * Gravity);
+                
+                PlayJumpSound();
+                jumped = true;
             }
             
             if (_jumpTimeoutDelta >= 0.0f)
