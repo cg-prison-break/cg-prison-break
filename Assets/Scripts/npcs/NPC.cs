@@ -8,7 +8,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
     public NavMeshAgent navMeshAgent;
     public float speed = 2.0f;
     public float sightRange = 5f;
-    public float fieldOfViewAngle = 100f;
+    public float fieldOfViewAngle = 110f;
 
     protected NPCState currentState;
     protected NPCState previousState;

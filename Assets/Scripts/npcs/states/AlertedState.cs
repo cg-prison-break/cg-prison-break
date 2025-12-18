@@ -4,8 +4,13 @@ public class AlertedState : NPCState
 {
     private readonly float catchDistance = 1.2f;
     private readonly float catchDuration = 2.0f;
+    private readonly float lostSightDuration = 3.0f;
+
     private float catchTimer = 0f;
+    private float lostSightTimer = 0f;
     private bool isCatching = false;
+
+    private Vector3 lastKnownPlayerPosition = Vector3.zero;
 
     protected override Color? StateHintColor => Color.red;
 
@@ -18,7 +23,7 @@ public class AlertedState : NPCState
             return;
         }
 
-        npc.navMeshAgent.speed = npc.speed + 2.5f;
+        npc.navMeshAgent.speed = npc.speed + 2f;
         npc.navMeshAgent.stoppingDistance = catchDistance;
         npc.navMeshAgent.isStopped = false;
 
@@ -26,6 +31,7 @@ public class AlertedState : NPCState
 
         isCatching = false;
         catchTimer = 0f;
+        lostSightTimer = 0f;
 
         UpdateStateHint(npc);
     }
@@ -33,11 +39,13 @@ public class AlertedState : NPCState
     public override void ExitState(NPC npc)
     {
         npc.navMeshAgent.isStopped = false;
+        npc.navMeshAgent.speed = npc.speed;
 
         npc.animator.SetBool("isWalking", false);
 
         isCatching = false;
         catchTimer = 0f;
+        lostSightTimer = 0f;
     }
 
     public override void UpdateState(NPC npc)
@@ -54,10 +62,33 @@ public class AlertedState : NPCState
             return;
         }
 
-        // set destination to player's current position (chase)
-        npc.navMeshAgent.isStopped = false;
-        npc.navMeshAgent.SetDestination(npc.playerRef.transform.position);
-        npc.animator.SetBool("isWalking", true);
+        if (npc.HasPlayerInsight())
+        {
+            lastKnownPlayerPosition = npc.playerRef.transform.position;
+            lostSightTimer = 0f;
+
+            // set destination to player's current position (chase)
+            npc.navMeshAgent.isStopped = false;
+            npc.navMeshAgent.SetDestination(npc.playerRef.transform.position);
+            npc.animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            lostSightTimer += Time.deltaTime;
+
+            if (lostSightTimer < lostSightDuration)
+            {
+                npc.navMeshAgent.isStopped = false;
+                npc.navMeshAgent.SetDestination(lastKnownPlayerPosition);
+                npc.animator.SetBool("isWalking", true);
+            }
+            else
+            {
+                // player lost for too long, switch to suspicious state
+                npc.ChangeState(new SuspiciousState(lastKnownPlayerPosition));
+                return;
+            }
+        }
 
         // check distance
         float dist = Vector3.Distance(npc.transform.position, npc.playerRef.transform.position);

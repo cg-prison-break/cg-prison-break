@@ -1693,10 +1693,10 @@ MonoBehaviour:
   animator: {fileID: 1697917242271180093}
   navMeshAgent: {fileID: 8610683410434920169}
   speed: 2
+  sightRange: 5
+  fieldOfViewAngle: 110
   attention: 0.5
   maxAttentionRange: 20
-  sightRange: 5
-  fieldOfViewAngle: 100
   audioSource: {fileID: 395253039301189741}
   soundSet:
     interactionSounds:
