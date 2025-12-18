@@ -7,15 +7,11 @@ public class AlertedState : NPCState
     private float catchTimer = 0f;
     private bool isCatching = false;
 
-    private GameObject playerRef;
-
     protected override Color? StateHintColor => Color.red;
 
     public override void EnterState(NPC npc)
     {
-        // find player
-        playerRef = GameObject.FindGameObjectWithTag("Player");
-        if (playerRef == null)
+        if (npc.playerRef == null)
         {
             // no player found -> fallback
             npc.ChangeState(new RandomMovementState());
@@ -44,7 +40,8 @@ public class AlertedState : NPCState
         catchTimer = 0f;
     }
 
-    public override void UpdateState(NPC npc) {
+    public override void UpdateState(NPC npc)
+    {
         // If already in catching sequence, count down then switch state
         if (isCatching)
         {
@@ -59,11 +56,11 @@ public class AlertedState : NPCState
 
         // set destination to player's current position (chase)
         npc.navMeshAgent.isStopped = false;
-        npc.navMeshAgent.SetDestination(playerRef.transform.position);
+        npc.navMeshAgent.SetDestination(npc.playerRef.transform.position);
         npc.animator.SetBool("isWalking", true);
 
         // check distance
-        float dist = Vector3.Distance(npc.transform.position, playerRef.transform.position);
+        float dist = Vector3.Distance(npc.transform.position, npc.playerRef.transform.position);
         if (dist <= catchDistance)
         {
             // start catching
@@ -75,7 +72,7 @@ public class AlertedState : NPCState
             npc.animator.SetBool("isWalking", false);
 
             // notify player object that it was caught
-            playerRef.SendMessage("OnCaught", SendMessageOptions.DontRequireReceiver);
+            npc.playerRef.SendMessage("OnCaught", SendMessageOptions.DontRequireReceiver);
         }
     }
 }

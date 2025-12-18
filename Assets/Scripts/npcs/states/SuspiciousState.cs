@@ -5,31 +5,23 @@ public class SuspiciousState : NPCState
 {
     private readonly float distanceThreshold = 0.2f;
     private readonly Vector3 suspiciousLocation;
-    private readonly float sightRange;
-    private readonly float fieldOfViewAngle;
     private readonly float cooldownDuration;
     private readonly float searchRadius;
-
-    private GameObject playerRef;
 
     private Coroutine searchCoroutine = null;
 
     protected override Color? StateHintColor => Color.yellow;
 
-    public SuspiciousState(Vector3 suspiciousLocation, float sightRange, float fieldOfViewAngle, float cooldownDuration = 8f, float searchRadius = 2f)
+    public SuspiciousState(Vector3 suspiciousLocation, float cooldownDuration = 8f, float searchRadius = 2f)
     {
         this.suspiciousLocation = suspiciousLocation;
-        this.sightRange = sightRange;
-        this.fieldOfViewAngle = fieldOfViewAngle;
         this.cooldownDuration = cooldownDuration;
         this.searchRadius = searchRadius;
     }
 
     public override void EnterState(NPC npc)
     {
-        // find player
-        playerRef = GameObject.FindGameObjectWithTag("Player");
-        if (playerRef == null)
+        if (npc.playerRef == null)
         {
             // no player found -> fallback
             npc.ChangeState(new RandomMovementState());
@@ -72,7 +64,7 @@ public class SuspiciousState : NPCState
     public override void UpdateState(NPC npc)
     {
         // If player spotted at any time -> immediate alerted
-        if (IsPlayerInSight(npc))
+        if (npc.HasPlayerInsight())
         {
             if (searchCoroutine != null)
             {
@@ -115,12 +107,12 @@ public class SuspiciousState : NPCState
             // wait until agent reaches the point (or player is seen)
             while (npc.navMeshAgent.pathPending)
             {
-                if (IsPlayerInSight(npc)) goto OnAlert;
+                if (npc.HasPlayerInsight()) goto OnAlert;
                 yield return null;
             }
             while (npc.navMeshAgent.hasPath && npc.navMeshAgent.remainingDistance > distanceThreshold)
             {
-                if (IsPlayerInSight(npc)) goto OnAlert;
+                if (npc.HasPlayerInsight()) goto OnAlert;
                 yield return null;
             }
 
@@ -198,27 +190,5 @@ public class SuspiciousState : NPCState
 
         // restore agent rotation behaviour
         npc.navMeshAgent.updateRotation = prevUpdateRotation;
-    }
-
-    private bool IsPlayerInSight(NPC npc)
-    {
-        Vector3 toPlayer = playerRef.transform.position - npc.transform.position;
-        float angle = Vector3.Angle(npc.transform.forward, toPlayer);
-
-        // check if the player is in the field of view
-        if (angle < fieldOfViewAngle / 2f)
-        {
-            if (toPlayer.magnitude < sightRange)
-            {
-                if (Physics.Raycast(npc.transform.position, toPlayer.normalized, out RaycastHit hit, sightRange, LayerMask.GetMask("Default")))
-                {
-                    if (hit.collider != null && hit.collider.CompareTag("Player"))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
     }
 }

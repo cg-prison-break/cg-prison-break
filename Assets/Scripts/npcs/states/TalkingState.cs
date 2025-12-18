@@ -7,20 +7,19 @@ public class TalkingState : NPCState
     private AudioSource audioSource;
     private NPCInteractionSoundSet soundSet;
     private NPCState previousState;
-    private Player player;
 
-    public TalkingState(AudioSource audioSource, NPCInteractionSoundSet soundSet, NPCState previousState, Player player)
+    public TalkingState(AudioSource audioSource, NPCInteractionSoundSet soundSet, NPCState previousState)
     {
         this.audioSource = audioSource;
         this.soundSet = soundSet;
         this.previousState = previousState;
-        this.player = player;
     }
 
     public override void EnterState(NPC npc)
     {
         // look into direction of player
-        npc.transform.LookAt(player.transform);
+        npc.transform.LookAt(npc.playerRef.transform);
+        npc.animator.SetBool("isWalking", false);
 
         // play random sound from soundset
         if (soundSet.interactionSounds.Length > 0)
@@ -36,7 +35,7 @@ public class TalkingState : NPCState
 
     public override void ExitState(NPC npc)
     {
-        
+        npc.animator.SetBool("isWalking", true);
     }
 
     public override void UpdateState(NPC npc)
