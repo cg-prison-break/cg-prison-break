@@ -15,7 +15,7 @@ public class NavMeshUtils
             Vector3 samplePoint = center + randomOffset;
             samplePoint.y = center.y + 1f; // slightly above to avoid ground issues
 
-            if (NavMesh.SamplePosition(samplePoint, out NavMeshHit hit, radius, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(samplePoint, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
             {
                 if (IsFinite(hit.position))
                 {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class RandomMovementState : NPCState
 {
@@ -18,17 +19,7 @@ public class RandomMovementState : NPCState
         else
         {
             npc.navMeshAgent.ResetPath();
-
-            if (NavMeshUtils.TryFindValidNavMeshPosition(npc.transform.position, 10f, out var nextTarget))
-            {
-                currentTarget = nextTarget;
-                npc.navMeshAgent.SetDestination(currentTarget);
-            }
-            else
-            {
-                // no target found, try again in next update
-                npc.navMeshAgent.ResetPath();
-            }
+            npc.StartCoroutine(SetNextTarget(npc));
         }
 
         npc.navMeshAgent.isStopped = false;
@@ -49,17 +40,22 @@ public class RandomMovementState : NPCState
 
         if (destinationReached && !npc.navMeshAgent.pathPending)
         {
-            if (NavMeshUtils.TryFindValidNavMeshPosition(npc.transform.position, 10f, out var nextTarget))
-            {
-                currentTarget = nextTarget;
-                npc.navMeshAgent.SetDestination(currentTarget);
-            }
-            else
-            {
-                // no target found, try again in next update
-                npc.navMeshAgent.ResetPath();
-            }
+            npc.StartCoroutine(SetNextTarget(npc));
+        }
+    }
+
+    private IEnumerator SetNextTarget(NPC npc)
+    {
+        yield return new WaitForSeconds(Random.Range(0f, 0.3f));
+        if (NavMeshUtils.TryFindValidNavMeshPosition(npc.transform.position, 15f, out var nextTarget))
+        {
+            currentTarget = nextTarget;
+            npc.navMeshAgent.SetDestination(currentTarget);
+        }
+        else
+        {
+            // no target found, try again in next update
+            npc.navMeshAgent.ResetPath();
         }
     }
 }
-
