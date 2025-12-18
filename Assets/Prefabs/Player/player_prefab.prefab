@@ -2708,7 +2708,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7753711446366008102}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Resume
+        m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3922,6 +3922,7 @@ MonoBehaviour:
   pausePanel: {fileID: 6423869386485254761}
   optionsPanelInGame: {fileID: 3458527896323028619}
   mainMenuSceneName: MainMenu
+  mainSceneName: MainScene
   scriptsToDisableOnPause:
   - {fileID: 2992147709971987880}
   retryPanel: {fileID: 6502592473532441281}
@@ -4200,6 +4201,7 @@ MonoBehaviour:
   imageOne: {fileID: 111298212351218005}
   imageTwo: {fileID: 5635151086758413111}
   imageThree: {fileID: 7349476563148109794}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
 --- !u!1 &5147594893815338637
 GameObject:
   m_ObjectHideFlags: 0
@@ -7034,6 +7036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   itemHud: {fileID: 6652811549134869485}
   gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
+  pauseMenuManager: {fileID: 7753711446366008102}
 --- !u!136 &3035454368720368881
 CapsuleCollider:
   m_ObjectHideFlags: 0

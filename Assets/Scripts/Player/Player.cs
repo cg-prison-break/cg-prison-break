@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private ItemList itemHud;
     
     [SerializeField] private GameData gameData;
+    [SerializeField] private PauseMenu pauseMenuManager;
     // INVENTROY 
     
     private List<ItemData> inventory = new List<ItemData>(5);
@@ -96,6 +97,7 @@ public class Player : MonoBehaviour
 
     public void OnCaught()
     {
-        Debug.LogWarning("Player caught!");
+        
+        pauseMenuManager.OpenRetryMenu();
     }
 }

@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject pausePanel;          // root of Resume/Options/Quit UI
     [SerializeField] private GameObject optionsPanelInGame;  // separate panel for options
     [SerializeField] private string mainMenuSceneName = "MainMenu";
+    [SerializeField] private string mainSceneName = "MainScene";
     [SerializeField] private MonoBehaviour[] scriptsToDisableOnPause;
     [SerializeField] private GameObject retryPanel;
 
@@ -133,6 +134,13 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(mainMenuSceneName);
+    }
+    
+    public void Retry()
+    {
+        Time.timeScale = 1f;
+        DataManager.PlayerCaught();
+        SceneManager.LoadScene(mainSceneName);
     }
 
     public bool IsPaused => _isPaused;
