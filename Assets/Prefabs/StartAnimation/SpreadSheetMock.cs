@@ -7,7 +7,7 @@ namespace Prefabs.StartAnimation
     {
         public string InteractionPrompt
         {
-            get => "Drücke M, um \"Hinweise\" zu öffnen";
+            get => "Drücke M, um \"Hinweise\" anzuzeigen. Diese kannst du jederzeit über M aufrufen.";
             set => InteractionPrompt = value;   
         }
         
