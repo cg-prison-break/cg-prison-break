@@ -6042,7 +6042,7 @@ Transform:
   m_GameObject: {fileID: 6633473028033752003}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.523, z: 0}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6830,7 +6830,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.75
+  m_Height: 1.65
   m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -6888,7 +6888,7 @@ MonoBehaviour:
   JumpTimeout: 0.1
   FallTimeout: 0.2
   Grounded: 1
-  GroundedOffset: -0.14
+  GroundedOffset: -0.05
   GroundedRadius: 0.5
   GroundLayers:
     serializedVersion: 2
