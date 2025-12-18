@@ -10,7 +10,7 @@ public class DataManager : MonoBehaviour
     void Start()
     {
         gameData.timer = 0.0f;
-        PlayerCaughtEvent += incrementStrikes;
+        PlayerCaughtEvent += IncrementStrikes;
     }
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class DataManager : MonoBehaviour
         gameData.timer += Time.deltaTime;
     }
     
-    private void incrementStrikes()
+    private void IncrementStrikes()
     {
         gameData.strikes++;
     }
