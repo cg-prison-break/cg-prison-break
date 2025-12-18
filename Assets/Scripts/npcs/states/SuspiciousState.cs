@@ -89,12 +89,7 @@ public class SuspiciousState : NPCState
         while (Time.time < endTime)
         {
             // pick a random reachable point near the suspicious location
-            Vector3 rand = Random.insideUnitSphere * searchRadius;
-            rand.y = 0f;
-            Vector3 candidate = suspiciousLocation + rand;
-
-            UnityEngine.AI.NavMeshHit hit;
-            if (!UnityEngine.AI.NavMesh.SamplePosition(candidate, out hit, searchRadius, UnityEngine.AI.NavMesh.AllAreas))
+            if (!NavMeshUtils.TryFindValidNavMeshPosition(suspiciousLocation, searchRadius, out var samplePoint))
             {
                 // couldn't find navmesh sample, try next frame
                 yield return null;
@@ -103,7 +98,7 @@ public class SuspiciousState : NPCState
 
             // walk to the sampled point
             npc.navMeshAgent.isStopped = false;
-            npc.navMeshAgent.SetDestination(hit.position);
+            npc.navMeshAgent.SetDestination(samplePoint);
             npc.animator.SetBool("isWalking", true);
 
             // wait until agent reaches the point (or player is seen)
@@ -201,9 +196,7 @@ public class SuspiciousState : NPCState
         var player = playerObj.transform;
 
         Vector3 toPlayer = player.position - npc.transform.position;
-        float angle = Vector3.Angle(toPlayer, npc.transform.forward);
-
-        Debug.DrawRay(npc.transform.position, toPlayer.normalized * Mathf.Min(toPlayer.magnitude, sightRange), Color.green);
+        float angle = Vector3.Angle(npc.transform.forward, toPlayer);
 
         // check if the player is in the field of view
         if (angle < fieldOfViewAngle / 2f)
