@@ -6666,10 +6666,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 30
+  far clip plane: 7
   field of view: 60
   orthographic: 1
-  orthographic size: 30
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -6748,9 +6748,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 912ba39e544b743f5bcb7d9b17771b92, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::MinimapFollow
   target: {fileID: 8444978822150609006}
-  height: 5
+  lowHeight: 3
+  highHeight: 6.3
+  switchThresholdY: 3
   lockRotation: 0
 --- !u!1 &7140175617813470824
 GameObject:
