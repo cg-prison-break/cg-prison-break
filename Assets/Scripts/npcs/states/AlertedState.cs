@@ -7,10 +7,21 @@ public class AlertedState : NPCState
     private float catchTimer = 0f;
     private bool isCatching = false;
 
+    private GameObject playerRef;
+
     protected override Color? StateHintColor => Color.red;
 
     public override void EnterState(NPC npc)
     {
+        // find player
+        playerRef = GameObject.FindGameObjectWithTag("Player");
+        if (playerRef == null)
+        {
+            // no player found -> fallback
+            npc.ChangeState(new RandomMovementState());
+            return;
+        }
+
         npc.navMeshAgent.speed = npc.speed + 2.5f;
         npc.navMeshAgent.stoppingDistance = catchDistance;
         npc.navMeshAgent.isStopped = false;
@@ -34,17 +45,6 @@ public class AlertedState : NPCState
     }
 
     public override void UpdateState(NPC npc) {
-        // find player
-        var playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj == null)
-        {
-            // no player found -> fallback
-            npc.ChangeState(new RandomMovementState());
-            return;
-        }
-
-        var playerTransform = playerObj.transform;
-
         // If already in catching sequence, count down then switch state
         if (isCatching)
         {
@@ -59,11 +59,11 @@ public class AlertedState : NPCState
 
         // set destination to player's current position (chase)
         npc.navMeshAgent.isStopped = false;
-        npc.navMeshAgent.SetDestination(playerTransform.position);
+        npc.navMeshAgent.SetDestination(playerRef.transform.position);
         npc.animator.SetBool("isWalking", true);
 
         // check distance
-        float dist = Vector3.Distance(npc.transform.position, playerTransform.position);
+        float dist = Vector3.Distance(npc.transform.position, playerRef.transform.position);
         if (dist <= catchDistance)
         {
             // start catching
@@ -75,7 +75,7 @@ public class AlertedState : NPCState
             npc.animator.SetBool("isWalking", false);
 
             // notify player object that it was caught
-            playerObj.SendMessage("OnCaught", SendMessageOptions.DontRequireReceiver);
+            playerRef.SendMessage("OnCaught", SendMessageOptions.DontRequireReceiver);
         }
     }
 }

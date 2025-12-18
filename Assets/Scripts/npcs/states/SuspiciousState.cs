@@ -10,6 +10,8 @@ public class SuspiciousState : NPCState
     private readonly float cooldownDuration;
     private readonly float searchRadius;
 
+    private GameObject playerRef;
+
     private Coroutine searchCoroutine = null;
 
     protected override Color? StateHintColor => Color.yellow;
@@ -25,6 +27,15 @@ public class SuspiciousState : NPCState
 
     public override void EnterState(NPC npc)
     {
+        // find player
+        playerRef = GameObject.FindGameObjectWithTag("Player");
+        if (playerRef == null)
+        {
+            // no player found -> fallback
+            npc.ChangeState(new RandomMovementState());
+            return;
+        }
+
         npc.navMeshAgent.isStopped = true;
         npc.navMeshAgent.ResetPath();
         npc.navMeshAgent.SetDestination(suspiciousLocation);
@@ -191,11 +202,7 @@ public class SuspiciousState : NPCState
 
     private bool IsPlayerInSight(NPC npc)
     {
-        var playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj == null) return false;
-        var player = playerObj.transform;
-
-        Vector3 toPlayer = player.position - npc.transform.position;
+        Vector3 toPlayer = playerRef.transform.position - npc.transform.position;
         float angle = Vector3.Angle(npc.transform.forward, toPlayer);
 
         // check if the player is in the field of view

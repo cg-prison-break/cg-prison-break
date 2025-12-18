@@ -5,7 +5,7 @@ public class NavMeshUtils
 {
     public static bool TryFindValidNavMeshPosition(Vector3 center, float radius, out Vector3 result)
     {
-        const int attempts = 10;
+        const int attempts = 5;
         result = Vector3.zero;
 
         for (int i = 0; i < attempts; i++)
@@ -13,6 +13,7 @@ public class NavMeshUtils
             Vector3 randomOffset = Random.insideUnitSphere * radius;
             randomOffset.y = 0f;
             Vector3 samplePoint = center + randomOffset;
+            samplePoint.y = center.y + 1f; // slightly above to avoid ground issues
 
             if (NavMesh.SamplePosition(samplePoint, out NavMeshHit hit, radius, NavMesh.AllAreas))
             {
