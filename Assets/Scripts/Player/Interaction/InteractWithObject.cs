@@ -91,6 +91,12 @@ public class InteractWithObject : MonoBehaviour
                 currentInteractable = null;
             }
         }
+        else
+        {
+            hudCanvas.Hide();
+            
+            currentInteractable = null;
+        }
     }
     
     
