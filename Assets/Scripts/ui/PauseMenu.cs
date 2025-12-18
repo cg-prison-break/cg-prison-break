@@ -38,7 +38,7 @@ public class PauseMenu : MonoBehaviour
             {
                 CloseOptions();
             }
-            else
+            else if (!retryPanel.activeSelf)
             {
                 if (_isPaused) Resume();
                 else Pause();
