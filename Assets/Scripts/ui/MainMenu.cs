@@ -4,7 +4,8 @@ using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private string firstSceneName = "MainScene";
+    private string startAnimationScene = "StartAnimation";
+    private string mainScene = "MainScene";
     [SerializeField] private GameObject mainMenuRoot;     // assign MainMenuRoot
     [SerializeField] private GameObject optionsPanel;     // assign OptionsPanel
     [SerializeField] private GameObject optionsFirstSelectable; // e.g., ResolutionDropdown
@@ -15,7 +16,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         gameData.strikes = 0;
-        SceneManager.LoadScene(firstSceneName);
+        SceneManager.LoadScene(gameData.animationPlayed ? mainScene : startAnimationScene);
     } 
         
 
