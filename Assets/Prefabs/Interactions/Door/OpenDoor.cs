@@ -21,17 +21,10 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     private bool isOpen = false;
     private Coroutine autoCloseCoroutine;
 
-    // Interaction prompt (read-only external)
     public string InteractionPrompt
     {
-        get
-        {
-            return "Drücke F, um zu öffnen.";
-        }
-        set
-        {
-            // intentionally left empty
-        }
+        get => $"Drücke F, um zu {(isOpen ? "schließen" : "öffnen")}.";
+        set => InteractionPrompt = value;
     }
 
     void Start()
