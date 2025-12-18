@@ -18,6 +18,12 @@ public class Player : MonoBehaviour
     {
         PlayerRegistry.RegisterPlayer(this);
     }
+    
+    public void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     public bool HasItem(ItemData itemToFind)
     {
