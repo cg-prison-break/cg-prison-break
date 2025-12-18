@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     
     [SerializeField] private ItemList itemHud;
+    
+    [SerializeField] private GameData gameData;
     // INVENTROY 
     
     private List<ItemData> inventory = new List<ItemData>(5);
