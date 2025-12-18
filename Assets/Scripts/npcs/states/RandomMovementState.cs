@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RandomMovementState : NPCState
 {
-    private readonly float distanceThreshold = 0.2f;
     private Vector3 currentTarget;
+    private bool isChoosingNextTarget = false;
 
     protected override Color? StateHintColor => Color.green;
 
@@ -35,18 +36,26 @@ public class RandomMovementState : NPCState
 
     public override void UpdateState(NPC npc)
     {
-        float distance = npc.navMeshAgent.remainingDistance;
-        bool destinationReached = distance <= distanceThreshold;
-
-        if (destinationReached && !npc.navMeshAgent.pathPending)
+        if (isChoosingNextTarget || npc.navMeshAgent.pathPending)
         {
+            return;
+        }
+
+        bool isMoving =
+        npc.navMeshAgent.hasPath &&
+        npc.navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete &&
+        npc.navMeshAgent.remainingDistance > npc.navMeshAgent.stoppingDistance;
+
+        if (!isMoving)
+        {
+            isChoosingNextTarget = true;
             npc.StartCoroutine(SetNextTarget(npc));
         }
     }
 
     private IEnumerator SetNextTarget(NPC npc)
     {
-        yield return new WaitForSeconds(Random.Range(0f, 0.3f));
+        yield return new WaitForSeconds(Random.Range(0f, 0.1f));
         if (NavMeshUtils.TryFindValidNavMeshPosition(npc.transform.position, 15f, out var nextTarget))
         {
             currentTarget = nextTarget;
@@ -57,5 +66,7 @@ public class RandomMovementState : NPCState
             // no target found, try again in next update
             npc.navMeshAgent.ResetPath();
         }
+
+        isChoosingNextTarget = false;
     }
 }
