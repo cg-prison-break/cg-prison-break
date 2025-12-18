@@ -48,7 +48,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         }
 
         // closed -> try to open
-        if (ConnectedItems != null && !player.HasOneOf(ConnectedItems))
+        if (ConnectedItems.Count > 0 && !player.HasOneOf(ConnectedItems))
         {
             Debug.Log("Door is locked, you need the required item.");
             return;
