@@ -15,10 +15,13 @@ public class EndingCanvas : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (victoryPanel != null) victoryPanel.SetActive(true);
+        if (victoryPanel != null) victoryPanel.SetActive(false);
         if (defeatPanel != null) defeatPanel.SetActive(false);
 
         ShowEnding(EndingContext.NextEnding);
+        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     void ShowEnding(EndingType type)

@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     
     [SerializeField] private ItemList itemHud;
+    
+    [SerializeField] private GameData gameData;
+    [SerializeField] private PauseMenu pauseMenuManager;
     // INVENTROY 
     
     private List<ItemData> inventory = new List<ItemData>(5);
@@ -13,6 +17,12 @@ public class Player : MonoBehaviour
     public void Awake()
     {
         PlayerRegistry.RegisterPlayer(this);
+    }
+    
+    public void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public bool HasItem(ItemData itemToFind)
@@ -94,6 +104,15 @@ public class Player : MonoBehaviour
 
     public void OnCaught()
     {
-        Debug.LogWarning("Player caught!");
+        if (gameData.strikes >= 3)
+        {
+            EndingContext.NextEnding = EndingType.Bad;
+            SceneManager.LoadScene("EndingScene");
+        }
+        else
+        {
+            pauseMenuManager.OpenRetryMenu();
+        }
+        
     }
 }
