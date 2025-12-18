@@ -12,6 +12,11 @@ public class DataManager : MonoBehaviour
         gameData.timer = 0.0f;
         PlayerCaughtEvent += IncrementStrikes;
     }
+    
+    void OnDestroy()
+    {
+        PlayerCaughtEvent -= IncrementStrikes;
+    }
 
     // Update is called once per frame
     void Update()
