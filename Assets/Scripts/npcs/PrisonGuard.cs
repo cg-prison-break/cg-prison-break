@@ -21,7 +21,7 @@ public class PrisonGuard : NPC
         NPCEventManager.OnResetSuspiciousPrisonGuardsEvent += ResetToRandomMovement;
         NPCEventManager.OnAlertAllPrisonGuardsEvent += HandleAlertAllEvent;
 
-        attention = Random.Range(0.1f, 1.0f);
+        attention = Random.Range(0.4f, 1.0f);
 
         ChangeState(new RandomMovementState());
     }
