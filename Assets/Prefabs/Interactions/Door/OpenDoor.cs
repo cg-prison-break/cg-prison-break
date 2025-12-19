@@ -17,8 +17,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     [SerializeField] private float autoCloseDelay = 5.0f;
     [SerializeField] private float closeDuration = 1.0f;
 
-    // internal state
-    private bool isOpen = false;
+    [SerializeField] private bool isOpen = false;
     private Coroutine autoCloseCoroutine;
 
     public string InteractionPrompt
@@ -66,6 +65,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
                 autoCloseCoroutine = StartCoroutine(AutoCloseAfterDelay());
             }
             animator.SetBool("open", true);
+            animator.SetBool("start", false);
         }));
     }
 
