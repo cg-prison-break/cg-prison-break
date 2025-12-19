@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1944981729639921524}
   - component: {fileID: 2115906985159644756}
   - component: {fileID: 7741102598692593011}
-  - component: {fileID: 6390223775459719918}
   m_Layer: 7
   m_Name: Left
   m_TagString: Untagged
@@ -131,22 +130,7 @@ MonoBehaviour:
   animator: {fileID: 1672557771499596783}
   autoCloseDelay: 0
   closeDuration: 0
---- !u!208 &6390223775459719918
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 239562666137252431}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.50100005, y: 0.994, z: 0.147}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.47500002, y: -0.006, z: -0.086}
-  m_TimeToStationary: 0.5
+  isOpen: 0
 --- !u!1 &2500056889572875166
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +143,6 @@ GameObject:
   - component: {fileID: 2185925078908997249}
   - component: {fileID: 4157103995261680203}
   - component: {fileID: 3346339102546945741}
-  - component: {fileID: 8715896412299721556}
   m_Layer: 0
   m_Name: double_door
   m_TagString: Untagged
@@ -263,22 +246,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4377865600221286077, guid: 699e5e343a529f0448d3657bf29abacc, type: 3}
---- !u!208 &8715896412299721556
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2500056889572875166}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1.5000001, y: 1.5000001, z: 0.116000004}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 1.5000001, y: 1.5000001, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &6458654729397757712
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +430,6 @@ GameObject:
   - component: {fileID: 3512480680164602792}
   - component: {fileID: 3412295707335021253}
   - component: {fileID: 8523939474008103251}
-  - component: {fileID: 6213660265276349101}
   m_Layer: 7
   m_Name: Right
   m_TagString: Untagged
@@ -581,19 +547,4 @@ MonoBehaviour:
   animator: {fileID: 1672557771499596783}
   autoCloseDelay: 0
   closeDuration: 0
---- !u!208 &6213660265276349101
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8860421518446033014}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.50100005, y: 0.994, z: 0.147}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.47500002, y: -0.006, z: -0.086}
-  m_TimeToStationary: 0.5
+  isOpen: 0
