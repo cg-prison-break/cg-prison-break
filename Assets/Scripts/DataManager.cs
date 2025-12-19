@@ -9,7 +9,8 @@ public class DataManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameData.timer = 0.0f;
+        // remove comment to reset timer on retry
+        // gameData.timer = 0.0f;
         PlayerCaughtEvent += IncrementStrikes;
     }
     
