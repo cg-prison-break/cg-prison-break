@@ -17,21 +17,13 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     [SerializeField] private float autoCloseDelay = 5.0f;
     [SerializeField] private float closeDuration = 1.0f;
 
-    // internal state
-    private bool isOpen = false;
+    [SerializeField] private bool isOpen = false;
     private Coroutine autoCloseCoroutine;
 
-    // Interaction prompt (read-only external)
     public string InteractionPrompt
     {
-        get
-        {
-            return "Drücke F, um zu öffnen.";
-        }
-        set
-        {
-            // intentionally left empty
-        }
+        get => $"Drücke F, um zu {(isOpen ? "schließen" : "öffnen")}.";
+        set => InteractionPrompt = value;
     }
 
     void Start()
@@ -48,7 +40,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         }
 
         // closed -> try to open
-        if (ConnectedItems != null && !player.HasOneOf(ConnectedItems))
+        if (ConnectedItems.Count > 0 && !player.HasOneOf(ConnectedItems))
         {
             Debug.Log("Door is locked, you need the required item.");
             return;
@@ -73,6 +65,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
                 autoCloseCoroutine = StartCoroutine(AutoCloseAfterDelay());
             }
             animator.SetBool("open", true);
+            animator.SetBool("start", false);
         }));
     }
 
