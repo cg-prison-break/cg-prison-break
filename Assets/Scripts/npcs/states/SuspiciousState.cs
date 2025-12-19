@@ -3,10 +3,8 @@ using UnityEngine;
 
 public class SuspiciousState : NPCState
 {
-    private readonly float distanceThreshold = 0.2f;
+    private readonly float distanceThreshold = 0.3f;
     private readonly Vector3 suspiciousLocation;
-    private readonly float sightRange;
-    private readonly float fieldOfViewAngle;
     private readonly float cooldownDuration;
     private readonly float searchRadius;
 
@@ -14,17 +12,22 @@ public class SuspiciousState : NPCState
 
     protected override Color? StateHintColor => Color.yellow;
 
-    public SuspiciousState(Vector3 suspiciousLocation, float sightRange, float fieldOfViewAngle, float cooldownDuration = 8f, float searchRadius = 2f)
+    public SuspiciousState(Vector3 suspiciousLocation, float cooldownDuration = 8f, float searchRadius = 2f)
     {
         this.suspiciousLocation = suspiciousLocation;
-        this.sightRange = sightRange;
-        this.fieldOfViewAngle = fieldOfViewAngle;
         this.cooldownDuration = cooldownDuration;
         this.searchRadius = searchRadius;
     }
 
     public override void EnterState(NPC npc)
     {
+        if (npc.playerRef == null)
+        {
+            // no player found -> fallback
+            npc.ChangeState(new RandomMovementState());
+            return;
+        }
+
         npc.navMeshAgent.isStopped = true;
         npc.navMeshAgent.ResetPath();
         npc.navMeshAgent.SetDestination(suspiciousLocation);
@@ -61,7 +64,7 @@ public class SuspiciousState : NPCState
     public override void UpdateState(NPC npc)
     {
         // If player spotted at any time -> immediate alerted
-        if (IsPlayerInSight(npc))
+        if (npc.HasPlayerInsight())
         {
             if (searchCoroutine != null)
             {
@@ -89,12 +92,7 @@ public class SuspiciousState : NPCState
         while (Time.time < endTime)
         {
             // pick a random reachable point near the suspicious location
-            Vector3 rand = Random.insideUnitSphere * searchRadius;
-            rand.y = 0f;
-            Vector3 candidate = suspiciousLocation + rand;
-
-            UnityEngine.AI.NavMeshHit hit;
-            if (!UnityEngine.AI.NavMesh.SamplePosition(candidate, out hit, searchRadius, UnityEngine.AI.NavMesh.AllAreas))
+            if (!NavMeshUtils.TryFindValidNavMeshPosition(suspiciousLocation, searchRadius, out var samplePoint))
             {
                 // couldn't find navmesh sample, try next frame
                 yield return null;
@@ -103,18 +101,18 @@ public class SuspiciousState : NPCState
 
             // walk to the sampled point
             npc.navMeshAgent.isStopped = false;
-            npc.navMeshAgent.SetDestination(hit.position);
+            npc.navMeshAgent.SetDestination(samplePoint);
             npc.animator.SetBool("isWalking", true);
 
             // wait until agent reaches the point (or player is seen)
             while (npc.navMeshAgent.pathPending)
             {
-                if (IsPlayerInSight(npc)) goto OnAlert;
+                if (npc.HasPlayerInsight()) goto OnAlert;
                 yield return null;
             }
             while (npc.navMeshAgent.hasPath && npc.navMeshAgent.remainingDistance > distanceThreshold)
             {
-                if (IsPlayerInSight(npc)) goto OnAlert;
+                if (npc.HasPlayerInsight()) goto OnAlert;
                 yield return null;
             }
 
@@ -192,33 +190,5 @@ public class SuspiciousState : NPCState
 
         // restore agent rotation behaviour
         npc.navMeshAgent.updateRotation = prevUpdateRotation;
-    }
-
-    private bool IsPlayerInSight(NPC npc)
-    {
-        var playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj == null) return false;
-        var player = playerObj.transform;
-
-        Vector3 toPlayer = player.position - npc.transform.position;
-        float angle = Vector3.Angle(toPlayer, npc.transform.forward);
-
-        Debug.DrawRay(npc.transform.position, toPlayer.normalized * Mathf.Min(toPlayer.magnitude, sightRange), Color.green);
-
-        // check if the player is in the field of view
-        if (angle < fieldOfViewAngle / 2f)
-        {
-            if (toPlayer.magnitude < sightRange)
-            {
-                if (Physics.Raycast(npc.transform.position, toPlayer.normalized, out RaycastHit hit, sightRange, LayerMask.GetMask("Default")))
-                {
-                    if (hit.collider != null && hit.collider.CompareTag("Player"))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
     }
 }

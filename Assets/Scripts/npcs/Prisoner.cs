@@ -48,7 +48,7 @@ public class Prisoner : NPC
         // allow interaction only during random movement
         if (currentState is RandomMovementState)
         {
-            ChangeState(new TalkingState(audioSource, soundSet, currentState, interactor));
+            ChangeState(new TalkingState(audioSource, soundSet, currentState));
         }
     }
 }

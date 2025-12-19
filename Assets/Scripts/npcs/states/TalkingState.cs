@@ -1,5 +1,6 @@
 
 using Sounds.NPCs;
+using System.Collections;
 using UnityEngine;
 
 public class TalkingState : NPCState
@@ -7,26 +8,20 @@ public class TalkingState : NPCState
     private AudioSource audioSource;
     private NPCInteractionSoundSet soundSet;
     private NPCState previousState;
-    private Player player;
 
-    public TalkingState(AudioSource audioSource, NPCInteractionSoundSet soundSet, NPCState previousState, Player player)
+    public TalkingState(AudioSource audioSource, NPCInteractionSoundSet soundSet, NPCState previousState)
     {
         this.audioSource = audioSource;
         this.soundSet = soundSet;
         this.previousState = previousState;
-        this.player = player;
     }
 
     public override void EnterState(NPC npc)
     {
-        // look into direction of player
-        npc.transform.LookAt(player.transform);
-
         // play random sound from soundset
         if (soundSet.interactionSounds.Length > 0)
         {
-            var rnd = new System.Random();
-            audioSource.PlayOneShot(soundSet.interactionSounds[rnd.Next(soundSet.interactionSounds.Length)]);
+            npc.StartCoroutine(TalkingCoroutine(npc));
         }
         else
         {
@@ -34,16 +29,24 @@ public class TalkingState : NPCState
         }
     }
 
-    public override void ExitState(NPC npc)
-    {
-        
-    }
+    public override void ExitState(NPC npc) { }
 
-    public override void UpdateState(NPC npc)
+    public override void UpdateState(NPC npc) { }
+
+    private IEnumerator TalkingCoroutine(NPC npc)
     {
-        if (!audioSource.isPlaying)
-        {
-            npc.ChangeState(previousState);
-        }
+        // look into direction of player
+        npc.transform.LookAt(npc.playerRef.transform);
+        npc.animator.SetBool("isWalking", false);
+        yield return new WaitForSeconds(0.5f);
+
+        // play random sound
+        var rnd = new System.Random();
+        audioSource.PlayOneShot(soundSet.interactionSounds[rnd.Next(soundSet.interactionSounds.Length)]);
+        yield return new WaitWhile(() => audioSource.isPlaying);
+
+        // walking
+        npc.animator.SetBool("isWalking", true);
+        npc.ChangeState(previousState);
     }
 }

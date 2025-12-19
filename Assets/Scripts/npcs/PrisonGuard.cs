@@ -6,8 +6,6 @@ public class PrisonGuard : NPC
     [Range(0.1f, 1.0f)]
     public float attention = 0.5f;
     public float maxAttentionRange = 20.0f;
-    public float sightRange = 5f;
-    public float fieldOfViewAngle = 100f;
 
     [Header("Sounds")]
     public AudioSource audioSource;
@@ -21,7 +19,7 @@ public class PrisonGuard : NPC
         NPCEventManager.OnResetSuspiciousPrisonGuardsEvent += ResetToRandomMovement;
         NPCEventManager.OnAlertAllPrisonGuardsEvent += HandleAlertAllEvent;
 
-        attention = Random.Range(0.1f, 1.0f);
+        attention = Random.Range(0.4f, 1.0f);
 
         ChangeState(new RandomMovementState());
     }
@@ -44,7 +42,7 @@ public class PrisonGuard : NPC
     {
         if (global)
         {
-            ChangeState(new SuspiciousState(location, sightRange, fieldOfViewAngle));
+            ChangeState(new SuspiciousState(location));
         }
         else
         {
@@ -53,7 +51,7 @@ public class PrisonGuard : NPC
 
             if (distance < attention * maxAttentionRange)
             {
-                ChangeState(new SuspiciousState(location, sightRange, fieldOfViewAngle));
+                ChangeState(new SuspiciousState(location));
             }
         }
     }
@@ -82,7 +80,7 @@ public class PrisonGuard : NPC
         // allow interaction only during random movement
         if (currentState is RandomMovementState)
         {
-            ChangeState(new TalkingState(audioSource, soundSet, currentState, interactor));
+            ChangeState(new TalkingState(audioSource, soundSet, currentState));
         }
     }
 }
