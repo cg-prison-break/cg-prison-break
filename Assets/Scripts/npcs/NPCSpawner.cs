@@ -46,7 +46,6 @@ public class NPCSpawner : MonoBehaviour
 
             var agent = npc.GetComponent<NavMeshAgent>();
             agent.Warp(npc.transform.position);
-            agent.stoppingDistance = 0.2f;
 
             if (npc.TryGetComponent<NPC>(out var npcComponent))
             {

@@ -20,6 +20,7 @@ public class RandomMovementState : NPCState
         else
         {
             npc.navMeshAgent.ResetPath();
+            isChoosingNextTarget = true;
             npc.StartCoroutine(SetNextTarget(npc));
         }
 
@@ -38,17 +39,37 @@ public class RandomMovementState : NPCState
     {
         if (isChoosingNextTarget || npc.navMeshAgent.pathPending)
         {
+            npc.navMeshAgent.isStopped = true;
+            npc.animator.SetBool("isWalking", false);
             return;
         }
 
         bool isMoving =
         npc.navMeshAgent.hasPath &&
         npc.navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete &&
-        npc.navMeshAgent.remainingDistance > npc.navMeshAgent.stoppingDistance;
+        npc.navMeshAgent.remainingDistance > 0.3f;
 
-        if (!isMoving)
+        if (isMoving)
+        {
+            npc.navMeshAgent.isStopped = false;
+            npc.animator.SetBool("isWalking", true);
+            return;
+        }
+
+        // only move when player is nearby
+        float playerDist = Vector3.Distance(npc.transform.position, npc.playerRef.transform.position);
+        if (playerDist >= 50.0f)
+        {
+            npc.navMeshAgent.isStopped = true;
+            npc.animator.SetBool("isWalking", false);
+            return;
+        }
+
+        if (!isChoosingNextTarget)
         {
             isChoosingNextTarget = true;
+            npc.navMeshAgent.isStopped = false;
+            npc.animator.SetBool("isWalking", true);
             npc.StartCoroutine(SetNextTarget(npc));
         }
     }

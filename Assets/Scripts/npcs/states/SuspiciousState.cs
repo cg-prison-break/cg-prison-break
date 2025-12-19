@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SuspiciousState : NPCState
 {
-    private readonly float distanceThreshold = 0.2f;
+    private readonly float distanceThreshold = 0.3f;
     private readonly Vector3 suspiciousLocation;
     private readonly float cooldownDuration;
     private readonly float searchRadius;

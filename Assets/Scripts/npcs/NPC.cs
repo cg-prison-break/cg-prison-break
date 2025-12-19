@@ -18,16 +18,31 @@ public abstract class NPC : MonoBehaviour, IInteractable
     private GameObject _playerRef;
 
     [HideInInspector]
-    public GameObject playerRef { get => _playerRef; }
+    public GameObject playerRef {
+        get
+        {
+            if (_playerRef == null)
+            {
+                _playerRef = GameObject.FindGameObjectWithTag("Player");
+            }
+            return _playerRef;
+        }
+        private set => _playerRef = value;
+    }
+
+    protected virtual void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+        // versuche initial zu cachen (kein Fehler, wenn noch nicht vorhanden)
+        _playerRef = GameObject.FindGameObjectWithTag("Player");
+    }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
         NPCEventManager.OnPauseEvent += HandlePauseEvent;
         NPCEventManager.OnResumeEvent += HandleResumeEvent;
-
-        animator = GetComponentInChildren<Animator>();
-        _playerRef = GameObject.FindGameObjectWithTag("Player");
 
         ChangeState(new IdleState());
     }
