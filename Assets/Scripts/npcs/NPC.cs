@@ -33,7 +33,6 @@ public abstract class NPC : MonoBehaviour, IInteractable
     protected virtual void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        // versuche initial zu cachen (kein Fehler, wenn noch nicht vorhanden)
         _playerRef = GameObject.FindGameObjectWithTag("Player");
     }
 
