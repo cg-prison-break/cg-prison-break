@@ -23,6 +23,6 @@ public class Timer : MonoBehaviour
         int centiseconds = Mathf.FloorToInt((secondsFloat - seconds) * 100f);
         centiseconds = Mathf.Clamp(centiseconds, 0, 99);
 
-        timerText.text = $"{minutes:00}:{seconds:00}:{centiseconds:00}";
+        timerText.text = $"{minutes:00}:{seconds:00}.{centiseconds:00}";
     }
 }
