@@ -349,7 +349,7 @@ Transform:
   m_GameObject: {fileID: 1501823828544511873}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.001, y: 1.757, z: -0.009}
+  m_LocalPosition: {x: 0, y: 1.82, z: 0}
   m_LocalScale: {x: 0.1187421, y: 0.08859447, z: -0.099349014}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1633,7 +1633,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1.75
   m_Direction: 1
-  m_Center: {x: 0, y: 0.86680514, z: 0}
+  m_Center: {x: 0, y: 0.875, z: 0}
 --- !u!95 &1697917242271180093
 Animator:
   serializedVersion: 7
@@ -2110,10 +2110,10 @@ SkinnedMeshRenderer:
   - {fileID: 7574274118820048099}
   - {fileID: 883194343959791264}
   m_BlendShapeWeights: []
-  m_RootBone: {fileID: 5368848730167972441}
+  m_RootBone: {fileID: 8607366314942509878}
   m_AABB:
-    m_Center: {x: 0.005209923, y: -0.6840277, z: 0.010492593}
-    m_Extent: {x: 0.87199867, y: 0.8693986, z: 0.38745847}
+    m_Center: {x: 0.067343414, y: -0.03922309, z: -0.00090652704}
+    m_Extent: {x: 0.93413216, y: 0.3008644, z: 1.0279527}
   m_DirtyAABB: 0
 --- !u!1 &6486805372688202257
 GameObject:
@@ -2461,7 +2461,7 @@ Transform:
   m_GameObject: {fileID: 8307866740060247839}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.145, z: 0}
+  m_LocalPosition: {x: 0, y: -0.035, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
