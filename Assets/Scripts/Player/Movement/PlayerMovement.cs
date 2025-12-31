@@ -1,9 +1,7 @@
-using System;
 using System.Linq;
 using Sounds.Walking;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour

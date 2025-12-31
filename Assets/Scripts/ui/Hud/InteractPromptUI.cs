@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.AppUI.UI;
 
 public class InteractPromptUI : MonoBehaviour
 {
