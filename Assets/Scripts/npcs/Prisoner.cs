@@ -9,8 +9,10 @@ public class Prisoner : NPC
 
     private readonly string[] variants = new string[] { "prisoner", "prisoner1", "prisoner5", "prisoner6" };
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         // select a random variant
         var rnd = new System.Random();
         var variant = variants[rnd.Next(variants.Length)];
