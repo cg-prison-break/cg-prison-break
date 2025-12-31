@@ -16,7 +16,7 @@ namespace Prefabs.Ending
             _triggered = true;
             Debug.Log("Player triggered end of Game and won!");
             EndingContext.NextEnding = EndingType.Good;
-            SceneManager.LoadScene("EndingScene");
+            SceneManager.LoadScene(GameScene.Ending);
         }
     }
 }

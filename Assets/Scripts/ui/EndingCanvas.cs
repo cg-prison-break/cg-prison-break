@@ -12,7 +12,6 @@ public class EndingCanvas : MonoBehaviour
     [SerializeField] private Button retryButton;
     [SerializeField] private GameObject victoryPanel;
     [SerializeField] private GameObject defeatPanel;
-    [SerializeField] private string mainMenuSceneName = "MainMenu";
     
     [SerializeField] private GameData gameData;
     
@@ -61,6 +60,6 @@ public class EndingCanvas : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene(mainMenuSceneName);
+        SceneManager.LoadScene(GameScene.MainMenu);
     }
 }
