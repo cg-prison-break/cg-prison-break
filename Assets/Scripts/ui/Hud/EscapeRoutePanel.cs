@@ -1,5 +1,3 @@
-using System;
-using Unity.AppUI.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

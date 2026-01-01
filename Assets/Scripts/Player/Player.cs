@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -107,7 +106,7 @@ public class Player : MonoBehaviour
         if (gameData.strikes >= 3)
         {
             EndingContext.NextEnding = EndingType.Bad;
-            SceneManager.LoadScene("EndingScene");
+            SceneManager.LoadScene(GameScene.Ending);
         }
         else
         {

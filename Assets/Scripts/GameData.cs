@@ -1,5 +1,3 @@
-using Unity.AppUI.Core;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameData", menuName = "Persistent Data/GameData")]

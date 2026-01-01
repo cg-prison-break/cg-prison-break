@@ -1,8 +1,4 @@
 ﻿using System.Collections;
-using System.Threading;
-using UnityEngine;
-
-using System.Collections;
 using UnityEngine;
 
 namespace Prefabs.Ending

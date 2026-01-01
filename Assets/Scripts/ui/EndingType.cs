@@ -7,4 +7,4 @@ public static class EndingContext
 
 // When you trigger the ending do the following:
 // EndingContext.NextEnding = EndingType.Bad;
-// SceneManager.LoadScene("EndingScene");
+// SceneManager.LoadScene(GameScene.Ending);
