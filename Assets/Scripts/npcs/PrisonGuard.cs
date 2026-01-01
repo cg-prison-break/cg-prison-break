@@ -67,7 +67,7 @@ public class PrisonGuard : NPC
 
     public override string InteractionPrompt
     {
-        get => "Drücke F zum Interagieren.";
+        get => currentState is RandomMovementState ? "Drücke F zum Interagieren." : "";
         set => InteractionPrompt = value;
     }
 
