@@ -40,9 +40,6 @@ public abstract class NPC : MonoBehaviour, IInteractable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-        NPCEventManager.OnPauseEvent += HandlePauseEvent;
-        NPCEventManager.OnResumeEvent += HandleResumeEvent;
-
         ChangeState(new IdleState());
     }
 
@@ -52,29 +49,9 @@ public abstract class NPC : MonoBehaviour, IInteractable
         currentState.UpdateState(this);
     }
 
-    protected virtual void OnDestroy()
-    {
-        NPCEventManager.OnPauseEvent -= HandlePauseEvent;
-        NPCEventManager.OnResumeEvent -= HandleResumeEvent;
-    }
+    protected virtual void OnDestroy() { }
 
     public abstract void Interact(Player interactor);
-
-    private void HandlePauseEvent()
-    {
-        if (currentState is not PauseState)
-        {
-            ChangeState(new PauseState());
-        }
-    }
-
-    private void HandleResumeEvent()
-    {
-        if (previousState is not null)
-        {
-            ChangeState(previousState);
-        }
-    }
 
     public void ChangeState(NPCState newState)
     {
