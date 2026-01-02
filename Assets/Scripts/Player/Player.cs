@@ -9,8 +9,11 @@ public class Player : MonoBehaviour
     
     [SerializeField] private GameData gameData;
     [SerializeField] private PauseMenu pauseMenuManager;
+
+    [SerializeField] private AudioClip caughtAudioClip;
+    [SerializeField] private AudioClip gameOverAudioClip;
     // INVENTROY 
-    
+
     private List<ItemData> inventory = new List<ItemData>(5);
 
     public void Awake()
@@ -101,15 +104,23 @@ public class Player : MonoBehaviour
         return inventory;
     }
 
-    public void OnCaught()
+    public void OnCaught(AudioSource audioSource)
     {
         if (gameData.strikes >= 3)
         {
+            if (audioSource != null && gameOverAudioClip != null)
+            {
+                audioSource.PlayOneShot(gameOverAudioClip);
+            }
             EndingContext.NextEnding = EndingType.Bad;
             SceneManager.LoadScene(GameScene.Ending);
         }
         else
         {
+            if (audioSource != null && caughtAudioClip != null)
+            {
+                audioSource.PlayOneShot(caughtAudioClip);
+            }
             pauseMenuManager.OpenRetryMenu();
         }
         

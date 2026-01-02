@@ -83,7 +83,8 @@ public class AlertedState : NPCState
             if (catchTimer >= catchDuration)
             {
                 // notify player object that it was caught
-                PlayerRegistry.Player.SendMessage("OnCaught", SendMessageOptions.DontRequireReceiver);
+                PlayerRegistry.Player.OnCaught(npc.GetComponent<AudioSource>());
+                npc.ChangeState(new IdleState());
                 return;
             }
         }
