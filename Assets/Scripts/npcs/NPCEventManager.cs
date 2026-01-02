@@ -9,7 +9,8 @@ public class NPCEventManager : MonoBehaviour
 
     public static void NotifyNPCsAboutSuspiciousAction(Vector3 location, bool global=false)
     {
-        OnSuspiciousActionEvent?.Invoke(location, global);
+        NavMeshUtils.TryFindValidNavMeshPosition(location, 2.0f, 0.1f, out var suspiciousLocation);
+        OnSuspiciousActionEvent?.Invoke(suspiciousLocation, global);
     }
 
     public static void ResetPrisonGuardSuspicioness()

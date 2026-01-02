@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class PrisonGuard : NPC
 {
+    [SerializeField] private float suspiciousRange = 20f;
+
     [Header("Sounds")]
     public AudioSource audioSource;
     public NPCInteractionSoundSet soundSet;
-
-    private readonly float suspiciousRange = 15f;
 
     protected override void Start()
     {
@@ -44,7 +44,6 @@ public class PrisonGuard : NPC
         {
             // check if suspicious event location is nearby
             float distance = Vector3.Distance(transform.position, location);
-
             if (distance < suspiciousRange)
             {
                 ChangeState(new SuspiciousState(location));

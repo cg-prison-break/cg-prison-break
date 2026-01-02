@@ -1,93 +1,48 @@
-﻿using System.Collections;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
 
 public class RandomMovementState : NPCState
 {
-    private Vector3 currentTarget;
-    private bool isChoosingNextTarget = false;
-
     protected override Color? StateHintColor => Color.green;
+
+    private readonly float minDistanceToNextLocation = 4f;
+    private readonly float nextLocationRadius = 15f;
 
     public override void EnterState(NPC npc)
     {
-        npc.navMeshAgent.isStopped = true;
-
-        if (npc.navMeshAgent.hasPath)
+        if (NavMeshUtils.TryFindValidNavMeshPosition(npc.transform.position, nextLocationRadius, minDistanceToNextLocation, out var nextTarget))
         {
-            currentTarget = npc.navMeshAgent.destination;
-        }
-        else
-        {
-            npc.navMeshAgent.ResetPath();
-            isChoosingNextTarget = true;
-            npc.StartCoroutine(SetNextTarget(npc));
+            npc.Movement.TryMoveToDestination(nextTarget);
+            npc.Movement.StartWalking();
         }
 
-        npc.navMeshAgent.isStopped = false;
-        npc.animator.SetBool("isWalking", true);
         UpdateStateHint(npc);
     }
 
     public override void ExitState(NPC npc)
     {
-        npc.navMeshAgent.isStopped = true;
-        npc.animator.SetBool("isWalking", false);
+        npc.Movement.StopWalking();
+        npc.Movement.SetSpeed(npc.Movement.defaultSpeed);
     }
 
     public override void UpdateState(NPC npc)
     {
-        if (isChoosingNextTarget || npc.navMeshAgent.pathPending)
+        if (!npc.Movement.PathIsValid() || npc.Movement.HasReachedDestination())
         {
-            npc.navMeshAgent.isStopped = true;
-            npc.animator.SetBool("isWalking", false);
-            return;
+            if (NavMeshUtils.TryFindValidNavMeshPosition(npc.transform.position, nextLocationRadius, minDistanceToNextLocation, out var nextTarget))
+            {
+                npc.Movement.TryMoveToDestination(nextTarget);
+            }
         }
-
-        bool isMoving =
-        npc.navMeshAgent.hasPath &&
-        npc.navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete &&
-        npc.navMeshAgent.remainingDistance > 0.3f;
-
-        if (isMoving)
+        else if (npc.Movement.IsStuck())
         {
-            npc.navMeshAgent.isStopped = false;
-            npc.animator.SetBool("isWalking", true);
-            return;
-        }
+            npc.Movement.StopWalking();
+            Vector3 newTarget = npc.transform.position - npc.transform.forward;
 
-        // only move when player is nearby
-        float playerDist = Vector3.Distance(npc.transform.position, npc.playerRef.transform.position);
-        if (playerDist >= 50.0f)
-        {
-            npc.navMeshAgent.isStopped = true;
-            npc.animator.SetBool("isWalking", false);
-            return;
+            if (NavMeshUtils.TryFindValidNavMeshPosition(newTarget, nextLocationRadius, minDistanceToNextLocation, out var nextTarget))
+            {
+                npc.Movement.TryMoveToDestination(nextTarget);
+                npc.Movement.StartWalking();
+            }
         }
-
-        if (!isChoosingNextTarget)
-        {
-            isChoosingNextTarget = true;
-            npc.navMeshAgent.isStopped = false;
-            npc.animator.SetBool("isWalking", true);
-            npc.StartCoroutine(SetNextTarget(npc));
-        }
-    }
-
-    private IEnumerator SetNextTarget(NPC npc)
-    {
-        yield return new WaitForSeconds(Random.Range(0f, 0.1f));
-        if (NavMeshUtils.TryFindValidNavMeshPosition(npc.transform.position, 15f, out var nextTarget))
-        {
-            currentTarget = nextTarget;
-            npc.navMeshAgent.SetDestination(currentTarget);
-        }
-        else
-        {
-            // no target found, try again in next update
-            npc.navMeshAgent.ResetPath();
-        }
-
-        isChoosingNextTarget = false;
     }
 }

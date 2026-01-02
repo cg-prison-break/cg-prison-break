@@ -35,8 +35,8 @@ public class TalkingState : NPCState
     private IEnumerator TalkingCoroutine(NPC npc)
     {
         // look into direction of player
-        npc.transform.LookAt(npc.playerRef.transform);
-        npc.animator.SetBool("isWalking", false);
+        npc.Movement.StopWalking();
+        npc.transform.LookAt(PlayerRegistry.Player.transform);
         yield return new WaitForSeconds(0.5f);
 
         // play random sound
@@ -45,7 +45,7 @@ public class TalkingState : NPCState
         yield return new WaitWhile(() => audioSource.isPlaying);
 
         // walking
-        npc.animator.SetBool("isWalking", true);
+        npc.Movement.StartWalking();
         npc.ChangeState(previousState);
     }
 }

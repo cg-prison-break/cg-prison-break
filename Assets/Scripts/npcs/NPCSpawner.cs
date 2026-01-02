@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class NPCSpawner : MonoBehaviour
 {
@@ -36,28 +35,15 @@ public class NPCSpawner : MonoBehaviour
             var spawnPoints = spawnPointContainer.GetComponentsInChildren<SpawnPoint>();
             var spawnPoint = spawnPoints[rnd.Next(spawnPoints.Length)];
             // spawn on navmesh
-            if (!NavMeshUtils.TryFindValidNavMeshPosition(spawnPoint.transform.position, spawnRadius, out var position))
+            if (!NavMeshUtils.TryFindValidNavMeshPosition(spawnPoint.transform.position, spawnRadius, 0.5f, out var position))
             {
                 // fallback to spawn point position
                 position = spawnPoint.transform.position;
             }
 
             GameObject npc = Instantiate(npcPrefab, position, Quaternion.identity);
-
-            var agent = npc.GetComponent<NavMeshAgent>();
-            agent.Warp(npc.transform.position);
-
-            if (npc.TryGetComponent<NPC>(out var npcComponent))
-            {
-                agent.speed = npcComponent.speed;
-            }
-            else
-            {
-                // fallback to default speed
-                agent.speed = 2.0f;
-            }
-
             spawnedNPCs.Add(npc);
+
             yield return new WaitForSeconds(0.1f);
         }
     }

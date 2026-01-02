@@ -1,41 +1,22 @@
 using Objects.Interactables;
 using UnityEngine;
-using UnityEngine.AI;
 
+[RequireComponent(typeof(NPCMovement))]
 public abstract class NPC : MonoBehaviour, IInteractable
 {
-    public Animator animator;
-    public NavMeshAgent navMeshAgent;
-    public float speed = 2.0f;
-    public float sightRange = 5f;
-    public float fieldOfViewAngle = 110f;
+    public NPCMovement Movement { get; private set; }
+    [SerializeField] private float sightRange = 5f;
+    [SerializeField] private float fieldOfViewAngle = 110f;
 
     protected NPCState currentState;
     protected NPCState previousState;
 
     public abstract string InteractionPrompt { get; set; }
 
-    private GameObject _playerRef;
-
-    [HideInInspector]
-    public GameObject playerRef {
-        get
-        {
-            if (_playerRef == null)
-            {
-                _playerRef = GameObject.FindGameObjectWithTag("Player");
-            }
-            return _playerRef;
-        }
-        private set => _playerRef = value;
-    }
-
     protected virtual void Awake()
     {
-        animator = GetComponentInChildren<Animator>();
-        _playerRef = GameObject.FindGameObjectWithTag("Player");
+        Movement = GetComponent<NPCMovement>();
     }
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -63,7 +44,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
 
     public bool HasPlayerInsight()
     {
-        Vector3 toPlayer = playerRef.transform.position - transform.position;
+        Vector3 toPlayer = PlayerRegistry.Player.transform.position - transform.position;
         float angle = Vector3.Angle(transform.forward, toPlayer);
 
         // check if the player is in the field of view
