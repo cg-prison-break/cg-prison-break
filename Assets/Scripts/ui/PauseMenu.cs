@@ -138,7 +138,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         DataManager.PlayerCaught();
-        SceneManager.LoadScene(GameScene.MainSceneDecorated);
+        SceneManager.LoadScene(GameScene.MainScene);
     }
 
     public bool IsPaused => _isPaused;
