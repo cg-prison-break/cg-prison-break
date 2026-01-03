@@ -27,12 +27,6 @@ public class EscapeRoutePanel : MonoBehaviour
         isActive = false;
         escapeRoutePanel?.SetActive(false);
         detailPanel?.Hide();
-        interactPanel?.SetActive(true);
-        itemPanel?.SetActive(true);
-        crosshair?.SetActive(true);
-        minimap?.SetActive(true);
-        timerPanel?.SetActive(true);
-        strikePanel?.SetActive(true);
     }
 
     private void Update()
