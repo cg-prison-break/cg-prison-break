@@ -7,7 +7,6 @@ namespace Prefabs.Interactions.Mattress
     {
         [Header("Data")]
         [SerializeField] private ItemData _itemData;
-        public AudioClip pickupSoundClip;
 
         public ItemData itemData
         {
@@ -24,7 +23,6 @@ namespace Prefabs.Interactions.Mattress
         public void Interact(Player player)
         {
             var pickedUp = player.AddItem(itemData);
-            player.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
             if (pickedUp) Destroy(gameObject);
         }
     }

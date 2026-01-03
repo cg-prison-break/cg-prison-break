@@ -5,7 +5,6 @@ public class ShovelItem : MonoBehaviour, IInteractableItem
 {
     [Header("Data")]
     [SerializeField] private ItemData _shovelItemData;
-    public AudioClip pickupSoundClip;
 
     public ItemData itemData
     {
@@ -21,8 +20,7 @@ public class ShovelItem : MonoBehaviour, IInteractableItem
     
     public void Interact(Player interactor)
     {
-        interactor.AddItem(_shovelItemData);    
-        interactor.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
+        interactor.AddItem(_shovelItemData);
         Destroy(gameObject);
     }
 }

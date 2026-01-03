@@ -1,8 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemList : MonoBehaviour
+namespace ui.Hud
+{
+    public class ItemList : MonoBehaviour
 {
     [SerializeField] private Player player;
     [SerializeField] private GameObject itemPanel;
@@ -10,6 +11,8 @@ public class ItemList : MonoBehaviour
     [SerializeField] private Vector2 startOffset = new Vector2(30f, -30f);
     [SerializeField] private Vector2 spacing = new Vector2(55f, -55f);
     [SerializeField] private int itemsPerRow = 4;
+    private int _fixedInventorySize = 8;
+    private int _selectedSlot = 0;
 
     private void OnEnable()
     {
@@ -17,20 +20,50 @@ public class ItemList : MonoBehaviour
     }
 
     // Expose the player's current inventory to the UI
-    public List<ItemData> GetItems()
+    public ItemData[] GetItems()
     {
-        return player != null ? player.GetItems() : new List<ItemData>();
+        return player != null ? player.GetItems() : new ItemData[_fixedInventorySize];
     }
 
     // Rebuilds the icon list on the panel
     public void RefreshIcons()
     {
-        if (itemPanel == null)
-        {
+        if (itemPanel == null || itemIconPrefab == null || player == null)
             return;
+
+        var templateTransform = itemIconPrefab.transform;
+        RemoveOldIcons(templateTransform);
+
+        ItemData[] currentItems = player.GetItems();
+
+        for (int i = 0; i < currentItems.Length; i++)
+        {
+            ItemData item = currentItems[i];
+            Image iconInstance = Instantiate(itemIconPrefab, itemPanel.transform);
+            iconInstance.sprite = item != null ? item.icon : null;
+
+            RectTransform rt = iconInstance.rectTransform;
+            int col = i % itemsPerRow;
+            int row = i / itemsPerRow;
+            rt.anchoredPosition = startOffset + new Vector2(col * spacing.x, row * spacing.y);
+
+            if (item == null)
+                iconInstance.color = new Color(1f, 1f, 1f, 0);
+
+            if (i == _selectedSlot)
+            {
+                iconInstance.transform.Find("Border").gameObject.SetActive(true);
+            }
+
+            iconInstance.gameObject.SetActive(true);
         }
 
-        Transform templateTransform = itemIconPrefab != null ? itemIconPrefab.transform : null;
+        
+        templateTransform.gameObject.SetActive(false);
+    }
+
+    private void RemoveOldIcons(Transform templateTransform)
+    {
         foreach (Transform child in itemPanel.transform)
         {
             if (child.CompareTag("Background"))
@@ -44,31 +77,13 @@ public class ItemList : MonoBehaviour
             }
             Destroy(child.gameObject);
         }
-
-        if (player == null /*|| itemIconPrefab == null*/)
-        {
-            return;
-        }
-
-        List<ItemData> currentItems = player.GetItems();
-
-        for (int i = 0; i < currentItems.Count; i++)
-        {
-            ItemData item = currentItems[i];
-            Image iconInstance = Instantiate(itemIconPrefab, itemPanel.transform);
-            iconInstance.sprite = item != null ? item.icon : null;
-
-            RectTransform rt = iconInstance.rectTransform;
-            int col = i % itemsPerRow;
-            int row = i / itemsPerRow;
-            rt.anchoredPosition = startOffset + new Vector2(col * spacing.x, row * spacing.y);
-
-            iconInstance.gameObject.SetActive(true);
-        }
-
-        if (templateTransform != null)
-        {
-            templateTransform.gameObject.SetActive(false);
-        }
     }
+    
+    public void UpdateSelectedSlot(int selectedSlot)
+    {
+        _selectedSlot = selectedSlot;
+        RefreshIcons();
+    }
+}
+
 }

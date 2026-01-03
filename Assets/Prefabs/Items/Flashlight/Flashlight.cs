@@ -5,7 +5,6 @@ public class Flashlight : MonoBehaviour, IInteractableItem
 {
     [Header("Data")]
     [SerializeField] private ItemData _itemData;
-    [SerializeField] private AudioClip pickupSoundClip;
 
     public ItemData itemData
     {
@@ -34,7 +33,6 @@ public class Flashlight : MonoBehaviour, IInteractableItem
     public void Interact(Player player)
     {
         bool pickedUp = player.AddItem(itemData);
-        player.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
         if (pickedUp) Destroy(gameObject);
     }
 }
