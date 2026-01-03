@@ -9,7 +9,11 @@ namespace Prefabs.npcs
         [SerializeField] private NPCInteractionSoundSet soundSet;
         [SerializeField] private AudioSource audioSource;
         
-        public string InteractionPrompt { get; set; }
+        public string InteractionPrompt
+        {
+            get => "Drücke F, um mit Gefangenen zu sprechen.";
+            set => InteractionPrompt = value;   
+        }
         
         public void Interact(Player player)
         {
