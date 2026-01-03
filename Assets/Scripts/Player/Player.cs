@@ -163,9 +163,9 @@ public class Player : MonoBehaviour
             return;
 
         if (scroll > 0)
-            _selectedSlot = (_selectedSlot - 1) % _inventory.Length;
+            _selectedSlot = (_selectedSlot - 1 + _inventory.Length) % _inventory.Length;
         else
-            _selectedSlot = (_selectedSlot + 1 + _inventory.Length) % _inventory.Length;
+            _selectedSlot = (_selectedSlot + 1) % _inventory.Length;
 
         itemHud.UpdateSelectedSlot(_selectedSlot);
         Debug.Log($"Selected Slot: {_selectedSlot + 1}");
