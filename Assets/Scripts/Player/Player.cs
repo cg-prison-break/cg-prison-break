@@ -6,12 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    
     [SerializeField] private ItemList itemHud;
-    
+
     [SerializeField] private GameData gameData;
     [SerializeField] private PauseMenu pauseMenuManager;
-    
+
+    [Header("Inventory-Sounds")] [SerializeField]
+    private AudioSource dropItemSound;
+
+    [SerializeField] private AudioSource inventoryFullItemNotDroppableSound;
+
     // INVENTORY (8 feste Slots)
     private int _maxSlots = 8;
     private ItemData[] _inventory;
@@ -23,7 +27,7 @@ public class Player : MonoBehaviour
         _inventory = new ItemData[_maxSlots];
         PlayerRegistry.RegisterPlayer(this);
     }
-    
+
     public void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -34,17 +38,17 @@ public class Player : MonoBehaviour
     {
         return _inventory.Any(item => item == itemToFind);
     }
-    
+
     public bool HasOneOf(List<ItemData> items)
     {
         return items.Any(HasItem);
     }
-    
+
     public bool HasAll(List<ItemData> items)
     {
         return items.All(HasItem);
     }
-    
+
     public bool AddItem(ItemData item)
     {
         for (var i = 0; i < _inventory.Length; i++)
@@ -54,16 +58,17 @@ public class Player : MonoBehaviour
             itemHud.RefreshIcons();
             return true;
         }
-        
+
         // No free slot found
+        inventoryFullItemNotDroppableSound.Play();
         return false;
     }
-    
+
     public bool AddItem(List<ItemData> items)
     {
         return items.All(AddItem);
     }
-    
+
     public bool RemoveItem(ItemData item)
     {
         for (var i = 0; i < _inventory.Length; i++)
@@ -73,19 +78,20 @@ public class Player : MonoBehaviour
             itemHud.RefreshIcons();
             return true;
         }
+
         return false;
     }
-    
+
     public bool RemoveAll(List<ItemData> items)
     {
         return items.Aggregate(false, (current, item) => current | RemoveItem(item));
     }
-    
+
     public ItemData[] GetItems()
     {
         return _inventory;
     }
-    
+
     public bool IsSlotEmpty(int index)
     {
         if (index < 0 || index >= _inventory.Length)
@@ -94,20 +100,24 @@ public class Player : MonoBehaviour
         return _inventory[index] == null;
     }
 
-    private bool RemoveItemFromSlot(int index)
+    private bool DropItemFromSlot(int index)
     {
         if (index < 0 || index >= _inventory.Length)
             return false;
 
         if (_inventory[index] == null)
+        {
+            inventoryFullItemNotDroppableSound.Play();
             return false;
+        }
 
         Instantiate(_inventory[index].prefab, transform.position + transform.forward, Quaternion.identity);
         _inventory[index] = null;
         itemHud.RefreshIcons();
+        dropItemSound.Play();
         return true;
     }
-    
+
     public bool AddItemToSlot(ItemData item, int index)
     {
         if (index < 0 || index >= _inventory.Length)
@@ -133,14 +143,14 @@ public class Player : MonoBehaviour
             pauseMenuManager.OpenRetryMenu();
         }
     }
-    
+
     public void SelectSlot(float slotValue)
     {
         var slot = Mathf.RoundToInt(slotValue) - 1;
 
         if (slot < 0 || slot >= _inventory.Length) return;
         _selectedSlot = slot;
-        
+
         itemHud.UpdateSelectedSlot(_selectedSlot);
         Debug.Log($"Selected Slot: {_selectedSlot + 1}");
     }
@@ -161,6 +171,11 @@ public class Player : MonoBehaviour
 
     public void DropItem()
     {
-        RemoveItemFromSlot(_selectedSlot);
+        DropItemFromSlot(_selectedSlot);
+    }
+    
+    public bool IsInventoryFull()
+    {
+        return _inventory.All(item => item != null);
     }
 }
