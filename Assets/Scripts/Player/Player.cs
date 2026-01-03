@@ -11,9 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] private GameData gameData;
     [SerializeField] private PauseMenu pauseMenuManager;
 
-    [Header("Inventory-Sounds")] [SerializeField]
-    private AudioSource dropItemSound;
-
+    [Header("Inventory-Sounds")] 
+    [SerializeField] private AudioSource dropItemSound;
+    [SerializeField] private AudioSource pickupItemSound;
     [SerializeField] private AudioSource inventoryFullItemNotDroppableSound;
 
     // INVENTORY (8 feste Slots)
@@ -49,13 +49,15 @@ public class Player : MonoBehaviour
         return items.All(HasItem);
     }
 
-    public bool AddItem(ItemData item)
+    public bool AddItem(ItemData item, bool playSound = true)
     {
         for (var i = 0; i < _inventory.Length; i++)
         {
             if (_inventory[i] != null) continue;
             _inventory[i] = item;
             itemHud.RefreshIcons();
+            if (playSound)
+                pickupItemSound.Play();
             return true;
         }
 
@@ -66,7 +68,7 @@ public class Player : MonoBehaviour
 
     public bool AddItem(List<ItemData> items)
     {
-        return items.All(AddItem);
+        return items.All(item => AddItem(item, false));
     }
 
     public bool RemoveItem(ItemData item)
