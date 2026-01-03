@@ -13,7 +13,7 @@ namespace Prefabs.StartAnimation
         {
             gameData.animationPlayed = true;
             loadingSceneIndicator.SetActive(true);
-            SceneManager.LoadScene(GameScene.MainSceneDecorated);
+            SceneManager.LoadScene(GameScene.MainScene);
         }
     }
 }
