@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1705238946271217524
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 39212841331837821, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_Name
+      value: IdlePrisonerDecoration
+      objectReference: {fileID: 0}
+    - target: {fileID: 846852048573403591, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.802742
+      objectReference: {fileID: 0}
+    - target: {fileID: 846852048573403591, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.148
+      objectReference: {fileID: 0}
+    - target: {fileID: 846852048573403591, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.912683
+      objectReference: {fileID: 0}
+    - target: {fileID: 846852048573403591, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 846852048573403591, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 846852048573403591, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 846852048573403591, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 846852048573403591, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 846852048573403591, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 846852048573403591, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663051120281060684, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710560974790347709, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ebd315cbc900df34b8cc06deff9b2086, type: 2}
+    - target: {fileID: 6710560974790347709, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4934078707779778903, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+    - {fileID: 4663051120281060684, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 39212841331837821, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4729702991651172185}
+  m_SourcePrefab: {fileID: 100100000, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+--- !u!1 &1666743175703661577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 39212841331837821, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+  m_PrefabInstance: {fileID: 1705238946271217524}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4729702991651172185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666743175703661577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6da3005edae4866b84c7a31204d56dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Prefabs.npcs.IdlePrisoner
+  soundSet:
+    interactionSounds:
+    - {fileID: 8300000, guid: e473eaa27ad224244ba2ed8ae72d2313, type: 3}
+    - {fileID: 8300000, guid: 76f71aacf782d9c4e811b2639f26f03f, type: 3}
+    - {fileID: 8300000, guid: a3b720dbf652a4a4da8dc85d45d9c753, type: 3}
+    - {fileID: 8300000, guid: 06005a99748656b4a86082545054cf60, type: 3}
+  audioSource: {fileID: 6706347186080638849}
+--- !u!82 &6706347186080638849 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5385041757885866229, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
+  m_PrefabInstance: {fileID: 1705238946271217524}
+  m_PrefabAsset: {fileID: 0}
