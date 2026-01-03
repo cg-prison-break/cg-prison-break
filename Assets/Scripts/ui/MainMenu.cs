@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
     {
         gameData.strikes = 0;
         gameData.timer = 0.0f;
-        SceneManager.LoadScene(gameData.animationPlayed ? GameScene.MainScene : GameScene.StartScene);
+        SceneManager.LoadScene(gameData.animationPlayed ? GameScene.MainSceneDecorated : GameScene.StartScene);
     } 
         
 
