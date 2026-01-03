@@ -17,6 +17,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     [SerializeField] private float closeDuration = 1.0f;
 
     [SerializeField] private bool isOpen = false;
+    [SerializeField] private bool isSecuredSomehow = true;
     private Coroutine autoCloseCoroutine;
 
     public string InteractionPrompt
@@ -57,7 +58,10 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         StartCoroutine(InvokeAfter(closeDuration, () =>
         {
             isOpen = true;
-            NPCEventManager.NotifyNPCsAboutSuspiciousAction(transform.position);
+            if (isSecuredSomehow)
+            {
+                NPCEventManager.NotifyNPCsAboutSuspiciousAction(transform.position);
+            } 
             // start auto close timer if enabled
             if (autoCloseDelay > 0)
             {
