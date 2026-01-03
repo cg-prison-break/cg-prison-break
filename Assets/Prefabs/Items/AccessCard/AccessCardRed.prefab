@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _itemData: {fileID: 11400000, guid: 43052342911dd7942b2e92f68bd82b7e, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
 --- !u!65 &7151766814916394758
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -124,5 +123,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.109972134, y: 0.0023033333, z: 0.06641018}
+  m_Size: {x: 0.14, y: -0.04, z: 0.1}
   m_Center: {x: 0, y: 0.0011516666, z: 0}
