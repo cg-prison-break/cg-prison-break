@@ -11,7 +11,7 @@ namespace Prefabs.npcs
         
         public string InteractionPrompt
         {
-            get => "Drücke F, um mit Gefangenen zu sprechen.";
+            get => "Drücke F zum Interagieren.";
             set => InteractionPrompt = value;   
         }
         
