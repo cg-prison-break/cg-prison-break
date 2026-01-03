@@ -92,6 +92,9 @@ MonoBehaviour:
     im wahrsten Sinne des Wortes alle T\xFCren, das finden die W\xE4rter allerdings
     nicht so lustig..."
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &7577199481255711059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,6 +550,9 @@ MonoBehaviour:
   description: "Alle Wege vom Gel\xE4nde runter f\xFChren \xFCber das Fluchtauto
     am Ende!"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &465684581340508753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,6 +580,7 @@ GameObject:
   - component: {fileID: 6418226870866762976}
   - component: {fileID: 6534682057343961255}
   - component: {fileID: 3835475643479561437}
+  - component: {fileID: 6269752167747063949}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -695,6 +702,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &6269752167747063949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734241066301495040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7522c685cf714d39845e35f36c53bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSounds
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!1 &879147984281144943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,6 +1041,9 @@ MonoBehaviour:
   description: "Du siehst einen Zaun? Dann schneide ihn durch!\n\nBen\xF6tigt: \n\n-
     Kneifzange"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &6186594980045289846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,6 +1150,9 @@ MonoBehaviour:
   description: "Grabstelle entdeckt? Dann grabe dir einen Tunnel!\n\nBen\xF6tigt:\n\n-
     Schaufel"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &5210308029236735495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1288,6 +1316,7 @@ GameObject:
   - component: {fileID: 1611194713461410093}
   - component: {fileID: 8223562458519918769}
   - component: {fileID: 3356178811262188934}
+  - component: {fileID: 7751806755581481647}
   m_Layer: 5
   m_Name: ApplyButton
   m_TagString: Untagged
@@ -1409,6 +1438,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &7751806755581481647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474814752138424593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7522c685cf714d39845e35f36c53bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSounds
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!1 &1514733270158767661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,6 +2250,7 @@ GameObject:
   - component: {fileID: 3413625826840054417}
   - component: {fileID: 1958971968373295621}
   - component: {fileID: 1859910330327304509}
+  - component: {fileID: 5073080168128025739}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -2327,6 +2372,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &5073080168128025739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234863224977598399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7522c685cf714d39845e35f36c53bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSounds
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!1 &2241090528183881152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2590,6 +2650,9 @@ MonoBehaviour:
   description: "Niemand traut es sich, niemand hat es probiert. Was k\xF6nnte es
     wohl sein?"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &1344333600414770184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3254,6 +3317,9 @@ MonoBehaviour:
   description: "Durchsuche Zellen, um n\xFCtzliche Gegenst\xE4nde zu finden, vielleicht
     sogar einen Weg raus...\n\nBen\xF6tigt: \n\n- Zellenschl\xFCssel"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &3715820694606021915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3281,6 +3347,7 @@ GameObject:
   - component: {fileID: 1603528119701101982}
   - component: {fileID: 7500305705204153244}
   - component: {fileID: 6941286966876047489}
+  - component: {fileID: 8066088390851345708}
   m_Layer: 5
   m_Name: RetryButton
   m_TagString: Untagged
@@ -3402,6 +3469,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &8066088390851345708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3344720429863762275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7522c685cf714d39845e35f36c53bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSounds
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!1 &3442881652795000324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3599,6 +3681,9 @@ MonoBehaviour:
     dich sofort verd\xE4chtig. Umgehe diese!\n\nBen\xF6tigt:\n\n- Schmuggelbeutel
     im Inventar"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &3992389193291510944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3930,6 +4015,9 @@ MonoBehaviour:
     Aktion l\xE4sst W\xE4rter verd\xE4chtig wirken, sei also vorsichtig!\n\nUnd viel
     Gl\xFCck auf jeden Fall, du wirst es brauchen!"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &427952139558142928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4996,6 +5084,9 @@ MonoBehaviour:
   description: "Manche T\xFCren lassen sich mit einer entsprechenden Sicherheitskarte
     \xF6ffnen.\n\nBen\xF6tigt:\n\n- die \"korrekte\" Sicherheitskarte"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &5912534634850702903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5619,6 +5710,7 @@ GameObject:
   - component: {fileID: 6459973596410919459}
   - component: {fileID: 2742289141260321017}
   - component: {fileID: 3641508032428122259}
+  - component: {fileID: 4271665342543247057}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -5740,6 +5832,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &4271665342543247057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5612115047014842621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7522c685cf714d39845e35f36c53bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSounds
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!1 &5635151086758413111
 GameObject:
   m_ObjectHideFlags: 0
@@ -6210,6 +6317,9 @@ MonoBehaviour:
   title: Das Gitterfenster
   description: "Zellenfenster im Weg? Dann schraub es ab!\n\nBen\xF6tigt:\n\n- Schraubendreher"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &8116513665400845923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6237,6 +6347,7 @@ GameObject:
   - component: {fileID: 6469983923352483016}
   - component: {fileID: 3487538826323377120}
   - component: {fileID: 4188399730913415973}
+  - component: {fileID: 4887075487727756877}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -6358,6 +6469,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &4887075487727756877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6335706485685786864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7522c685cf714d39845e35f36c53bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSounds
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!1 &6353794861189240165
 GameObject:
   m_ObjectHideFlags: 0
@@ -6449,6 +6575,9 @@ MonoBehaviour:
   description: "Sicherheitskameras lassen dich verd\xE4chtig wirken? Sabotiere sie!\n\nBen\xF6tigt:
     \n\n- Taschenlampe"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &8809307696437179048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6554,6 +6683,9 @@ MonoBehaviour:
   title: "W\xE4nde sprengen"
   description: "Wand im Weg? Dann spreng sie!\n\nBen\xF6tigt:\n\n- Dynamit"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &7468149014937410267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7088,6 +7220,9 @@ MonoBehaviour:
   description: "Der LKW am Lieferanteneingang f\xE4hrt, wenn du es willst, er wird
     aber durchsucht...\n\nBen\xF6tigt:\n\n- Sichtschutz"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &6603290953332072967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8001,6 +8136,9 @@ MonoBehaviour:
   description: "Keine M\xF6glichkeit, T\xFCren zu \xF6ffnen? Dann brich sie einfach
     auf!\n\nBen\xF6tigt:\n\n- Brecheisen"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &1309127866784455384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9387,6 +9525,7 @@ GameObject:
   - component: {fileID: 6739443991413503853}
   - component: {fileID: 7328432056122086266}
   - component: {fileID: 9140762803930935102}
+  - component: {fileID: 3795430406557117986}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -9508,6 +9647,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &3795430406557117986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8532430344240540357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7522c685cf714d39845e35f36c53bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSounds
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!1 &8547489906629311012
 GameObject:
   m_ObjectHideFlags: 0
@@ -9842,6 +9996,9 @@ MonoBehaviour:
   description: Es gibt einen Tunnel von jemandem vor dir. Nutze ihn, wenn du ihn
     siehst!
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &6010272301101932452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10027,6 +10184,9 @@ MonoBehaviour:
   description: "Keine Kneifzange dabei am Zaun? Dann klettere \xFCber ihn!\n\nBen\xF6tigt:\n\n-
     Matratze\n- Seil"
   routeImage: {fileID: 0}
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
 --- !u!114 &2623614981730085077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10186,6 +10346,7 @@ GameObject:
   - component: {fileID: 2774577751014030844}
   - component: {fileID: 5010491577495841865}
   - component: {fileID: 3326485030098067430}
+  - component: {fileID: 3823203799013518244}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -10307,3 +10468,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &3823203799013518244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9163767010882920432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7522c685cf714d39845e35f36c53bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSounds
+  audioSource: {fileID: 7539524098612480819}
+  clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
+  volume: 1
