@@ -12,6 +12,7 @@ namespace ui.Hud
     [SerializeField] private Vector2 spacing = new Vector2(55f, -55f);
     [SerializeField] private int itemsPerRow = 4;
     private int _fixedInventorySize = 8;
+    private int _selectedSlot = 0;
 
     private void OnEnable()
     {
@@ -38,8 +39,6 @@ namespace ui.Hud
         for (int i = 0; i < currentItems.Length; i++)
         {
             ItemData item = currentItems[i];
-            if (item == null)
-                continue;
             Image iconInstance = Instantiate(itemIconPrefab, itemPanel.transform);
             iconInstance.sprite = item != null ? item.icon : null;
 
@@ -48,13 +47,21 @@ namespace ui.Hud
             int row = i / itemsPerRow;
             rt.anchoredPosition = startOffset + new Vector2(col * spacing.x, row * spacing.y);
 
+            if (item == null)
+                iconInstance.color = new Color(1f, 1f, 1f, 0);
+
+            if (i == _selectedSlot)
+            {
+                iconInstance.transform.Find("Border").gameObject.SetActive(true);
+            }
+
             iconInstance.gameObject.SetActive(true);
         }
 
         
         templateTransform.gameObject.SetActive(false);
     }
-    
+
     private void RemoveOldIcons(Transform templateTransform)
     {
         foreach (Transform child in itemPanel.transform)
@@ -74,7 +81,8 @@ namespace ui.Hud
     
     public void UpdateSelectedSlot(int selectedSlot)
     {
-        // TODO: implement this
+        _selectedSlot = selectedSlot;
+        RefreshIcons();
     }
 }
 
