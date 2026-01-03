@@ -11,7 +11,6 @@ namespace ui.Hud
     [SerializeField] private Vector2 startOffset = new Vector2(30f, -30f);
     [SerializeField] private Vector2 spacing = new Vector2(55f, -55f);
     [SerializeField] private int itemsPerRow = 4;
-    
     private int _fixedInventorySize = 8;
 
     private void OnEnable()
