@@ -33,6 +33,10 @@ public class ItemList : MonoBehaviour
         Transform templateTransform = itemIconPrefab != null ? itemIconPrefab.transform : null;
         foreach (Transform child in itemPanel.transform)
         {
+            if (child.CompareTag("Background"))
+            {
+                continue;
+            }
             if (templateTransform != null && child == templateTransform)
             {
                 child.gameObject.SetActive(false);
