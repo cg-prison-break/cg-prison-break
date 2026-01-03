@@ -110,7 +110,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.051048357, y: 0.013427952, z: 0.14489147}
+  m_Size: {x: 0.08, y: 0.05, z: 0.18}
   m_Center: {x: 0, y: 0.005468755, z: -0.018669842}
 --- !u!114 &695793981069729737
 MonoBehaviour:
@@ -125,4 +125,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _itemData: {fileID: 11400000, guid: 637dec7724261034db375ca2c27c7d57, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
