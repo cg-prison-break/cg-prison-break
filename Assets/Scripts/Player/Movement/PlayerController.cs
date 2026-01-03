@@ -51,6 +51,31 @@ public class PlayerController : MonoBehaviour
     }
     
 #if ENABLE_INPUT_SYSTEM
+    public void OnSelectSlot(InputValue value)
+    {
+        if (m_IgnoreInput) return;
+
+        var player = GetComponent<Player>();
+        player.SelectSlot(value.Get<float>());
+    }
+
+    public void OnScrollSlot(InputValue value)
+    {
+        if (m_IgnoreInput) return;
+
+        var player = GetComponent<Player>();
+        player.ScrollSlot(value.Get<float>());
+    }
+
+    public void OnDropItem(InputValue value)
+    {
+        if (m_IgnoreInput) return;
+
+        if (!value.isPressed) return;
+        var player = GetComponent<Player>();
+        player.DropItem();
+    }
+    
     public void OnMove(InputValue value)
     {
         if (m_IgnoreInput)

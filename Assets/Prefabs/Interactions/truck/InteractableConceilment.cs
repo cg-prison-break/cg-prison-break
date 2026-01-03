@@ -6,7 +6,6 @@ namespace Prefabs.Interactions.truck
     public class InteractableConceilment : MonoBehaviour, IInteractableItem
     {
         [SerializeField] private ItemData _itemData;
-        public AudioClip pickupSoundClip;
     
         public ItemData itemData
         {
@@ -24,7 +23,6 @@ namespace Prefabs.Interactions.truck
         {   
             var pickedUp = interactor.AddItem(itemData);
             Debug.Log($"Item Name: {_itemData.itemName}");
-            interactor.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
             if (pickedUp) Destroy(gameObject);
         }
     }

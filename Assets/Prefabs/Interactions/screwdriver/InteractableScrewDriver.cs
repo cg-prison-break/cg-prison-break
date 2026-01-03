@@ -5,7 +5,6 @@ public class InteractableScrewDriver : MonoBehaviour, IInteractableItem
 {
     [Header("Data")]
     [SerializeField] private ItemData _itemData;
-    public AudioClip pickupSoundClip;
 
     public ItemData itemData
     {
@@ -22,7 +21,6 @@ public class InteractableScrewDriver : MonoBehaviour, IInteractableItem
     public void Interact(Player interactor)
     {
         interactor.AddItem(itemData);
-        interactor.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
         NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
         Destroy(gameObject);
     }
