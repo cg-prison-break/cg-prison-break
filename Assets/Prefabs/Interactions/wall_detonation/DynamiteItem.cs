@@ -21,7 +21,6 @@ public class DynamiteItem : MonoBehaviour, IInteractableItem
     {   
         var pickedUp = interactor.AddItem(itemData);
         Debug.Log($"Item Name: {_itemData.itemName}");
-        NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
         if (pickedUp) Destroy(gameObject);
     }
 }

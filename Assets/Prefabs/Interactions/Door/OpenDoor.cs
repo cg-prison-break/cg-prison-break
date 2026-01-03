@@ -57,6 +57,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         StartCoroutine(InvokeAfter(closeDuration, () =>
         {
             isOpen = true;
+            NPCEventManager.NotifyNPCsAboutSuspiciousAction(transform.position);
             // start auto close timer if enabled
             if (autoCloseDelay > 0)
             {
