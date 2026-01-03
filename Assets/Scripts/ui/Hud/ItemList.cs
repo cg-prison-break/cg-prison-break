@@ -38,6 +38,8 @@ namespace ui.Hud
         for (int i = 0; i < currentItems.Length; i++)
         {
             ItemData item = currentItems[i];
+            if (item == null)
+                continue;
             Image iconInstance = Instantiate(itemIconPrefab, itemPanel.transform);
             iconInstance.sprite = item != null ? item.icon : null;
 
