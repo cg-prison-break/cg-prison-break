@@ -68,7 +68,7 @@ public class InteractWithObject : MonoBehaviour
         
         Debug.DrawRay(checkRay.origin, checkRay.direction, Color.red);
         
-        if (Physics.Raycast(checkRay, out RaycastHit hit, interactionDistance))
+        if (Physics.SphereCast(checkRay, 0.05f, out var hit, interactionDistance))
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
             {
