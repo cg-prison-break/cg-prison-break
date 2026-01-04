@@ -135,7 +135,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.07, y: 0.25, z: 0.07}
+  m_Size: {x: 0.1, y: 0.35, z: 0.1}
   m_Center: {x: 0, y: 0.07, z: 0}
 --- !u!114 &7872372498840429408
 MonoBehaviour:
@@ -150,4 +150,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableScrewDriver
   _itemData: {fileID: 11400000, guid: d33ba423a4ea8194ab2882090b5af3fd, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}

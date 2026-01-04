@@ -81,18 +81,31 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 580c11a6532c37e41b4eaa832729aae3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3459713631942778421}
+      addedObject: {fileID: 8544507208376157483}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 580c11a6532c37e41b4eaa832729aae3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8544507208376157483}
+      addedObject: {fileID: 5911268562334899848}
   m_SourcePrefab: {fileID: 100100000, guid: 580c11a6532c37e41b4eaa832729aae3, type: 3}
 --- !u!1 &33979604409753778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 580c11a6532c37e41b4eaa832729aae3, type: 3}
   m_PrefabInstance: {fileID: 916994436196376035}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &3459713631942778421
-MeshCollider:
+--- !u!114 &8544507208376157483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33979604409753778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e8c0e09b2b1cf34d805d56cc1777ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _itemData: {fileID: 11400000, guid: d8e5f5e4e6fcfaf43873883bc1979037, type: 2}
+--- !u!65 &5911268562334899848
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,24 +122,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7545146820494510332, guid: 580c11a6532c37e41b4eaa832729aae3, type: 3}
---- !u!114 &8544507208376157483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33979604409753778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e8c0e09b2b1cf34d805d56cc1777ca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  _itemData: {fileID: 11400000, guid: d8e5f5e4e6fcfaf43873883bc1979037, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.96, y: 1.22, z: 0.97}
+  m_Center: {x: -0.000000014901161, y: 0.54658103, z: 0}
 --- !u!4 &807104111131752968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 580c11a6532c37e41b4eaa832729aae3, type: 3}

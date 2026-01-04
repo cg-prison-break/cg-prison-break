@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5987430998017966027, guid: ddfb0df49ac8eb545b17c147e96d40c4, type: 3}
       propertyPath: m_Name
-      value: SM_mattress Variant
+      value: mattress
       objectReference: {fileID: 0}
     - target: {fileID: 6367087571628303729, guid: ddfb0df49ac8eb545b17c147e96d40c4, type: 3}
       propertyPath: m_RootOrder
@@ -56,7 +56,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 157576950131830578, guid: ddfb0df49ac8eb545b17c147e96d40c4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

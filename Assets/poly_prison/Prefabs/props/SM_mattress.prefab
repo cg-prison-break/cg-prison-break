@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6367087571628303729}
   - component: {fileID: 8066980459704920788}
   - component: {fileID: 5194722628403355166}
-  - component: {fileID: 157576950131830578}
   - component: {fileID: -672508047491331072}
+  - component: {fileID: 2327581782262899893}
   m_Layer: 7
   m_Name: SM_mattress
   m_TagString: Untagged
@@ -91,8 +91,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &157576950131830578
-MeshCollider:
+--- !u!114 &-672508047491331072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987430998017966027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5412e455451dc544093f2fde54795e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mattress
+  _itemData: {fileID: 11400000, guid: 2963b93d5c21d484e8cc265655b103ac, type: 2}
+  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
+--- !u!65 &2327581782262899893
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,21 +123,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7412045503815406353, guid: 28dc383546969d246b467fbbfd30ca62, type: 3}
---- !u!114 &-672508047491331072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5987430998017966027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5412e455451dc544093f2fde54795e30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Mattress
-  _itemData: {fileID: 11400000, guid: 2963b93d5c21d484e8cc265655b103ac, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.79, y: 0.14, z: 2.07}
+  m_Center: {x: 0, y: 0.053152468, z: -1.0027423}

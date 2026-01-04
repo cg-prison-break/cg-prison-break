@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2250878534110757122}
   - component: {fileID: 2923787839771922087}
   - component: {fileID: 1114525206961371757}
-  - component: {fileID: -1771781337664648296}
   - component: {fileID: 124935183935036031}
+  - component: {fileID: 1462452426171572159}
   m_Layer: 7
   m_Name: SM_flashlight
   m_TagString: Untagged
@@ -92,8 +92,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-1771781337664648296
-MeshCollider:
+--- !u!114 &124935183935036031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474764730631003064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 676b3328493153d4f96f2caf58934aa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Flashlight
+  _itemData: {fileID: 11400000, guid: d11c2ac8d6e6c7749867baade3f50d40, type: 2}
+--- !u!65 &1462452426171572159
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110,21 +123,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6492427120234770954, guid: 3f5539a7eb4c7e449afcbd132312b174, type: 3}
---- !u!114 &124935183935036031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474764730631003064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676b3328493153d4f96f2caf58934aa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Flashlight
-  _itemData: {fileID: 11400000, guid: d11c2ac8d6e6c7749867baade3f50d40, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.32}
+  m_Center: {x: 0, y: 0.033520624, z: -0.021254763}

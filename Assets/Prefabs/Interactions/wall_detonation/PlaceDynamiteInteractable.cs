@@ -10,6 +10,7 @@ namespace Prefabs.Interactions.wall_detonation
         public List<ItemData> ConnectedItems => _connectedItems;
         public AudioClip placeDynamiteSoundClip;
         public GameObject parentWall;
+        public GameObject animatedDynamite;
         
         public string InteractionPrompt
         {
@@ -37,7 +38,7 @@ namespace Prefabs.Interactions.wall_detonation
         {
             if (!interactor.HasAll(_connectedItems)) return;
 
-            var gameObjectDynamite = Instantiate(_connectedItems[0].prefab, transform.position, transform.rotation);
+            var gameObjectDynamite = Instantiate(animatedDynamite, transform.position, transform.rotation);
             var burningDynamite = gameObjectDynamite.GetComponent<BurningDynamite>();
             burningDynamite.SetParentWall(parentWall);
             interactor.RemoveItem(_connectedItems[0]);
