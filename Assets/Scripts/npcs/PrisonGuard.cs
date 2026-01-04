@@ -9,6 +9,16 @@ public class PrisonGuard : NPC
     public AudioSource audioSource;
     public NPCInteractionSoundSet soundSet;
 
+    private AudioClip interactionAudioClip;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        var rnd = new System.Random();
+        interactionAudioClip = soundSet.interactionSounds[rnd.Next(soundSet.interactionSounds.Length)];
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -77,7 +87,7 @@ public class PrisonGuard : NPC
         // allow interaction only during random movement
         if (currentState is RandomMovementState)
         {
-            ChangeState(new TalkingState(audioSource, soundSet, currentState));
+            ChangeState(new TalkingState(audioSource, interactionAudioClip, currentState));
         }
     }
 }
