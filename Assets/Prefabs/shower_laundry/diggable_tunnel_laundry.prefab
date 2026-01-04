@@ -1114,6 +1114,7 @@ MonoBehaviour:
   audioSource: {fileID: 2023155522636961866}
   enterSound: {fileID: 8300000, guid: c86476186f357d44eb470d68a2986520, type: 3}
   escapeSound: {fileID: 8300000, guid: cff0e50a53df0a94299dc5ef1863ab62, type: 3}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
 --- !u!82 &2023155522636961866
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2037,6 +2038,7 @@ MonoBehaviour:
   audioSource: {fileID: 286727253013992172}
   enterSound: {fileID: 8300000, guid: c86476186f357d44eb470d68a2986520, type: 3}
   escapeSound: {fileID: 8300000, guid: cff0e50a53df0a94299dc5ef1863ab62, type: 3}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
 --- !u!82 &286727253013992172
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3029,6 +3031,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tunnel_entrance (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9d52b4852c470e3458f1e5c2e33ef51b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3163,7 +3169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d5e2b8d394cef8f45b0f158da59b7e73, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3317,7 +3323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 403588931279134252, guid: 00769e2e8b197d14987271ae930b3e6d, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1067921912436114582, guid: 00769e2e8b197d14987271ae930b3e6d, type: 3}
       propertyPath: m_LocalScale.x
@@ -3589,7 +3595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 403588931279134252, guid: 00769e2e8b197d14987271ae930b3e6d, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1067921912436114582, guid: 00769e2e8b197d14987271ae930b3e6d, type: 3}
       propertyPath: m_LocalScale.x
@@ -3976,6 +3982,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9d52b4852c470e3458f1e5c2e33ef51b, type: 3}
       propertyPath: m_Name
       value: tunnel_entrance
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9d52b4852c470e3458f1e5c2e33ef51b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

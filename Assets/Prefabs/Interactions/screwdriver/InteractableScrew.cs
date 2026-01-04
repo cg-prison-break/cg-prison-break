@@ -60,7 +60,7 @@ namespace Prefabs.Interactions.screwdriver
     
         public void OnScrewAnimationFinished()
         {
-            Debug.Log("Screwing Finished.");
+            Debug.Log("Notify about Screwing... Screwing Finished.");
             windowScrewHandler.notifyAboutUnscrewAction();
             Destroy(parent);
         }
