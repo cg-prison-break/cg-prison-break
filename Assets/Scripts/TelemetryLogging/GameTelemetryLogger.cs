@@ -4,17 +4,18 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using Newtonsoft.Json;
 
 public static class GameTelemetryLogger
 {
     private static readonly ConcurrentQueue<string> logQueue = new();
     private static string filePath;
     private static bool isRunning;
+    private static GameData gameData;
 
-    public static void Initialize()
+    public static void Initialize(GameData game_data)
     {
         SessionManager.Initialize();
+        gameData = game_data;
 
         string fileName =
             $"participant_{SessionManager.ParticipantId}_" +
@@ -41,10 +42,12 @@ public static class GameTelemetryLogger
         var logEvent = new TelemetryEvent
         {
             timestamp = DateTime.UtcNow.ToString("o"),
+            game_time = gameData.timer,
+            player_position = PlayerRegistry.Player != null ? PlayerRegistry.Player.transform.position : Vector3.zero,
             event_data = eventData
         };
 
-        string json = JsonConvert.SerializeObject(logEvent);
+        string json = JsonUtility.ToJson(logEvent);
         logQueue.Enqueue(json);
     }
 

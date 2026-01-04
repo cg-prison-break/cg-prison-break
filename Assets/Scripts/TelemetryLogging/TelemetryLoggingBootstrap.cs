@@ -8,7 +8,7 @@ public class TelemetryLoggingBootstrap : MonoBehaviour
     {
         if (!gameData.telemetryLoggingBootstrapped)
         {
-            GameTelemetryLogger.Initialize();
+            GameTelemetryLogger.Initialize(gameData);
             gameData.telemetryLoggingBootstrapped = true;
         }
     }
