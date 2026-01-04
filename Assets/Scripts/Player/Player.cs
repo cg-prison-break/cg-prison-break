@@ -185,11 +185,7 @@ public class Player : MonoBehaviour
     public void ShowNewItemHint(ItemData item)
     {
         string name = item.itemName.Contains("karte") ? "Sicherheitskarte" : item.itemName;
-        for (int i = 0; i < gameData.collectedItems.Count; i++)
-        {
-            if (gameData.collectedItems[i] == name)
-                return; // already collected
-        }
+        if (gameData.collectedItems.Contains(name)) return;
         gameData.collectedItems.Add(name);
         itemHud.ShowNewItemHint();
     }
