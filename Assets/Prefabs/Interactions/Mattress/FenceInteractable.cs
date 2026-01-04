@@ -48,7 +48,7 @@ namespace Prefabs.Interactions.Mattress
             {
                 NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
                 GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(wireCutterItemData.itemName));
-                GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("FenceCutted"));
+                GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("FenceCut"));
                 var audioSourceFenceRattle = interactor.GetComponents<AudioSource>()[0];
                 audioSourceFenceRattle.PlayOneShot(cutWireClip);
                 animatedWireCutter.SetActive(true);

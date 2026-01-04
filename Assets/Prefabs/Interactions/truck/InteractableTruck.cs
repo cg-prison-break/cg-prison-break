@@ -48,7 +48,7 @@ namespace Prefabs.Interactions.truck
 
             interactor.RemoveItem(_connectedItems[0]);
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
-            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("Truck"));
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("Truck1"));
 
             var characterController = interactor.GetComponent<CharacterController>();
             characterController.enabled = false;
@@ -71,7 +71,7 @@ namespace Prefabs.Interactions.truck
             
             characterController.enabled = true;
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
-            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("Truck"));
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("Truck2"));
             Destroy(gameObject);
         }
     }
