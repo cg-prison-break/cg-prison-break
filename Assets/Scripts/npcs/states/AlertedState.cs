@@ -3,7 +3,7 @@ using UnityEngine;
 public class AlertedState : NPCState
 {
     private readonly float catchDistance = 1.2f;
-    private readonly float catchDuration = 2.0f;
+    private readonly float catchDuration = 0.5f;
     private readonly float lostSightDuration = 4.0f;
 
     private float catchTimer = 0f;
@@ -39,13 +39,14 @@ public class AlertedState : NPCState
     {
         if (npc.HasPlayerInsight())
         {
-            if (NavMeshUtils.IsPositionOnNavMesh(PlayerRegistry.Player.transform.position))
+            var catchTarget = PlayerRegistry.Player.transform.position + PlayerRegistry.Player.transform.forward;
+            if (NavMeshUtils.IsPositionOnNavMesh(catchTarget))
             {
-                lastKnownPlayerPosition = PlayerRegistry.Player.transform.position;
+                lastKnownPlayerPosition = catchTarget;
             }
             else
             {
-                NavMeshUtils.TryFindValidNavMeshPosition(PlayerRegistry.Player.transform.position, 0.1f, 0.001f, out lastKnownPlayerPosition);
+                NavMeshUtils.TryFindValidNavMeshPosition(catchTarget, 0.1f, 0.001f, out lastKnownPlayerPosition);
             }
             lostSightTimer = 0f;
 
