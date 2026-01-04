@@ -87,7 +87,7 @@ namespace Prefabs.Interactions.Mattress
             // check if the player is near to the object, then set the layer of the object and all of its children to "Interactable"
             if (Vector3.Distance(transform.position, player.transform.position) < 5.5f)
             {
-                SetLayerRecursively(gameObject, LayerMask.NameToLayer(GetInteractableLayerName()));
+                gameObject.layer =  LayerMask.NameToLayer(GetInteractableLayerName());
                 if (!gameData.playWithInteractableShader)
                 {
                     // todo: implement logic for making lights on when shader is disabled
@@ -95,16 +95,7 @@ namespace Prefabs.Interactions.Mattress
             }
             else
             {
-                SetLayerRecursively(gameObject, LayerMask.NameToLayer("Default"));
-            }
-        }
-        
-        private void SetLayerRecursively(GameObject obj, int layer)
-        {
-            obj.layer = layer;
-            foreach (Transform child in obj.transform)
-            {
-                SetLayerRecursively(child.gameObject, layer);
+                gameObject.layer = LayerMask.NameToLayer("Default");
             }
         }
         

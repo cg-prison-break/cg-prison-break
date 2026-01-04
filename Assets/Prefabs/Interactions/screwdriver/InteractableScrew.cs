@@ -8,9 +8,7 @@ namespace Prefabs.Interactions.screwdriver
     {
         [SerializeField]private List<ItemData> _connectedItems;
         public Animator animator;
-        public GameObject parent;
         public GameObject animatedScrewDriver;
-        public WindowScrewHandler windowScrewHandler;
         public AudioSource audioSource;
         private bool _isScrewing;
         [SerializeField] private GameData gameData;
@@ -56,13 +54,6 @@ namespace Prefabs.Interactions.screwdriver
             _isScrewing = true;
             audioSource.Play();
             animator.Play("ScrewAnimation");
-        }
-    
-        public void OnScrewAnimationFinished()
-        {
-            Debug.Log("Notify about Screwing... Screwing Finished.");
-            windowScrewHandler.notifyAboutUnscrewAction();
-            Destroy(parent);
         }
 
         public List<ItemData> ConnectedItems { get => _connectedItems; }
