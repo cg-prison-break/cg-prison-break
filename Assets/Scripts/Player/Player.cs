@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameData gameData;
     [SerializeField] private PauseMenu pauseMenuManager;
 
-    [Header("Inventory-Sounds")] 
+    [Header("Inventory-Sounds")]
     [SerializeField] private AudioSource dropItemSound;
     [SerializeField] private AudioSource pickupItemSound;
     [SerializeField] private AudioSource inventoryFullItemNotDroppableSound;
@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
     {
         DropItemFromSlot(_selectedSlot);
     }
-    
+
     public bool IsInventoryFull()
     {
         return _inventory.All(item => item != null);
@@ -189,7 +189,6 @@ public class Player : MonoBehaviour
         {
             if (gameData.collectedItems[i] == name)
                 return; // already collected
-            
         }
         gameData.collectedItems.Add(name);
         itemHud.ShowNewItemHint();
