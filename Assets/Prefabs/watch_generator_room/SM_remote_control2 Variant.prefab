@@ -56,8 +56,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_remote_control2 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6599944564891121379, guid: 67d795c36b5b64c41929efea6e75d960, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6599944564891121379, guid: 67d795c36b5b64c41929efea6e75d960, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4998809912264845435}
   m_SourcePrefab: {fileID: 100100000, guid: 67d795c36b5b64c41929efea6e75d960, type: 3}
+--- !u!1 &877578232994229095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6599944564891121379, guid: 67d795c36b5b64c41929efea6e75d960, type: 3}
+  m_PrefabInstance: {fileID: 6321503968214556036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4998809912264845435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877578232994229095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7027bb90d34014e96e1a7fcab6a4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'

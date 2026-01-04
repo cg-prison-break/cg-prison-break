@@ -75923,6 +75923,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.16777794
       objectReference: {fileID: 0}
+    - target: {fileID: 6630687859964701868, guid: 5975a3298aa734744b7d6ea8871b731c, type: 3}
+      propertyPath: prefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630687859964701868, guid: 5975a3298aa734744b7d6ea8871b731c, type: 3}
+      propertyPath: 'prefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2500056889572875166, guid: 8b4c93a7d79d09446a7f857af38720e2, type: 3}
     - target: {fileID: 7114418458910597703, guid: 5975a3298aa734744b7d6ea8871b731c, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.50000024

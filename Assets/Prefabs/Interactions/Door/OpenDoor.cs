@@ -129,6 +129,16 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         }));
     }
 
+    public void OpenInstantly()
+    {
+        if (isOpen) return;
+
+        isOpen = true;
+        animator.SetBool("locked", false);
+        animator.SetBool("open", true);
+        animator.SetBool("start", false);
+    }
+
     public void Close()
     {
         if (!isOpen) return;
