@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
             itemHud.RefreshIcons();
             if (playSound)
                 pickupItemSound.Play();
+            ShowNewItemHint(item);
             return true;
         }
 
@@ -179,5 +180,18 @@ public class Player : MonoBehaviour
     public bool IsInventoryFull()
     {
         return _inventory.All(item => item != null);
+    }
+
+    public void ShowNewItemHint(ItemData item)
+    {
+        string name = item.itemName.Contains("karte") ? "Sicherheitskarte" : item.itemName;
+        for (int i = 0; i < gameData.collectedItems.Count; i++)
+        {
+            if (gameData.collectedItems[i] == name)
+                return; // already collected
+            
+        }
+        gameData.collectedItems.Add(name);
+        itemHud.ShowNewItemHint();
     }
 }

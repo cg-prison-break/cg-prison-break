@@ -11,12 +11,35 @@ namespace ui.Hud
     [SerializeField] private Vector2 startOffset = new Vector2(30f, -30f);
     [SerializeField] private Vector2 spacing = new Vector2(55f, -55f);
     [SerializeField] private int itemsPerRow = 4;
+    [SerializeField] private GameObject newItemHintPrefab;
     private int _fixedInventorySize = 8;
     private int _selectedSlot = 0;
+    private RectTransform _newItemHintRect;
+    private CanvasGroup _newItemHintCanvas;
+    private Vector2 _newItemHintStartPos;
+    private Coroutine _newItemHintRoutine;
 
     private void OnEnable()
     {
         RefreshIcons();
+    }
+    
+    private void Awake()
+    {
+        if (newItemHintPrefab != null)
+        {
+            _newItemHintRect = newItemHintPrefab.GetComponent<RectTransform>();
+            if (_newItemHintRect != null)
+            {
+                _newItemHintStartPos = _newItemHintRect.anchoredPosition;
+            }
+
+            _newItemHintCanvas = newItemHintPrefab.GetComponent<CanvasGroup>();
+            if (_newItemHintCanvas == null)
+            {
+                _newItemHintCanvas = newItemHintPrefab.AddComponent<CanvasGroup>();
+            }
+        }
     }
 
     // Expose the player's current inventory to the UI
@@ -84,6 +107,89 @@ namespace ui.Hud
         _selectedSlot = selectedSlot;
         RefreshIcons();
     }
-}
 
+    public void ShowNewItemHint()
+    {
+        if (newItemHintPrefab == null)
+        {
+            return;
+        }
+
+        if (_newItemHintRoutine != null)
+        {
+            StopCoroutine(_newItemHintRoutine);
+        }
+
+        if (_newItemHintRect == null)
+        {
+            _newItemHintRect = newItemHintPrefab.GetComponent<RectTransform>();
+            if (_newItemHintRect != null)
+            {
+                _newItemHintStartPos = _newItemHintRect.anchoredPosition;
+            }
+        }
+
+        if (_newItemHintCanvas == null)
+        {
+            _newItemHintCanvas = newItemHintPrefab.GetComponent<CanvasGroup>();
+            if (_newItemHintCanvas == null)
+            {
+                _newItemHintCanvas = newItemHintPrefab.AddComponent<CanvasGroup>();
+            }
+        }
+
+        _newItemHintRoutine = StartCoroutine(PlayNewItemHint());
+    }
+
+    private System.Collections.IEnumerator PlayNewItemHint()
+    {
+        const float hintMoveDistance = 200f;
+        const float hintMoveDuration = 0.5f;
+        const float hintHoldDuration = 10f;
+        const float hintFadeDuration = 0.5f;
+
+        newItemHintPrefab.SetActive(true);
+        if (_newItemHintRect != null)
+        {
+            _newItemHintRect.anchoredPosition = _newItemHintStartPos;
+        }
+        if (_newItemHintCanvas != null)
+        {
+            _newItemHintCanvas.alpha = 1f;
+        }
+
+        if (_newItemHintRect != null && hintMoveDuration > 0f)
+        {
+            Vector2 startPos = _newItemHintStartPos;
+            Vector2 endPos = startPos + new Vector2(0f, hintMoveDistance);
+            float elapsed = 0f;
+            while (elapsed < hintMoveDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / hintMoveDuration);
+                _newItemHintRect.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
+                yield return null;
+            }
+        }
+
+        if (hintHoldDuration > 0f)
+        {
+            yield return new WaitForSeconds(hintHoldDuration);
+        }
+
+        if (_newItemHintCanvas != null && hintFadeDuration > 0f)
+        {
+            float elapsed = 0f;
+            while (elapsed < hintFadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / hintFadeDuration);
+                _newItemHintCanvas.alpha = Mathf.Lerp(1f, 0f, t);
+                yield return null;
+            }
+        }
+
+        newItemHintPrefab.SetActive(false);
+    }
+}
 }
