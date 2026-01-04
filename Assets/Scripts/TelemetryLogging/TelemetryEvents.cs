@@ -80,11 +80,13 @@ public class GameStartData : TelemetryEventDataBase
 public class GameWonData : TelemetryEventDataBase
 {
     public int strikes { get; }
+    public bool secret_escape_used { get; }
 
-    public GameWonData(int strikes)
+    public GameWonData(int strikes, bool secret_escape_used)
     {
         eventType = TelemetryEventType.GameWon;
         this.strikes = strikes;
+        this.secret_escape_used = secret_escape_used;
     }
 }
 
