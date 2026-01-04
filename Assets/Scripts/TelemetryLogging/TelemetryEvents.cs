@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using UnityEngine;
 
@@ -5,16 +7,17 @@ public enum TelemetryEventType
 {
     SessionStart,
     SessionEnd,
+    GameStart,
     GameWon,
     GameOver,
     PlayerCaught,
     NPCInteracted,
-    ItemCollected,
+    ItemPickedUp,
     ItemDropped,
     ItemUsed,
     SpreadsheetOpened,
+    SpreadsheetClosed,
     SpreadsheetRouteClicked,
-    RoomEntered,
     SuspiciousEventTriggered,
     SuspiciousPrisonGuard,
     AlertedPrisonGuard
@@ -23,7 +26,7 @@ public enum TelemetryEventType
 [Serializable]
 public class TelemetryEventDataBase
 {
-    public string eventType;
+    [JsonConverter(typeof(StringEnumConverter))] public TelemetryEventType eventType;
 }
 
 [Serializable]
@@ -46,7 +49,7 @@ public class SessionStartData : TelemetryEventDataBase
 
     public SessionStartData(string sessionId, string participantId, string unityVersion, string platform, string gameVersion)
     {
-        eventType = TelemetryEventType.SessionStart.ToString();
+        eventType = TelemetryEventType.SessionStart;
         session_id = sessionId ?? string.Empty;
         participant_id = participantId ?? string.Empty;
         unity_version = unityVersion ?? string.Empty;
@@ -60,7 +63,16 @@ public class SessionEndData : TelemetryEventDataBase
 {
     public SessionEndData()
     {
-        eventType = TelemetryEventType.SessionEnd.ToString();
+        eventType = TelemetryEventType.SessionEnd;
+    }
+}
+
+[Serializable]
+public class GameStartData : TelemetryEventDataBase
+{
+    public GameStartData()
+    {
+        eventType = TelemetryEventType.GameStart;
     }
 }
 
@@ -71,7 +83,7 @@ public class GameWonData : TelemetryEventDataBase
 
     public GameWonData(int strikes)
     {
-        eventType = TelemetryEventType.GameWon.ToString();
+        eventType = TelemetryEventType.GameWon;
         this.strikes = strikes;
     }
 }
@@ -81,7 +93,7 @@ public class GameOverData : TelemetryEventDataBase
 {
     public GameOverData()
     {
-        eventType = TelemetryEventType.GameOver.ToString();
+        eventType = TelemetryEventType.GameOver;
     }
 }
 
@@ -92,7 +104,7 @@ public class PlayerCaughtData : TelemetryEventDataBase
 
     public PlayerCaughtData(int strike)
     {
-        eventType = TelemetryEventType.PlayerCaught.ToString();
+        eventType = TelemetryEventType.PlayerCaught;
         this.strike = strike;
     }
 }
@@ -104,7 +116,7 @@ public class NPCInteractedData : TelemetryEventDataBase
 
     public NPCInteractedData(NPC npc)
     {
-        eventType = TelemetryEventType.NPCInteracted.ToString();
+        eventType = TelemetryEventType.NPCInteracted;
 
         if (npc is Prisoner)
         {
@@ -118,13 +130,13 @@ public class NPCInteractedData : TelemetryEventDataBase
 }
 
 [Serializable]
-public class ItemCollectedData : TelemetryEventDataBase
+public class ItemPickedUpData : TelemetryEventDataBase
 {
     public string item_name { get; }
 
-    public ItemCollectedData(string itemName)
+    public ItemPickedUpData(string itemName)
     {
-        eventType = TelemetryEventType.ItemCollected.ToString();
+        eventType = TelemetryEventType.ItemPickedUp;
         item_name = itemName;
     }
 }
@@ -137,7 +149,7 @@ public class ItemDroppedData : TelemetryEventDataBase
 
     public ItemDroppedData(string itemName, int slot)
     {
-        eventType = TelemetryEventType.ItemDropped.ToString();
+        eventType = TelemetryEventType.ItemDropped;
         item_name = itemName;
         this.slot = slot;
     }
@@ -150,7 +162,7 @@ public class ItemUsedData : TelemetryEventDataBase
 
     public ItemUsedData(string itemName)
     {
-        eventType = TelemetryEventType.ItemUsed.ToString();
+        eventType = TelemetryEventType.ItemUsed;
         item_name = itemName;
     }
 }
@@ -160,7 +172,16 @@ public class SpreadsheetOpenedData : TelemetryEventDataBase
 {
     public SpreadsheetOpenedData()
     {
-        eventType = TelemetryEventType.SpreadsheetOpened.ToString();
+        eventType = TelemetryEventType.SpreadsheetOpened;
+    }
+}
+
+[Serializable]
+public class SpreadsheetClosedData : TelemetryEventDataBase
+{
+    public SpreadsheetClosedData()
+    {
+        eventType = TelemetryEventType.SpreadsheetClosed;
     }
 }
 
@@ -171,20 +192,8 @@ public class SpreadsheetRouteClickedData : TelemetryEventDataBase
 
     public SpreadsheetRouteClickedData(string routeName)
     {
-        eventType = TelemetryEventType.SpreadsheetRouteClicked.ToString();
+        eventType = TelemetryEventType.SpreadsheetRouteClicked;
         route_name = routeName;
-    }
-}
-
-[Serializable]
-public class RoomEnteredData : TelemetryEventDataBase
-{
-    public string room_name { get; }
-
-    public RoomEnteredData(string roomName)
-    {
-        eventType = TelemetryEventType.RoomEntered.ToString();
-        room_name = roomName;
     }
 }
 
@@ -192,10 +201,10 @@ public class RoomEnteredData : TelemetryEventDataBase
 public class SuspiciousEventTriggeredData : TelemetryEventDataBase
 {
     public string reason { get; }
-    public SuspiciousEventTriggeredData(string eventName)
+    public SuspiciousEventTriggeredData(string reason)
     {
-        eventType = TelemetryEventType.SuspiciousEventTriggered.ToString();
-        reason = eventName;
+        eventType = TelemetryEventType.SuspiciousEventTriggered;
+        this.reason = reason;
     }
 }
 
@@ -206,7 +215,7 @@ public class SuspiciousPrisonGuardData : TelemetryEventDataBase
 
     public SuspiciousPrisonGuardData(Vector3 location)
     {
-        eventType = TelemetryEventType.SuspiciousPrisonGuard.ToString();
+        eventType = TelemetryEventType.SuspiciousPrisonGuard;
         prison_guard_location = location;
     }
 }
@@ -218,7 +227,7 @@ public class AlertedPrisonGuardData : TelemetryEventDataBase
 
     public AlertedPrisonGuardData(Vector3 location)
     {
-        eventType = TelemetryEventType.AlertedPrisonGuard.ToString();
+        eventType = TelemetryEventType.AlertedPrisonGuard;
         prison_guard_location = location;
     }
 }

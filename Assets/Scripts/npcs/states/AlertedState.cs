@@ -34,6 +34,8 @@ public class AlertedState : NPCState
         lostSightTimer = 0f;
 
         UpdateStateHint(npc);
+
+        GameTelemetryLogger.LogTelemetryEvent(new AlertedPrisonGuardData(npc.transform.position));
     }
 
     public override void ExitState(NPC npc)

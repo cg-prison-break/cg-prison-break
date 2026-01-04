@@ -47,6 +47,8 @@ namespace Prefabs.Interactions.Mattress
             if (interactor.HasItem(wireCutterItemData))
             {
                 NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
+                GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(wireCutterItemData.itemName));
+                GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("FenceCutted"));
                 var audioSourceFenceRattle = interactor.GetComponents<AudioSource>()[0];
                 audioSourceFenceRattle.PlayOneShot(cutWireClip);
                 animatedWireCutter.SetActive(true);
@@ -56,6 +58,7 @@ namespace Prefabs.Interactions.Mattress
                 foreach (var item in ConnectedItems)
                 {
                     interactor.RemoveItem(item);
+                    GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(item.itemName));
                 }
 
                 var gameObjectFenceWithMattress = Instantiate(fenceWithMattressPrefab, parent.transform.position,
@@ -63,6 +66,7 @@ namespace Prefabs.Interactions.Mattress
                 var audioSourcePlaceMattress = gameObjectFenceWithMattress.GetComponents<AudioSource>()[0];
                 var audioSourceFenceRattle = gameObjectFenceWithMattress.GetComponents<AudioSource>()[1];
                 NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
+                GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("FenceMatressRope"));
                 audioSourceFenceRattle.Play();
                 audioSourcePlaceMattress.Play();
                 Destroy(parent);

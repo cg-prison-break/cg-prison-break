@@ -28,6 +28,7 @@ public class DataManager : MonoBehaviour
     private void IncrementStrikes()
     {
         gameData.strikes++;
+        GameTelemetryLogger.LogTelemetryEvent(new PlayerCaughtData(gameData.strikes));
     }
     
     public static void PlayerCaught()

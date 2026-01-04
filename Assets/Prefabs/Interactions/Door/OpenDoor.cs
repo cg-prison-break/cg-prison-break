@@ -46,6 +46,11 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
             return;
         }
 
+        foreach (var item in ConnectedItems)
+        {
+            GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(item.itemName));
+        }
+
         // open the door
         Open();
     }
@@ -61,6 +66,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
             if (isSecuredSomehow)
             {
                 NPCEventManager.NotifyNPCsAboutSuspiciousAction(transform.position);
+                GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("SecuredDoorOpened"));
             } 
             // start auto close timer if enabled
             if (autoCloseDelay > 0)

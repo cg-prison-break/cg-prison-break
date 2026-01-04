@@ -38,12 +38,18 @@ namespace Prefabs.Interactions.wall_detonation
         {
             if (!interactor.HasAll(_connectedItems)) return;
 
+            foreach (var item in ConnectedItems)
+            {
+                GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(item.itemName));
+            }
+
             var gameObjectDynamite = Instantiate(animatedDynamite, transform.position, transform.rotation);
             var burningDynamite = gameObjectDynamite.GetComponent<BurningDynamite>();
             burningDynamite.SetParentWall(parentWall);
             interactor.RemoveItem(_connectedItems[0]);
             interactor.GetComponents<AudioSource>()[0].PlayOneShot(placeDynamiteSoundClip);
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("DynamitePlaced"));
         }
     }
 }

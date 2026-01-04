@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public static class GameTelemetryLogger
 {
@@ -15,6 +16,11 @@ public static class GameTelemetryLogger
     public static void Initialize(GameData game_data)
     {
         SessionManager.Initialize();
+        JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+        {
+            Converters = { new Vector3JsonConverter() }
+        };
+
         gameData = game_data;
 
         string fileName =
@@ -47,7 +53,7 @@ public static class GameTelemetryLogger
             event_data = eventData
         };
 
-        string json = JsonUtility.ToJson(logEvent);
+        string json = JsonConvert.SerializeObject(logEvent);
         logQueue.Enqueue(json);
     }
 

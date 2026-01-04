@@ -77,6 +77,8 @@ public class PrisonGuard : NPC
 
     public override void Interact(Player interactor)
     {
+        GameTelemetryLogger.LogTelemetryEvent(new NPCInteractedData(this));
+
         // allow interaction only during random movement
         if (currentState is RandomMovementState)
         {

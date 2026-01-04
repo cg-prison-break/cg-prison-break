@@ -24,6 +24,8 @@ namespace Prefabs.Interactions.tunnel
         public void Interact(Player interactor)
         {
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("ClimbedIntoTunnel"));
+
             var cc = interactor.GetComponent<CharacterController>();
             SetCharacterController(cc, false);
 
