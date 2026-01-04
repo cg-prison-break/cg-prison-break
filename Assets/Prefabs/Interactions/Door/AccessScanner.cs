@@ -11,6 +11,8 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
 
     [Header("Door Interaction")]
     [SerializeField] private OpenDoor door;
+    
+    [SerializeField] private GameData gameData;
 
     // Interaction prompt (read-only external)
     public string InteractionPrompt
@@ -82,5 +84,32 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
 
         // open the door
         door.Open();
+    }
+    
+    private void FixedUpdate()
+    {
+        var player = PlayerRegistry.Player;
+        // check if the player is near to the object, then set the layer of the object and all of its children to "Interactable"
+        if (Vector3.Distance(transform.position, player.transform.position) < 5.5f)
+        {
+            SetLayerRecursively(gameObject, LayerMask.NameToLayer("Interactable"));
+            if (!gameData.playWithInteractableShader)
+            {
+                // todo: implement logic for making lights on when shader is disabled
+            }
+        }
+        else
+        {
+            SetLayerRecursively(gameObject, LayerMask.NameToLayer("Default"));
+        }
+    }
+        
+    private void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
+        }
     }
 }

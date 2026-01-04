@@ -9,4 +9,7 @@ public class GameData : ScriptableObject
     public bool animationPlayed = false;
     public List<string> collectedItems = new List<string>();
     public bool telemetryLoggingBootstrapped = false;
+
+    public bool playWithInteractableShader = true;
+
 }
