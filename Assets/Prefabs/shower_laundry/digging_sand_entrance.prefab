@@ -54,7 +54,6 @@ MonoBehaviour:
   shovel: {fileID: 520226563874395907}
   _connectedItems:
   - {fileID: 11400000, guid: 3a370c544c248cc479e12c438d061401, type: 2}
-  _shovelItem: {fileID: 11400000, guid: 3a370c544c248cc479e12c438d061401, type: 2}
 --- !u!65 &6628872344248797313
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -264,7 +263,6 @@ MonoBehaviour:
   shovel: {fileID: 5896699830973185371}
   _connectedItems:
   - {fileID: 11400000, guid: 3a370c544c248cc479e12c438d061401, type: 2}
-  _shovelItem: {fileID: 11400000, guid: 3a370c544c248cc479e12c438d061401, type: 2}
 --- !u!1 &6988831967144806497
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +276,7 @@ GameObject:
   - component: {fileID: 1489556018328017834}
   - component: {fileID: 6393848649379201402}
   - component: {fileID: 3971333032830855603}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: digging_sand_entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -644,6 +642,10 @@ PrefabInstance:
     - target: {fileID: 4760770842120782622, guid: 556b076228b07b44290d0b144eecdaa7, type: 3}
       propertyPath: m_Name
       value: DiggingParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 4760770842120782622, guid: 556b076228b07b44290d0b144eecdaa7, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4760770842120782622, guid: 556b076228b07b44290d0b144eecdaa7, type: 3}
       propertyPath: m_IsActive
