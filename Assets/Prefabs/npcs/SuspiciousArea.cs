@@ -18,6 +18,7 @@ public class SuspiciousArea : MonoBehaviour
         if ((CanBeBypassed && !playerHasBypassItem) || !CanBeBypassed)
         {
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(transform.position, true);
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("SuspiciousAreaEntered"));
         }
     }
 }

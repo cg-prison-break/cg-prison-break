@@ -63,11 +63,13 @@ public class EscapeRoutePanel : MonoBehaviour
         {
             DisablePlayerControl();
             ShowCursor();
+            GameTelemetryLogger.LogTelemetryEvent(new SpreadsheetOpenedData());
         }
         else
         {
             EnablePlayerControl();
             RestoreCursor();
+            GameTelemetryLogger.LogTelemetryEvent(new SpreadsheetClosedData());
         }
     }
 
@@ -121,6 +123,7 @@ public class EscapeRoutePanel : MonoBehaviour
 
         escapeRoutePanel?.SetActive(false);
         detailPanel?.Show(title, description, image);
+        GameTelemetryLogger.LogTelemetryEvent(new SpreadsheetRouteClickedData(title));
     }
 
     public void ShowRoutesList()

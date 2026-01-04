@@ -43,6 +43,8 @@ public class SuspiciousState : NPCState
             searchCoroutine = null;
         }
         UpdateStateHint(npc);
+
+        GameTelemetryLogger.LogTelemetryEvent(new SuspiciousPrisonGuardData(npc.transform.position));
     }
 
     public override void ExitState(NPC npc)

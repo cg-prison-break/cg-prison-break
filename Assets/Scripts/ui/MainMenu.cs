@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     {
         gameData.strikes = 0;
         gameData.timer = 0.0f;
+        GameTelemetryLogger.LogTelemetryEvent(new GameStartData());
         SceneManager.LoadScene(gameData.animationPlayed ? GameScene.MainScene : GameScene.StartScene);
     } 
         

@@ -41,9 +41,15 @@ namespace Prefabs.Interactions.tunnel
         public void Interact(Player interactor)
         {
             if (_isDigging) return;
-            if (!interactor.HasAll(_connectedItems))
-                return;
+            if (!interactor.HasAll(_connectedItems)) return;
+
+            foreach (var item in ConnectedItems)
+            {
+                GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(item.itemName));
+            }
+
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("TunnelDigged"));
             _isDigging = true;
             shovel.SetActive(true);
         }

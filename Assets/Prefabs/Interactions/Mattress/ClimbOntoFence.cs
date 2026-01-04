@@ -19,7 +19,8 @@ namespace Prefabs.Interactions
             interactor.transform.position = climbingPoint;
             metalRattleSource.Play();
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
-            
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("FenceClimbed"));
+
             SetCharacterController(cc, true);
             Debug.Log("Climbed onto fence.");
         }

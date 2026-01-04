@@ -3414,6 +3414,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c007e14d6ad261f42ad2e90d23f4d1bc, type: 3}
+--- !u!1 &650152083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 650152085}
+  - component: {fileID: 650152084}
+  m_Layer: 0
+  m_Name: TelemetryBootstrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &650152084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650152083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b02a08cf1e19e1448e677c22d93771e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelemetryLoggingBootstrap
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
+--- !u!4 &650152085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650152083}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &654431944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3030826613192278171, guid: 83dbcd96e64c9824ebf38e401a746269, type: 3}
@@ -7162,3 +7207,4 @@ SceneRoots:
   - {fileID: 1250303577}
   - {fileID: 1882283659}
   - {fileID: 481871963}
+  - {fileID: 650152085}

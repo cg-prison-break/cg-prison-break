@@ -11,9 +11,9 @@ public class EndingCanvas : MonoBehaviour
     [SerializeField] private Button retryButton;
     [SerializeField] private GameObject victoryPanel;
     [SerializeField] private GameObject defeatPanel;
-    
+
     [SerializeField] private GameData gameData;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,7 +21,7 @@ public class EndingCanvas : MonoBehaviour
         if (defeatPanel != null) defeatPanel.SetActive(false);
 
         ShowEnding(EndingContext.NextEnding);
-        
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -30,23 +30,32 @@ public class EndingCanvas : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        
+
         bool good = type == EndingType.Good;
         GameObject endingPanel = good ? victoryPanel : defeatPanel;
-        
+
+        if (good)
+        {
+            GameTelemetryLogger.LogTelemetryEvent(new GameWonData(gameData.strikes));
+        }
+        else
+        {
+            GameTelemetryLogger.LogTelemetryEvent(new GameOverData());
+        }
+
         float time = gameData.timer;
         int minutes = Mathf.FloorToInt(time / 60f);
         float secondsFloat = time - minutes * 60;
         int seconds = Mathf.FloorToInt(secondsFloat);
         int centiseconds = Mathf.FloorToInt((secondsFloat - seconds) * 100f);
         centiseconds = Mathf.Clamp(centiseconds, 0, 99);
-        
+
         TMP_Text[] allTexts = endingPanel.GetComponentsInChildren<TMP_Text>();
         TMP_Text endingTime = allTexts.FirstOrDefault(t => t.gameObject.name == "TimeText");
-        
+
         string minutesPart = minutes > 0 ? $"{minutes}:" : "";
         endingTime.text = $"Finale Zeit: {minutesPart}{seconds:00}.{centiseconds:00}";
-        
+
         victoryPanel.SetActive(good);
         defeatPanel.SetActive(!good);
     }

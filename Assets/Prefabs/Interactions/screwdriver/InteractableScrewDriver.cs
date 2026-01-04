@@ -22,6 +22,7 @@ public class InteractableScrewDriver : MonoBehaviour, IInteractableItem
     {
         interactor.AddItem(itemData);
         NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
+        GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("ScrewDriverUsed"));
         Destroy(gameObject);
     }
 }
