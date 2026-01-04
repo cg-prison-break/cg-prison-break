@@ -57,7 +57,8 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
             }
         }
         // notify about suspicious action
-        NPCEventManager.NotifyNPCsAboutSuspiciousAction(player.transform.position);
+        SusPoint[] allSusPoints = GetComponentsInChildren<SusPoint>();
+        NPCEventManager.NotifyNPCsAboutSuspiciousAction(allSusPoints[Random.Range(0, allSusPoints.Length)].transform.position);
         
         // open the door
         door.Open();

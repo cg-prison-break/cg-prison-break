@@ -16,7 +16,9 @@ namespace Scanner
             if (player.HasItem(byPassItem)) return;
             var audioSource = GetComponent<AudioSource>();
             audioSource.Play();
-            NPCEventManager.NotifyNPCsAboutSuspiciousAction(player.transform.position);
+            var susPoints = GetComponentsInChildren<SusPoint>();
+            var randomSusPoint = susPoints[Random.Range(0, susPoints.Length)];
+            NPCEventManager.NotifyNPCsAboutSuspiciousAction(randomSusPoint.transform.position);
         }
     }
 }

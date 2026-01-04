@@ -90,7 +90,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39212841331837821}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -334000983
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -119,6 +119,8 @@ MonoBehaviour:
   animator: {fileID: 6710560974790347709}
   navMeshAgent: {fileID: 4663051120281060684}
   speed: 1
+  sightRange: 5
+  fieldOfViewAngle: 110
   audioSource: {fileID: 5385041757885866229}
   soundSet:
     interactionSounds:
