@@ -20,9 +20,21 @@ PrefabInstance:
       propertyPath: pickupSoundClip
       value: 
       objectReference: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
+    - target: {fileID: 4721814585684299415, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195002772951201121, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 7816319729534905308, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7848313267304808693, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 8327969599184899598, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
       propertyPath: m_LocalPosition.x

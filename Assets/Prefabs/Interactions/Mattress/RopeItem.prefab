@@ -13,6 +13,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6970671284699411059, guid: f102c15dd4f818a44aa191d35b8d9dae, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6970671284699411059, guid: f102c15dd4f818a44aa191d35b8d9dae, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: e76668e6e91b5c04a82d2e9a1a03032b, type: 2}
@@ -58,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8916055143265964966, guid: f102c15dd4f818a44aa191d35b8d9dae, type: 3}
       propertyPath: m_Name
-      value: RoteItem
+      value: RopeItem
       objectReference: {fileID: 0}
     - target: {fileID: 8916055143265964966, guid: f102c15dd4f818a44aa191d35b8d9dae, type: 3}
       propertyPath: m_Layer
@@ -90,4 +94,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _itemData: {fileID: 11400000, guid: 2c8c3fdd76048394eb5236a32bfa81a7, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
