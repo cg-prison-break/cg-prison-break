@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ui.Hud;
@@ -145,12 +146,7 @@ public class Player : MonoBehaviour
     {
         if (gameData.strikes >= 3)
         {
-            if (audioSource != null && gameOverAudioClip != null)
-            {
-                audioSource.PlayOneShot(gameOverAudioClip);
-            }
-            EndingContext.NextEnding = EndingType.Bad;
-            SceneManager.LoadScene(GameScene.Ending);
+            StartCoroutine(PlayGameOverSound(audioSource));
         }
         else
         {
@@ -160,6 +156,25 @@ public class Player : MonoBehaviour
             }
             pauseMenuManager.OpenRetryMenu();
         }
+    }
+
+    private IEnumerator PlayGameOverSound(AudioSource audioSource)
+    {
+        // Avoid player actions during game over sequence
+        foreach (var script in GetComponents<MonoBehaviour>())
+        {
+            script.enabled = false;
+        }
+
+        if (audioSource != null && gameOverAudioClip != null)
+        {
+            audioSource.PlayOneShot(gameOverAudioClip);
+            yield return new WaitForSeconds(gameOverAudioClip.length);
+        }
+
+        GameTelemetryLogger.LogTelemetryEvent(new GameOverData());
+        EndingContext.NextEnding = EndingType.Bad;
+        SceneManager.LoadScene(GameScene.Ending);
     }
 
     public void SelectSlot(float slotValue)
