@@ -92,7 +92,7 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
         // check if the player is near to the object, then set the layer of the object and all of its children to "Interactable"
         if (Vector3.Distance(transform.position, player.transform.position) < 5.5f)
         {
-            SetLayerRecursively(gameObject, LayerMask.NameToLayer("Interactable"));
+            SetLayerRecursively(gameObject, LayerMask.NameToLayer(GetInteractableLayerName()));
             if (!gameData.playWithInteractableShader)
             {
                 // todo: implement logic for making lights on when shader is disabled
@@ -103,7 +103,12 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
             SetLayerRecursively(gameObject, LayerMask.NameToLayer("Default"));
         }
     }
-        
+
+    private string GetInteractableLayerName()
+    {
+        return gameData.playWithInteractableShader ? "Interactable" : "InteractableNoOutline";
+    }
+
     private void SetLayerRecursively(GameObject obj, int layer)
     {
         obj.layer = layer;
