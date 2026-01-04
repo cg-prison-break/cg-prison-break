@@ -133,7 +133,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(GameScene.MainMenu);
     }
-    
+
     public void Retry()
     {
         Time.timeScale = 1f;
