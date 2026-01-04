@@ -8,4 +8,5 @@ public class GameData : ScriptableObject
     public float timer = 0.0f;
     public bool animationPlayed = false;
     public List<string> collectedItems = new List<string>();
+    public bool telemetryLoggingBootstrapped = false;
 }
