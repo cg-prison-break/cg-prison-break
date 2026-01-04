@@ -42,9 +42,15 @@ namespace Prefabs.Interactions.screwdriver
             if (!interactor.HasAll(_connectedItems)) return;
             if (_isScrewing) return;
 
+            foreach (var item in ConnectedItems)
+            {
+                GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(item.itemName));
+            }
+
             Debug.Log("Screwing...");
             Debug.Log("Screwing...");
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("Screwed"));
             animatedScrewDriver.SetActive(true);
             _isScrewing = true;
             audioSource.Play();

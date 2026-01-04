@@ -25,6 +25,8 @@ public class SuspiciousState : NPCState
         npc.Movement.StartWalking();
 
         UpdateStateHint(npc);
+
+        GameTelemetryLogger.LogTelemetryEvent(new SuspiciousPrisonGuardData(npc.transform.position));
     }
 
     public override void ExitState(NPC npc)

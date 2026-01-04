@@ -37,8 +37,23 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
 
     public void Interact(Player player)
     {
-        GameObject usedCardPrefab = player.HasOneOf(ConnectedItems) ? ConnectedItems[0].prefab :
-                              player.HasItem(MasterCard) ? MasterCard.prefab : null;
+        GameObject usedCardPrefab;
+        if (player.HasOneOf(ConnectedItems))
+        {
+            usedCardPrefab = ConnectedItems[0].prefab;
+            GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(ConnectedItems[0].itemName));
+        }
+        else if (player.HasItem(MasterCard))
+        {
+            usedCardPrefab = MasterCard.prefab;
+            GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(MasterCard.itemName));
+        }
+        else
+        {
+            Debug.Log("Access denied: You need a valid access card.");
+            return; // no valid card
+        }
+
         if (usedCardPrefab == null) return; // no valid card
 
         // get used card material
@@ -57,8 +72,10 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
             }
         }
         // notify about suspicious action
-        NPCEventManager.NotifyNPCsAboutSuspiciousAction(player.transform.position);
-        
+        SusPoint[] allSusPoints = GetComponentsInChildren<SusPoint>();
+        NPCEventManager.NotifyNPCsAboutSuspiciousAction(allSusPoints[Random.Range(0, allSusPoints.Length)].transform.position);
+        GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("AccessScanner"));
+
         // open the door
         door.Open();
     }

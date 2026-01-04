@@ -13,10 +13,17 @@ namespace Scanner
             if (!other.CompareTag("Player")) return;
             var player = other.GetComponent<Player>();
             if (!player.HasOneOf(illegalItems)) return;
-            if (player.HasItem(byPassItem)) return;
+            if (player.HasItem(byPassItem))
+            {
+                GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(byPassItem.itemName));
+                return;
+            }
             var audioSource = GetComponent<AudioSource>();
             audioSource.Play();
-            NPCEventManager.NotifyNPCsAboutSuspiciousAction(player.transform.position);
+            var susPoints = GetComponentsInChildren<SusPoint>();
+            var randomSusPoint = susPoints[Random.Range(0, susPoints.Length)];
+            NPCEventManager.NotifyNPCsAboutSuspiciousAction(randomSusPoint.transform.position);
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("SecurityScanner"));
         }
     }
 }

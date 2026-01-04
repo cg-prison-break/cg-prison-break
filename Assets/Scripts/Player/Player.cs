@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameData gameData;
     [SerializeField] private PauseMenu pauseMenuManager;
 
-    [Header("Inventory-Sounds")] 
+    [Header("Inventory-Sounds")]
     [SerializeField] private AudioSource dropItemSound;
     [SerializeField] private AudioSource pickupItemSound;
     [SerializeField] private AudioSource inventoryFullItemNotDroppableSound;
@@ -62,6 +62,8 @@ public class Player : MonoBehaviour
             itemHud.RefreshIcons();
             if (playSound)
                 pickupItemSound.Play();
+            ShowNewItemHint(item);
+            GameTelemetryLogger.LogTelemetryEvent(new ItemPickedUpData(item.itemName));
             return true;
         }
 
@@ -118,6 +120,7 @@ public class Player : MonoBehaviour
         }
 
         Instantiate(_inventory[index].prefab, transform.position + transform.forward, Quaternion.identity);
+        GameTelemetryLogger.LogTelemetryEvent(new ItemDroppedData(_inventory[index].name, index));
         _inventory[index] = null;
         itemHud.RefreshIcons();
         dropItemSound.Play();
@@ -133,6 +136,7 @@ public class Player : MonoBehaviour
             return false;
 
         _inventory[index] = item;
+        GameTelemetryLogger.LogTelemetryEvent(new ItemPickedUpData(item.itemName));
         itemHud.RefreshIcons();
         return true;
     }
@@ -187,9 +191,17 @@ public class Player : MonoBehaviour
     {
         DropItemFromSlot(_selectedSlot);
     }
-    
+
     public bool IsInventoryFull()
     {
         return _inventory.All(item => item != null);
+    }
+
+    public void ShowNewItemHint(ItemData item)
+    {
+        string name = item.itemName.Contains("karte") ? "Sicherheitskarte" : item.itemName;
+        if (gameData.collectedItems.Contains(name)) return;
+        gameData.collectedItems.Add(name);
+        itemHud.ShowNewItemHint();
     }
 }

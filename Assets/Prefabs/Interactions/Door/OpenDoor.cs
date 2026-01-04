@@ -17,6 +17,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     [SerializeField] private float closeDuration = 1.0f;
 
     [SerializeField] private bool isOpen = false;
+    [SerializeField] private bool isSecuredSomehow = true;
     private Coroutine autoCloseCoroutine;
 
     public string InteractionPrompt
@@ -45,6 +46,11 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
             return;
         }
 
+        foreach (var item in ConnectedItems)
+        {
+            GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(item.itemName));
+        }
+
         // open the door
         Open();
     }
@@ -57,6 +63,11 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         StartCoroutine(InvokeAfter(closeDuration, () =>
         {
             isOpen = true;
+            if (isSecuredSomehow)
+            {
+                NPCEventManager.NotifyNPCsAboutSuspiciousAction(transform.position);
+                GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("SecuredDoorOpened"));
+            } 
             // start auto close timer if enabled
             if (autoCloseDelay > 0)
             {

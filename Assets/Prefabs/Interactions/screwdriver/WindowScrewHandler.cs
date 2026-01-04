@@ -27,6 +27,7 @@ namespace Prefabs.Interactions.screwdriver
         {
             Instantiate(windowWithoutGridWindow, transform.position, transform.rotation);
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("WindowUnscrewed"));
             Destroy(gameObject);
         }
         

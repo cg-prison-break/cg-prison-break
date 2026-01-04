@@ -20,6 +20,8 @@ namespace Prefabs.Interactions.screwdriver
             characterController.enabled = false;
 
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("Window"));
+
             if (tunnelState.GetInTunnel())
             {
                 HandleEnterCell(interactor);

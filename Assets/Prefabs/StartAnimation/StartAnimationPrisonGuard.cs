@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Prefabs.StartAnimation
 {
@@ -14,11 +16,19 @@ namespace Prefabs.StartAnimation
         [SerializeField] private AudioClip openKeySound;
         [SerializeField] private AudioClip lastGuardSpeech;
         [SerializeField] private AudioSource audioSource;
-    
+
         [Header("Animation Settings")]
         [SerializeField] private Animator walkingAnimator;
         [SerializeField] private Animator doorAnimator;
         [SerializeField] private Animator guardAnimator;
+
+        [Header("TutorialPanel")]
+        [SerializeField] private GameObject tutorialPanel;
+        [SerializeField] private GameObject backButton;
+        [SerializeField] private GameObject forwardButton;
+        [SerializeField] private GameObject exitButton;
+        private List<GameObject> _tutorialPages = new List<GameObject>();
+        private int _currentTutorialIndex = 0;
 
         private readonly float _lengthOfFirstGuardSpeech = 6.5f;
         private readonly float _lengthOfOpenKeySound = 4.5f;
@@ -31,7 +41,8 @@ namespace Prefabs.StartAnimation
 
         private void Start()
         {
-            StartCoroutine(GuardAnimationCoroutine());
+            CacheTutorialPages();
+            showTutorialPanel();
         }
 
         private IEnumerator GuardAnimationCoroutine()
@@ -46,6 +57,111 @@ namespace Prefabs.StartAnimation
             yield return new WaitForSeconds(_lengthOfLastGuardSpeech);
             guardAnimator.SetBool(IsWalking, true);
             walkingAnimator.SetBool(IsWalking, true);
+        }
+
+        private void showTutorialPanel()
+        {
+            tutorialPanel.SetActive(true);
+            SetCursorVisible(true);
+            backButton.SetActive(false);
+            forwardButton.SetActive(true);
+            exitButton.SetActive(false);
+            _currentTutorialIndex = 0;
+            SetActiveTutorialPage(_currentTutorialIndex);
+        }
+
+        private void CacheTutorialPages()
+        {
+            _tutorialPages.Clear();
+            if (tutorialPanel == null)
+            {
+                return;
+            }
+
+            foreach (Transform child in tutorialPanel.transform)
+            {
+                if (child != null)
+                {
+                    _tutorialPages.Add(child.gameObject);
+                }
+            }
+
+            foreach (var page in _tutorialPages)
+            {
+                page.SetActive(false);
+            }
+        }
+
+        private void SetActiveTutorialPage(int index)
+        {
+            if (_tutorialPages.Count == 0 || index < 0 || index >= _tutorialPages.Count)
+            {
+                return;
+            }
+
+            for (int i = 0; i < _tutorialPages.Count; i++)
+            {
+                _tutorialPages[i].SetActive(i == index);
+            }
+        }
+
+        public void ShowNextTutorialPage()
+        {
+            if (_tutorialPages.Count == 0)
+            {
+                return;
+            }
+
+            int nextIndex = _currentTutorialIndex + 1;
+            if (nextIndex >= _tutorialPages.Count)
+            {
+                return;
+            }
+
+            _currentTutorialIndex = nextIndex;
+            UpdateButtonLayout();
+            SetActiveTutorialPage(_currentTutorialIndex);
+        }
+
+        public void ShowPreviousTutorialPage()
+        {
+            if (_tutorialPages.Count == 0)
+            {
+                return;
+            }
+
+            int nextIndex = _currentTutorialIndex - 1;
+            if (nextIndex < 0)
+            {
+                return;
+            }
+
+            _currentTutorialIndex = nextIndex;
+            UpdateButtonLayout();
+            SetActiveTutorialPage(_currentTutorialIndex);
+        }
+
+        private void UpdateButtonLayout()
+        {
+            backButton.SetActive(_currentTutorialIndex > 0);
+            forwardButton.SetActive(_currentTutorialIndex < _tutorialPages.Count - 1);
+            exitButton.SetActive(_currentTutorialIndex == _tutorialPages.Count - 1);
+        }
+
+        public void ExitTutorial()
+        {
+            tutorialPanel.SetActive(false);
+            backButton.SetActive(false);
+            forwardButton.SetActive(false);
+            exitButton.SetActive(false);
+            SetCursorVisible(false);
+            StartCoroutine(GuardAnimationCoroutine());
+        }
+
+        private void SetCursorVisible(bool visible)
+        {
+            Cursor.visible = visible;
+            Cursor.lockState = visible ? CursorLockMode.None : CursorLockMode.Locked;
         }
     }
 }

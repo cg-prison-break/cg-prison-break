@@ -78,18 +78,31 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 931b1eea703300749bd20a735f7d1985, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6830197385626438470}
+      addedObject: {fileID: 5668682695844101908}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 931b1eea703300749bd20a735f7d1985, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5668682695844101908}
+      addedObject: {fileID: 3336962801496811615}
   m_SourcePrefab: {fileID: 100100000, guid: 931b1eea703300749bd20a735f7d1985, type: 3}
 --- !u!1 &8363837313183441022 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 931b1eea703300749bd20a735f7d1985, type: 3}
   m_PrefabInstance: {fileID: 8706364527982796079}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &6830197385626438470
-MeshCollider:
+--- !u!114 &5668682695844101908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363837313183441022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d6d9fc13a35b76419913f61097ed373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Crowbar
+  _itemData: {fileID: 11400000, guid: b5fb90d18c1b0054d8944ad1b396aa9f, type: 2}
+--- !u!65 &3336962801496811615
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,21 +119,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2163650615502520350, guid: 931b1eea703300749bd20a735f7d1985, type: 3}
---- !u!114 &5668682695844101908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8363837313183441022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d6d9fc13a35b76419913f61097ed373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Crowbar
-  _itemData: {fileID: 11400000, guid: b5fb90d18c1b0054d8944ad1b396aa9f, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.47, y: 0.07, z: 0.12}
+  m_Center: {x: 0.0000070407987, y: -0.00017950218, z: 0.0000014686957}
