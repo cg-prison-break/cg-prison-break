@@ -78,6 +78,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
             animator.SetBool("master", true);
             gameObject.layer = LayerMask.NameToLayer("Default"); // disable further interaction as door is now forced open
             // TODO remove master item from inventory?
+            player.RemoveItem(MasterItems[0]);
         }
 
         // open the door and log used items
