@@ -25,7 +25,8 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
 
     public string InteractionPrompt
     {
-        get {
+        get
+        {
             var prompt = "";
             var player = PlayerRegistry.Player;
             if (player == null)
@@ -35,7 +36,8 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
             if (CanInteract(player))
             {
                 prompt = $"Drücke F, um zu {(isOpen ? "schließen" : "öffnen")}.";
-            } else
+            }
+            else
             {
                 prompt = "Die Tür ist verschlossen. Suche nach einem passenden Gegenstand, um sie zu öffnen.";
             }
@@ -64,12 +66,25 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
             return;
         }
 
-        foreach (var item in ConnectedItems)
+        var usedItems = new List<ItemData>();
+        if (player.HasOneOf(ConnectedItems))
+        {
+            usedItems = ConnectedItems;
+            animator.SetBool("master", false);
+        }
+        else if (player.HasOneOf(MasterItems))
+        {
+            usedItems = MasterItems;
+            animator.SetBool("master", true);
+            gameObject.layer = LayerMask.NameToLayer("Default"); // disable further interaction as door is now forced open
+            // TODO remove master item from inventory?
+        }
+
+        // open the door and log used items
+        foreach (var item in usedItems)
         {
             GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(item.itemName));
         }
-
-        // open the door
         Open();
     }
 
