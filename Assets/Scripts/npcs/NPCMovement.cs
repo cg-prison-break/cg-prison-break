@@ -37,12 +37,7 @@ public class NPCMovement : MonoBehaviour
 
     public bool TryMoveToDestination(Vector3 destination)
     {
-        if (Vector3.Distance(agent.transform.position, destination) < 0.1f)
-        {
-            return false;
-        }
-
-        // check if destination can be reached
+         // check if destination can be reached
         NavMeshPath path = new NavMeshPath();
         bool hasPath = NavMesh.CalculatePath(
             agent.transform.position,
@@ -68,6 +63,11 @@ public class NPCMovement : MonoBehaviour
 
     public bool HasReachedDestination(float tolerance = 0.2f)
     {
+        if(Vector3.Distance(agent.transform.position, agent.destination) < tolerance)
+        {
+            return true;
+        }
+
         if (agent.pathPending || !agent.hasPath)
         {
             return false;
