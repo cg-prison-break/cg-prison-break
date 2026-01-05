@@ -76,6 +76,10 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
 
     public bool CanInteract(Player player)
     {
+        // Allow interaction if both lists are empty (unlocked door)
+        if (ConnectedItems.Count == 0 && MasterItems.Count == 0) return true;
+
+        // Otherwise require player to have at least one matching item
         return (ConnectedItems.Count > 0 && player.HasOneOf(ConnectedItems))
             || (MasterItems.Count > 0 && player.HasOneOf(MasterItems));
     }
