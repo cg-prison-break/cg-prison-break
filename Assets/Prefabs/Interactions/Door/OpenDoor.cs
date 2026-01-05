@@ -21,7 +21,6 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     [SerializeField] private float closeDuration = 1.0f;
 
     [SerializeField] private bool isOpen = false;
-    [SerializeField] private bool isSecuredSomehow = true;
     private Coroutine autoCloseCoroutine;
 
     public string InteractionPrompt
@@ -76,12 +75,14 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
 
     public bool CanInteract(Player player)
     {
-        // Allow interaction if both lists are empty (unlocked door)
-        if (ConnectedItems.Count == 0 && MasterItems.Count == 0) return true;
-
-        // Otherwise require player to have at least one matching item
-        return (ConnectedItems.Count > 0 && player.HasOneOf(ConnectedItems))
+        return !Lockable()
+            || (ConnectedItems.Count > 0 && player.HasOneOf(ConnectedItems))
             || (MasterItems.Count > 0 && player.HasOneOf(MasterItems));
+    }
+
+    public bool Lockable()
+    {
+        return ConnectedItems.Count > 0 || MasterItems.Count > 0;
     }
 
     public void Open()
@@ -92,11 +93,13 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         StartCoroutine(InvokeAfter(closeDuration, () =>
         {
             isOpen = true;
-            if (isSecuredSomehow)
+            // inform NPCs when door is an actual lockable door
+            if (Lockable())
             {
                 NPCEventManager.NotifyNPCsAboutSuspiciousAction(transform.position);
                 GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("SecuredDoorOpened"));
-            } 
+            }
+
             // start auto close timer if enabled
             if (autoCloseDelay > 0)
             {
