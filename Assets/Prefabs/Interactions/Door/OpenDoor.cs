@@ -37,7 +37,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
                 prompt = $"Drücke F, um zu {(isOpen ? "schließen" : "öffnen")}.";
             } else
             {
-                prompt = "Die Tür ist verschlossen.";
+                prompt = "Die Tür ist verschlossen. Suche nach einem passenden Schlüssel, um sie zu öffnen.";
             }
             return prompt;
         }
