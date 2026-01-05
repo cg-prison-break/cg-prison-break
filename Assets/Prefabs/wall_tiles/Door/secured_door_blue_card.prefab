@@ -275,7 +275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6199513208271934406, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6899914466925912920, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
       propertyPath: m_Name
@@ -385,6 +385,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenDoor
   _connectedItems: []
+  _masterItems:
+  - {fileID: 11400000, guid: b5fb90d18c1b0054d8944ad1b396aa9f, type: 2}
   animator: {fileID: 4194216185938241805}
   autoCloseDelay: 5
   closeDuration: 1

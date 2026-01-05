@@ -9,6 +9,10 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     [SerializeField] private List<ItemData> _connectedItems;
     public List<ItemData> ConnectedItems => _connectedItems;
 
+    [SerializeField] private List<ItemData> _masterItems; // crowbar or similar
+
+    public List<ItemData> MasterItems => _masterItems;
+
     [SerializeField] private Animator animator;
 
     [Header("Auto close")]
@@ -22,7 +26,22 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
 
     public string InteractionPrompt
     {
-        get => $"Drücke F, um zu {(isOpen ? "schließen" : "öffnen")}.";
+        get {
+            var prompt = "";
+            var player = PlayerRegistry.Player;
+            if (player == null)
+            {
+                Debug.LogError("Player was not found.");
+            }
+            if (CanInteract(player))
+            {
+                prompt = $"Drücke F, um zu {(isOpen ? "schließen" : "öffnen")}.";
+            } else
+            {
+                prompt = "Die Tür ist verschlossen.";
+            }
+            return prompt;
+        }
         set => InteractionPrompt = value;
     }
 
@@ -40,7 +59,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         }
 
         // closed -> try to open
-        if (ConnectedItems.Count > 0 && !player.HasOneOf(ConnectedItems))
+        if (!CanInteract(player))
         {
             Debug.Log("Door is locked, you need the required item.");
             return;
@@ -53,6 +72,12 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
 
         // open the door
         Open();
+    }
+
+    public bool CanInteract(Player player)
+    {
+        return (ConnectedItems.Count > 0 && player.HasOneOf(ConnectedItems))
+            || (MasterItems.Count > 0 && player.HasOneOf(MasterItems));
     }
 
     public void Open()

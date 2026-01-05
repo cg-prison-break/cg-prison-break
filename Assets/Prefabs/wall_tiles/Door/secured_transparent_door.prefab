@@ -425,9 +425,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OpenDoor
   _connectedItems:
   - {fileID: 11400000, guid: 637dec7724261034db375ca2c27c7d57, type: 2}
+  _masterItems:
+  - {fileID: 11400000, guid: b5fb90d18c1b0054d8944ad1b396aa9f, type: 2}
   animator: {fileID: 3881192187493937946}
   autoCloseDelay: 0
   closeDuration: 0
+  isOpen: 0
 --- !u!114 &9180282437501475328
 MonoBehaviour:
   m_ObjectHideFlags: 0
