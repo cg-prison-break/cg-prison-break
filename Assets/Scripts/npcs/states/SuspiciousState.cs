@@ -135,28 +135,80 @@ public class SuspiciousState : NPCState
         float t = 0f;
         while (t < smallTurnTime)
         {
+            if (npc.HasPlayerInsight())
+            {
+                // restore rotation behaviour and alert
+                searchCoroutine = null;
+                npc.transform.rotation = original;
+                npc.ChangeState(new AlertedState());
+                yield break;
+            }
             npc.transform.rotation = Quaternion.Slerp(original, left, t / smallTurnTime);
             t += Time.deltaTime;
             yield return null;
         }
         npc.transform.rotation = left;
-        yield return new WaitForSeconds(pause);
+
+        // pause but check sight each frame
+        float pp = 0f;
+        while (pp < pause)
+        {
+            if (npc.HasPlayerInsight())
+            {
+                searchCoroutine = null;
+                npc.transform.rotation = original;
+                npc.ChangeState(new AlertedState());
+                yield break;
+            }
+            pp += Time.deltaTime;
+            yield return null;
+        }
 
         // sweep from left to right
         t = 0f;
         while (t < acrossTime)
         {
+            if (npc.HasPlayerInsight())
+            {
+                // restore rotation behaviour and alert
+                searchCoroutine = null;
+                npc.transform.rotation = original;
+                npc.ChangeState(new AlertedState());
+                yield break;
+            }
             npc.transform.rotation = Quaternion.Slerp(left, right, t / acrossTime);
             t += Time.deltaTime;
             yield return null;
         }
         npc.transform.rotation = right;
-        yield return new WaitForSeconds(pause);
+
+        // pause but check sight each frame
+        pp = 0f;
+        while (pp < pause)
+        {
+            if (npc.HasPlayerInsight())
+            {
+                searchCoroutine = null;
+                npc.transform.rotation = original;
+                npc.ChangeState(new AlertedState());
+                yield break;
+            }
+            pp += Time.deltaTime;
+            yield return null;
+        }
 
         // return to original
         t = 0f;
         while (t < smallTurnTime)
         {
+            if (npc.HasPlayerInsight())
+            {
+                // restore rotation behaviour and alert
+                searchCoroutine = null;
+                npc.transform.rotation = original;
+                npc.ChangeState(new AlertedState());
+                yield break;
+            }
             npc.transform.rotation = Quaternion.Slerp(right, original, t / smallTurnTime);
             t += Time.deltaTime;
             yield return null;
