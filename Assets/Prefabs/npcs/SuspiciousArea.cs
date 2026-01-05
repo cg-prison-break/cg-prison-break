@@ -19,6 +19,9 @@ public class SuspiciousArea : MonoBehaviour
         {
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(transform.position, true);
             GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("SuspiciousAreaEntered"));
+        } else
+        {
+            GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(BypassItem.itemName));
         }
     }
 }
