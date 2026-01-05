@@ -3,12 +3,11 @@ using UnityEngine;
 public class AlertedState : NPCState
 {
     private readonly float catchDistance = 1.2f;
-    private readonly float catchDuration = 2.0f;
-    private readonly float lostSightDuration = 3.0f;
+    private readonly float catchDuration = 0.5f;
+    private readonly float lostSightDuration = 4.0f;
 
     private float catchTimer = 0f;
     private float lostSightTimer = 0f;
-    private bool isCatching = false;
 
     private Vector3 lastKnownPlayerPosition = Vector3.zero;
 
@@ -16,20 +15,9 @@ public class AlertedState : NPCState
 
     public override void EnterState(NPC npc)
     {
-        if (npc.playerRef == null)
-        {
-            // no player found -> fallback
-            npc.ChangeState(new RandomMovementState());
-            return;
-        }
+        npc.Movement.SetSpeed(npc.Movement.defaultSpeed + 2f);
+        npc.Movement.StartWalking();
 
-        npc.navMeshAgent.speed = npc.speed + 2f;
-        npc.navMeshAgent.stoppingDistance = catchDistance;
-        npc.navMeshAgent.isStopped = false;
-
-        npc.animator.SetBool("isWalking", true);
-
-        isCatching = false;
         catchTimer = 0f;
         lostSightTimer = 0f;
 
@@ -40,39 +28,30 @@ public class AlertedState : NPCState
 
     public override void ExitState(NPC npc)
     {
-        npc.navMeshAgent.isStopped = false;
-        npc.navMeshAgent.speed = npc.speed;
+        npc.Movement.StopWalking();
+        npc.Movement.SetSpeed(npc.Movement.defaultSpeed);
 
-        npc.animator.SetBool("isWalking", false);
-
-        isCatching = false;
         catchTimer = 0f;
         lostSightTimer = 0f;
     }
 
     public override void UpdateState(NPC npc)
     {
-        // If already in catching sequence, count down then switch state
-        if (isCatching)
-        {
-            catchTimer += Time.deltaTime;
-            if (catchTimer >= catchDuration)
-            {
-                // after catching, resume normal behaviour
-                npc.ChangeState(new RandomMovementState());
-            }
-            return;
-        }
-
         if (npc.HasPlayerInsight())
         {
-            lastKnownPlayerPosition = npc.playerRef.transform.position;
+            var catchTarget = PlayerRegistry.Player.transform.position + PlayerRegistry.Player.transform.forward;
+            if (NavMeshUtils.IsPositionOnNavMesh(catchTarget))
+            {
+                lastKnownPlayerPosition = catchTarget;
+            }
+            else
+            {
+                NavMeshUtils.TryFindValidNavMeshPosition(catchTarget, 0.1f, 0.001f, out lastKnownPlayerPosition);
+            }
             lostSightTimer = 0f;
 
             // set destination to player's current position (chase)
-            npc.navMeshAgent.isStopped = false;
-            npc.navMeshAgent.SetDestination(npc.playerRef.transform.position);
-            npc.animator.SetBool("isWalking", true);
+            npc.Movement.TryMoveToDestination(lastKnownPlayerPosition);
         }
         else
         {
@@ -80,9 +59,7 @@ public class AlertedState : NPCState
 
             if (lostSightTimer < lostSightDuration)
             {
-                npc.navMeshAgent.isStopped = false;
-                npc.navMeshAgent.SetDestination(lastKnownPlayerPosition);
-                npc.animator.SetBool("isWalking", true);
+                npc.Movement.TryMoveToDestination(lastKnownPlayerPosition);
             }
             else
             {
@@ -92,20 +69,31 @@ public class AlertedState : NPCState
             }
         }
 
+        if (npc.Movement.IsStuck())
+        {
+            // if stuck, switch to suspicious state
+            npc.ChangeState(new SuspiciousState(lastKnownPlayerPosition));
+            return;
+        }
+
         // check distance
-        float dist = Vector3.Distance(npc.transform.position, npc.playerRef.transform.position);
+        float dist = Vector3.Distance(npc.transform.position, PlayerRegistry.Player.transform.position);
         if (dist <= catchDistance)
         {
             // start catching
-            isCatching = true;
+            catchTimer += Time.deltaTime;
+
+            if (catchTimer >= catchDuration)
+            {
+                // notify player object that it was caught
+                PlayerRegistry.Player.OnCaught(npc.GetComponent<AudioSource>());
+                npc.ChangeState(new IdleState());
+                return;
+            }
+        }
+        else
+        {
             catchTimer = 0f;
-
-            // stop moving and play catch/idle animation
-            npc.navMeshAgent.isStopped = true;
-            npc.animator.SetBool("isWalking", false);
-
-            // notify player object that it was caught
-            npc.playerRef.SendMessage("OnCaught", SendMessageOptions.DontRequireReceiver);
         }
     }
 }

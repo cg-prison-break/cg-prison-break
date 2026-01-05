@@ -4158,6 +4158,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2060704909}
     - target: {fileID: 6586652826972979967, guid: 37ee552fce55e7d49a0cac3c891f678a, type: 3}
+      propertyPath: lastGuardSpeech
+      value: 
+      objectReference: {fileID: 8300000, guid: e678cba14ed10d24f9d0f0f5c49e7aef, type: 3}
+    - target: {fileID: 6586652826972979967, guid: 37ee552fce55e7d49a0cac3c891f678a, type: 3}
       propertyPath: forwardButton
       value: 
       objectReference: {fileID: 862760465}
@@ -4169,6 +4173,10 @@ PrefabInstance:
       propertyPath: walkingAnimator
       value: 
       objectReference: {fileID: 1352031111}
+    - target: {fileID: 6586652826972979967, guid: 37ee552fce55e7d49a0cac3c891f678a, type: 3}
+      propertyPath: firstGuardSpeech
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ddfd8c7731387f4486a48d7ed5929f5, type: 3}
     - target: {fileID: 6834085391747093785, guid: 37ee552fce55e7d49a0cac3c891f678a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.10396559

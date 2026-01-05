@@ -1,14 +1,16 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class RandomMovementState : NPCState
+public class AlwaysSuspiciousState : NPCState
 {
-    protected override Color? StateHintColor => Color.green;
+    protected override Color? StateHintColor => Color.yellow;
 
     private readonly float minDistanceToNextLocation = 4f;
     private readonly float nextLocationRadius = 15f;
 
     public override void EnterState(NPC npc)
     {
+        npc.Movement.SetSpeed(npc.Movement.defaultSpeed + 0.8f);
+
         if (NavMeshUtils.TryFindValidNavMeshPosition(npc.transform.position, nextLocationRadius, minDistanceToNextLocation, out var nextTarget))
         {
             npc.Movement.TryMoveToDestination(nextTarget);
@@ -26,6 +28,13 @@ public class RandomMovementState : NPCState
 
     public override void UpdateState(NPC npc)
     {
+        // If player spotted at any time -> immediate alerted
+        if (npc.HasPlayerInsight())
+        {
+            npc.ChangeState(new AlertedState());
+            return;
+        }
+
         if (!npc.Movement.PathIsValid() || npc.Movement.HasReachedDestination())
         {
             if (NavMeshUtils.TryFindValidNavMeshPosition(npc.transform.position, nextLocationRadius, minDistanceToNextLocation, out var nextTarget))

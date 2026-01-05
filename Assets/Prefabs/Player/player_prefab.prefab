@@ -88,8 +88,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EscapeRouteButton
   escapeRoutePanel: {fileID: 5672422901424278798}
   title: Strom ausschalten
-  description: "Die Den Strom \xFCber die Generatoren auszuschalten \xF6ffnet dir
-    im wahrsten Sinne des Wortes alle T\xFCren, das finden die W\xE4rter allerdings
+  description: "Den Strom \xFCber die Generatoren auszuschalten \xF6ffnet dir im
+    wahrsten Sinne des Wortes alle T\xFCren, das finden die W\xE4rter allerdings
     nicht so lustig..."
   routeImage: {fileID: 0}
   audioSource: {fileID: 7539524098612480819}
@@ -6877,9 +6877,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EscapeRouteButton
   escapeRoutePanel: {fileID: 5672422901424278798}
-  title: 
-  description: "Sicherheitskameras lassen dich verd\xE4chtig wirken? Sabotiere sie!\n\nBen\xF6tigt:
-    \n\n- Taschenlampe"
+  title: Sicherheitskameras
+  description: "Besonders wichtige R\xE4ume werden von Sicherheitskameras \xFCberwacht,
+    die dich verraten. Sabotiere sie!\n\nBen\xF6tigt: \n\n- Taschenlampe"
   routeImage: {fileID: 0}
   audioSource: {fileID: 7539524098612480819}
   clickClip: {fileID: 8300000, guid: f44b7388dcf5dd14a981e85a3aa5a9f6, type: 3}
@@ -8872,6 +8872,8 @@ MonoBehaviour:
   dropItemSound: {fileID: 8461123579907778757}
   pickupItemSound: {fileID: 8933875313650126211}
   inventoryFullItemNotDroppableSound: {fileID: 3249508677374341777}
+  caughtAudioClip: {fileID: 8300000, guid: 436f9019a93526546870a9cde5989def, type: 3}
+  gameOverAudioClip: {fileID: 8300000, guid: 59bbeac77908bae45858a5160c0ea5c5, type: 3}
 --- !u!136 &3035454368720368881
 CapsuleCollider:
   m_ObjectHideFlags: 0

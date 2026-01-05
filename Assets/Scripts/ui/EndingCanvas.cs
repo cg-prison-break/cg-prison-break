@@ -31,12 +31,12 @@ public class EndingCanvas : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        bool good = type == EndingType.Good;
+        bool good = type == EndingType.Good || type == EndingType.SecretEscapeUsed;
         GameObject endingPanel = good ? victoryPanel : defeatPanel;
 
         if (good)
         {
-            GameTelemetryLogger.LogTelemetryEvent(new GameWonData(gameData.strikes));
+            GameTelemetryLogger.LogTelemetryEvent(new GameWonData(gameData.strikes, type==EndingType.SecretEscapeUsed));
         }
         else
         {

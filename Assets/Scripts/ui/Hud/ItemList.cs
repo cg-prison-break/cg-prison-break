@@ -58,6 +58,8 @@ namespace ui.Hud
             RemoveOldIcons(templateTransform);
 
             ItemData[] currentItems = player.GetItems();
+            if (currentItems == null)
+                return;
 
             for (int i = 0; i < currentItems.Length; i++)
             {

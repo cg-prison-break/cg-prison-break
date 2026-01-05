@@ -1,4 +1,4 @@
-public enum EndingType { Good, Bad }
+public enum EndingType { Good, Bad, SecretEscapeUsed }
 
 public static class EndingContext
 {

@@ -45,6 +45,8 @@ public static class GameTelemetryLogger
 
     public static void LogTelemetryEvent(TelemetryEventDataBase eventData)
     {
+        if (!isRunning) return;
+
         var logEvent = new TelemetryEvent
         {
             timestamp = DateTime.UtcNow.ToString("o"),

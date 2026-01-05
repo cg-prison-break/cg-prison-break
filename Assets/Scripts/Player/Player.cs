@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ui.Hud;
@@ -15,6 +16,10 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource dropItemSound;
     [SerializeField] private AudioSource pickupItemSound;
     [SerializeField] private AudioSource inventoryFullItemNotDroppableSound;
+
+    [Header("Game-Sounds")]
+    [SerializeField] private AudioClip caughtAudioClip;
+    [SerializeField] private AudioClip gameOverAudioClip;
 
     // INVENTORY (8 feste Slots)
     private int _maxSlots = 8;
@@ -137,17 +142,39 @@ public class Player : MonoBehaviour
         return true;
     }
 
-    public void OnCaught()
+    public void OnCaught(AudioSource audioSource)
     {
         if (gameData.strikes >= 3)
         {
-            EndingContext.NextEnding = EndingType.Bad;
-            SceneManager.LoadScene(GameScene.Ending);
+            StartCoroutine(PlayGameOverSound(audioSource));
         }
         else
         {
+            if (audioSource != null && caughtAudioClip != null)
+            {
+                audioSource.PlayOneShot(caughtAudioClip);
+            }
             pauseMenuManager.OpenRetryMenu();
         }
+    }
+
+    private IEnumerator PlayGameOverSound(AudioSource audioSource)
+    {
+        // Avoid player actions during game over sequence
+        foreach (var script in GetComponents<MonoBehaviour>())
+        {
+            script.enabled = false;
+        }
+
+        if (audioSource != null && gameOverAudioClip != null)
+        {
+            audioSource.PlayOneShot(gameOverAudioClip);
+            yield return new WaitForSeconds(gameOverAudioClip.length);
+        }
+
+        GameTelemetryLogger.LogTelemetryEvent(new GameOverData());
+        EndingContext.NextEnding = EndingType.Bad;
+        SceneManager.LoadScene(GameScene.Ending);
     }
 
     public void SelectSlot(float slotValue)

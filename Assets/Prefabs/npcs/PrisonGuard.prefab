@@ -349,7 +349,7 @@ Transform:
   m_GameObject: {fileID: 1501823828544511873}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.001, y: 1.757, z: -0.009}
+  m_LocalPosition: {x: 0, y: 1.82, z: 0}
   m_LocalScale: {x: 0.1187421, y: 0.08859447, z: -0.099349014}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1586,6 +1586,7 @@ GameObject:
   - component: {fileID: 1697917242271180093}
   - component: {fileID: 8610683410434920169}
   - component: {fileID: 8434318915535946157}
+  - component: {fileID: 8044522773891422038}
   - component: {fileID: 395253039301189741}
   m_Layer: 7
   m_Name: PrisonGuard
@@ -1633,7 +1634,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1.75
   m_Direction: 1
-  m_Center: {x: 0, y: 0.86680514, z: 0}
+  m_Center: {x: 0, y: 0.875, z: 0}
 --- !u!95 &1697917242271180093
 Animator:
   serializedVersion: 7
@@ -1690,13 +1691,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a63cf328f760dc04faadcbd86be09c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PrisonGuard
-  animator: {fileID: 1697917242271180093}
-  navMeshAgent: {fileID: 8610683410434920169}
-  speed: 2
-  sightRange: 5
-  fieldOfViewAngle: 110
-  attention: 0.5
-  maxAttentionRange: 20
+  sightRange: 10
+  horizontalFOV: 110
+  verticalFOV: 60
+  suspiciousRange: 20
   audioSource: {fileID: 395253039301189741}
   soundSet:
     interactionSounds:
@@ -1704,6 +1702,19 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 63b66495d3c8ed64e8b882b161a03c5c, type: 3}
     - {fileID: 8300000, guid: 80b208850bc3ea54e9eaa62b3bef5d6c, type: 3}
     - {fileID: 8300000, guid: 4fab98b1d53e1234d886f007b548cfd7, type: 3}
+--- !u!114 &8044522773891422038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5349091927681148413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c782a55505242d41b2565493b19e4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCMovement
+  defaultSpeed: 2
 --- !u!82 &395253039301189741
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2110,10 +2121,10 @@ SkinnedMeshRenderer:
   - {fileID: 7574274118820048099}
   - {fileID: 883194343959791264}
   m_BlendShapeWeights: []
-  m_RootBone: {fileID: 5368848730167972441}
+  m_RootBone: {fileID: 8607366314942509878}
   m_AABB:
-    m_Center: {x: 0.005209923, y: -0.6840277, z: 0.010492593}
-    m_Extent: {x: 0.87199867, y: 0.8693986, z: 0.38745847}
+    m_Center: {x: 0.067343414, y: -0.03922309, z: -0.00090652704}
+    m_Extent: {x: 0.93413216, y: 0.3008644, z: 1.0279527}
   m_DirtyAABB: 0
 --- !u!1 &6486805372688202257
 GameObject:
@@ -2461,7 +2472,7 @@ Transform:
   m_GameObject: {fileID: 8307866740060247839}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.145, z: 0}
+  m_LocalPosition: {x: 0, y: -0.035, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -3,34 +3,23 @@ using UnityEngine;
 
 public class NPCEventManager : MonoBehaviour
 {
-    public static event Action OnPauseEvent;
-    public static event Action OnResumeEvent;
     public static event Action<Vector3, bool> OnSuspiciousActionEvent;
-    public static event Action OnResetSuspiciousPrisonGuardsEvent;
-    public static event Action OnAlertAllPrisonGuardsEvent;
-
-    public static void PauseNPCs()
-    {
-        OnPauseEvent?.Invoke();
-    }
-
-    public static void ResumeNPCs()
-    {
-        OnResumeEvent?.Invoke();
-    }
+    public static event Action OnResetPrisonGuardsToSpawnStateEvent;
+    public static event Action OnMakeAllPrisonGuardsSuspiciousEvent;
 
     public static void NotifyNPCsAboutSuspiciousAction(Vector3 location, bool global=false)
     {
-        OnSuspiciousActionEvent?.Invoke(location, global);
+        NavMeshUtils.TryFindValidNavMeshPosition(location, 2.0f, 0.1f, out var suspiciousLocation);
+        OnSuspiciousActionEvent?.Invoke(suspiciousLocation, global);
     }
 
-    public static void ResetPrisonGuardSuspicioness()
+    public static void ResetPrisonGuardsToSpawnState()
     {
-        OnResetSuspiciousPrisonGuardsEvent?.Invoke();
+        OnResetPrisonGuardsToSpawnStateEvent?.Invoke();
     }
 
-    public static void AlertAllPrisonGuards()
+    public static void MakeAllPrisonGuardsAlwaysSuspcious()
     {
-        OnAlertAllPrisonGuardsEvent?.Invoke();
+        OnMakeAllPrisonGuardsSuspiciousEvent?.Invoke();
     }
 }
