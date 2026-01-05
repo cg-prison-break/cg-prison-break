@@ -8,6 +8,7 @@ public enum NPCSpawnStates
 {
     Idle,
     RandomMovement,
+    AlwaysSuspicious
 }
 
 public class NPCSpawner : MonoBehaviour
@@ -28,10 +29,7 @@ public class NPCSpawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
+    void Update() { }
 
     private IEnumerator SpawnNPCs()
     {
@@ -64,6 +62,9 @@ public class NPCSpawner : MonoBehaviour
                         break;
                     case NPCSpawnStates.RandomMovement:
                         npc.SpawnState = new RandomMovementState();
+                        break;
+                    case NPCSpawnStates.AlwaysSuspicious:
+                        npc.SpawnState = new AlwaysSuspiciousState();
                         break;
                     default:
                         npc.SpawnState = new RandomMovementState();

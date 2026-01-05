@@ -54,7 +54,7 @@ public class SuspiciousState : NPCState
         // If stuck while going to suspicious location -> abandon and go to random movement
         if (npc.Movement.IsStuck())
         {
-            npc.ChangeState(new RandomMovementState());
+            npc.ChangeState(npc.SpawnState);
             return;
         }
 
@@ -97,7 +97,7 @@ public class SuspiciousState : NPCState
                 {
                     // stuck -> abandon search
                     searchCoroutine = null;
-                    npc.ChangeState(new RandomMovementState());
+                    npc.ChangeState(npc.SpawnState);
                     yield break;
                 }
 
@@ -116,7 +116,7 @@ public class SuspiciousState : NPCState
 
         // cooldown finished -> resume random movement
         searchCoroutine = null;
-        npc.ChangeState(new RandomMovementState());
+        npc.ChangeState(npc.SpawnState);
         yield break;
     }
 
