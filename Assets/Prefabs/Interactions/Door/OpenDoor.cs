@@ -35,6 +35,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
             }
             if (CanInteract(player))
             {
+                isOpen = animator.GetBool("open");
                 prompt = $"Drücke F, um zu {(isOpen ? "schließen" : "öffnen")}.";
             }
             else
