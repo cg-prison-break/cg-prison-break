@@ -3,13 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public enum NPCSpawnStates
+{
+    Idle,
+    RandomMovement,
+}
+
 public class NPCSpawner : MonoBehaviour
 {
     [Range(1, 40)]
-    public int maxNPCs = 5;
-    public float spawnRadius = 3f;
-    public GameObject npcPrefab;
-    public GameObject spawnPointContainer;
+    [SerializeField] private int maxNPCs = 5;
+    [SerializeField] private float spawnRadius = 3f;
+    [SerializeField] private GameObject npcPrefab;
+    [SerializeField] private GameObject spawnPointContainer;
+    [SerializeField] private NPCSpawnStates spawnState = NPCSpawnStates.RandomMovement;
 
     private readonly List<GameObject> spawnedNPCs = new();
 
@@ -41,8 +49,28 @@ public class NPCSpawner : MonoBehaviour
                 position = spawnPoint.transform.position;
             }
 
-            GameObject npc = Instantiate(npcPrefab, position, Quaternion.identity);
-            spawnedNPCs.Add(npc);
+            GameObject npcGo = Instantiate(npcPrefab, position, Quaternion.identity);
+            NPC npc = npcGo.GetComponent<NPC>();
+            if (npc == null)
+            {
+                spawnedNPCs.Add(npcGo);
+            }
+            else
+            {
+                switch (spawnState)
+                {
+                    case NPCSpawnStates.Idle:
+                        npc.SpawnState = new IdleState();
+                        break;
+                    case NPCSpawnStates.RandomMovement:
+                        npc.SpawnState = new RandomMovementState();
+                        break;
+                    default:
+                        npc.SpawnState = new RandomMovementState();
+                        break;
+                }
+                spawnedNPCs.Add(npcGo);
+            }
 
             yield return new WaitForSeconds(0.1f);
         }

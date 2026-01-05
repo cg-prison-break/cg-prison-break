@@ -26,8 +26,6 @@ public class PrisonGuard : NPC
         NPCEventManager.OnSuspiciousActionEvent += HandleSuspiciousEvent;
         NPCEventManager.OnResetSuspiciousPrisonGuardsEvent += ResetToRandomMovement;
         NPCEventManager.OnAlertAllPrisonGuardsEvent += HandleAlertAllEvent;
-
-        ChangeState(new RandomMovementState());
     }
 
     protected override void Update()

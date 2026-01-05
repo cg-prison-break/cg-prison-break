@@ -30,7 +30,6 @@ public class Prisoner : NPC
     protected override void Start()
     {
         base.Start();
-        ChangeState(new RandomMovementState());
     }
 
     protected override void Update()

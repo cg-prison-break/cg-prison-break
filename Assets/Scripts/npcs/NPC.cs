@@ -8,6 +8,8 @@ public abstract class NPC : MonoBehaviour, IInteractable
     [SerializeField] private float sightRange = 5f;
     [SerializeField] private float fieldOfViewAngle = 110f;
 
+    [HideInInspector]
+    public NPCState SpawnState;
     protected NPCState currentState;
     protected NPCState previousState;
 
@@ -21,7 +23,10 @@ public abstract class NPC : MonoBehaviour, IInteractable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-        ChangeState(new IdleState());
+        if (SpawnState != null)
+        {
+            ChangeState(SpawnState);
+        }
     }
 
     // Update is called once per frame
