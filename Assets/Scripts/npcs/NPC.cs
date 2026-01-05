@@ -5,11 +5,12 @@ using UnityEngine;
 public abstract class NPC : MonoBehaviour, IInteractable
 {
     public NPCMovement Movement { get; private set; }
-    [SerializeField] private float sightRange = 5f;
-    [SerializeField] private float fieldOfViewAngle = 110f;
+    [SerializeField] private float sightRange = 10f;
+    [SerializeField] private float horizontalFOV = 110f;
+    [SerializeField] private float verticalFOV = 60f;
 
     [HideInInspector]
-    public NPCState SpawnState;
+    public NPCState SpawnState = new IdleState();
     protected NPCState currentState;
     protected NPCState previousState;
 
@@ -50,22 +51,38 @@ public abstract class NPC : MonoBehaviour, IInteractable
     public bool HasPlayerInsight()
     {
         Vector3 toPlayer = PlayerRegistry.Player.transform.position - transform.position;
-        float angle = Vector3.Angle(transform.forward, toPlayer);
 
-        // check if the player is in the field of view
-        if (angle < fieldOfViewAngle / 2f)
+        // check if player is within sight range
+        if (toPlayer.magnitude > sightRange)
         {
-            if (toPlayer.magnitude < sightRange)
+            return false;
+        }
+
+        // check if player is within field of view
+        Vector3 flatForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
+        Vector3 flatToPlayer = Vector3.ProjectOnPlane(toPlayer.normalized, Vector3.up);
+
+        float horizontalAngle = Vector3.Angle(flatForward, flatToPlayer);
+        if (horizontalAngle > horizontalFOV * 0.5f)
+        {
+            return false;
+        }
+
+        float verticalAngle = Vector3.Angle(toPlayer.normalized, flatToPlayer);
+        if (verticalAngle > verticalFOV * 0.5f)
+        {
+            return false;
+        }
+
+        // check if NPC has line of sight to player
+        if (Physics.SphereCast(transform.position, 0.5f, toPlayer.normalized, out RaycastHit hit, sightRange, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
+        {
+            if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
-                if (Physics.Raycast(transform.position, toPlayer.normalized, out RaycastHit hit, sightRange, LayerMask.GetMask("Default")))
-                {
-                    if (hit.collider != null && hit.collider.CompareTag("Player"))
-                    {
-                        return true;
-                    }
-                }
+                return true;
             }
         }
+    
         return false;
     }
 }

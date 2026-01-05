@@ -1691,9 +1691,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a63cf328f760dc04faadcbd86be09c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PrisonGuard
-  sightRange: 5
-  fieldOfViewAngle: 110
-  suspiciousRange: 15
+  sightRange: 10
+  horizontalFOV: 110
+  verticalFOV: 60
+  suspiciousRange: 20
   audioSource: {fileID: 395253039301189741}
   soundSet:
     interactionSounds:
