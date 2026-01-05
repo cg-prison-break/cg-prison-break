@@ -15,7 +15,7 @@ public class AlertedState : NPCState
 
     public override void EnterState(NPC npc)
     {
-        npc.Movement.SetSpeed(npc.Movement.defaultSpeed + 3f);
+        npc.Movement.SetSpeed(npc.Movement.defaultSpeed + 2f);
         npc.Movement.StartWalking();
 
         catchTimer = 0f;

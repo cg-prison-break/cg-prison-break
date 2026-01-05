@@ -24,8 +24,8 @@ public class PrisonGuard : NPC
         base.Start();
 
         NPCEventManager.OnSuspiciousActionEvent += HandleSuspiciousEvent;
-        NPCEventManager.OnResetSuspiciousPrisonGuardsEvent += ResetToRandomMovement;
-        NPCEventManager.OnAlertAllPrisonGuardsEvent += HandleAlertAllEvent;
+        NPCEventManager.OnResetPrisonGuardsToSpawnStateEvent += ResetToSpawnState;
+        NPCEventManager.OnMakeAllPrisonGuardsSuspiciousEvent += HandleAllAlywaysSuspicousEvent;
     }
 
     protected override void Update()
@@ -38,8 +38,8 @@ public class PrisonGuard : NPC
         base.OnDestroy();
 
         NPCEventManager.OnSuspiciousActionEvent -= HandleSuspiciousEvent;
-        NPCEventManager.OnResetSuspiciousPrisonGuardsEvent -= ResetToRandomMovement;
-        NPCEventManager.OnAlertAllPrisonGuardsEvent -= HandleAlertAllEvent;
+        NPCEventManager.OnResetPrisonGuardsToSpawnStateEvent -= ResetToSpawnState;
+        NPCEventManager.OnMakeAllPrisonGuardsSuspiciousEvent -= HandleAllAlywaysSuspicousEvent;
     }
 
     private void HandleSuspiciousEvent(Vector3 location, bool global = false)
@@ -59,17 +59,17 @@ public class PrisonGuard : NPC
         }
     }
 
-    private void ResetToRandomMovement()
+    private void ResetToSpawnState()
     {
-        if (currentState is not RandomMovementState)
+        if (currentState != SpawnState)
         {
-            ChangeState(new RandomMovementState());
+            ChangeState(SpawnState);
         }
     }
 
-    private void HandleAlertAllEvent()
+    private void HandleAllAlywaysSuspicousEvent()
     {
-        ChangeState(new AlertedState());
+        ChangeState(new AlwaysSuspiciousState());
     }
 
     public override string InteractionPrompt

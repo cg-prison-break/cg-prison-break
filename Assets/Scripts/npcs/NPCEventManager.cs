@@ -4,8 +4,8 @@ using UnityEngine;
 public class NPCEventManager : MonoBehaviour
 {
     public static event Action<Vector3, bool> OnSuspiciousActionEvent;
-    public static event Action OnResetSuspiciousPrisonGuardsEvent;
-    public static event Action OnAlertAllPrisonGuardsEvent;
+    public static event Action OnResetPrisonGuardsToSpawnStateEvent;
+    public static event Action OnMakeAllPrisonGuardsSuspiciousEvent;
 
     public static void NotifyNPCsAboutSuspiciousAction(Vector3 location, bool global=false)
     {
@@ -13,13 +13,13 @@ public class NPCEventManager : MonoBehaviour
         OnSuspiciousActionEvent?.Invoke(suspiciousLocation, global);
     }
 
-    public static void ResetPrisonGuardSuspicioness()
+    public static void ResetPrisonGuardsToSpawnState()
     {
-        OnResetSuspiciousPrisonGuardsEvent?.Invoke();
+        OnResetPrisonGuardsToSpawnStateEvent?.Invoke();
     }
 
-    public static void AlertAllPrisonGuards()
+    public static void MakeAllPrisonGuardsAlwaysSuspcious()
     {
-        OnAlertAllPrisonGuardsEvent?.Invoke();
+        OnMakeAllPrisonGuardsSuspiciousEvent?.Invoke();
     }
 }
