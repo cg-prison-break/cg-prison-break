@@ -9,6 +9,10 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     [SerializeField] private List<ItemData> _connectedItems;
     public List<ItemData> ConnectedItems => _connectedItems;
 
+    [SerializeField] private List<ItemData> _masterItems; // crowbar or similar
+
+    public List<ItemData> MasterItems => _masterItems;
+
     [SerializeField] private Animator animator;
 
     [Header("Auto close")]
@@ -17,12 +21,29 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     [SerializeField] private float closeDuration = 1.0f;
 
     [SerializeField] private bool isOpen = false;
-    [SerializeField] private bool isSecuredSomehow = true;
     private Coroutine autoCloseCoroutine;
 
     public string InteractionPrompt
     {
-        get => $"Drücke F, um zu {(isOpen ? "schließen" : "öffnen")}.";
+        get
+        {
+            var prompt = "";
+            var player = PlayerRegistry.Player;
+            if (player == null)
+            {
+                Debug.LogError("Player was not found.");
+            }
+            if (CanInteract(player))
+            {
+                isOpen = animator.GetBool("open");
+                prompt = $"Drücke F, um zu {(isOpen ? "schließen" : "öffnen")}.";
+            }
+            else
+            {
+                prompt = "Die Tür ist verschlossen. Suche nach einem passenden Gegenstand, um sie zu öffnen.";
+            }
+            return prompt;
+        }
         set => InteractionPrompt = value;
     }
 
@@ -40,19 +61,45 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         }
 
         // closed -> try to open
-        if (ConnectedItems.Count > 0 && !player.HasOneOf(ConnectedItems))
+        if (!CanInteract(player))
         {
             Debug.Log("Door is locked, you need the required item.");
             return;
         }
 
-        foreach (var item in ConnectedItems)
+        var usedItems = new List<ItemData>();
+        if (player.HasOneOf(ConnectedItems))
+        {
+            usedItems = ConnectedItems;
+            animator.SetBool("master", false);
+        }
+        else if (player.HasOneOf(MasterItems))
+        {
+            usedItems = MasterItems;
+            animator.SetBool("master", true);
+            gameObject.layer = LayerMask.NameToLayer("Default"); // disable further interaction as door is now forced open
+            // TODO remove master item from inventory?
+            player.RemoveItem(MasterItems[0]);
+        }
+
+        // open the door and log used items
+        foreach (var item in usedItems)
         {
             GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(item.itemName));
         }
-
-        // open the door
         Open();
+    }
+
+    public bool CanInteract(Player player)
+    {
+        return !Lockable()
+            || (ConnectedItems.Count > 0 && player.HasOneOf(ConnectedItems))
+            || (MasterItems.Count > 0 && player.HasOneOf(MasterItems));
+    }
+
+    public bool Lockable()
+    {
+        return ConnectedItems.Count > 0 || MasterItems.Count > 0;
     }
 
     public void Open()
@@ -63,11 +110,13 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         StartCoroutine(InvokeAfter(closeDuration, () =>
         {
             isOpen = true;
-            if (isSecuredSomehow)
+            // inform NPCs when door is an actual lockable door
+            if (Lockable())
             {
                 NPCEventManager.NotifyNPCsAboutSuspiciousAction(transform.position);
                 GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("SecuredDoorOpened"));
-            } 
+            }
+
             // start auto close timer if enabled
             if (autoCloseDelay > 0)
             {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1800572392295647907}
   - component: {fileID: 5192677908529922786}
   - component: {fileID: 5052277622060207902}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Flap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,12 +101,11 @@ GameObject:
   - component: {fileID: 1603960850048232930}
   - component: {fileID: 5718823814799148217}
   - component: {fileID: 971163478188278969}
-  - component: {fileID: 5376431954783587412}
   - component: {fileID: 9201607067294008899}
-  - component: {fileID: 6427902667431623737}
   - component: {fileID: 2240085328201814450}
   - component: {fileID: 6284605433221796914}
   - component: {fileID: 5116366212361110703}
+  - component: {fileID: 8999897253844569839}
   m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
@@ -209,28 +208,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7754318969949236687, guid: 0cd6f5ffe2762d44cb25ba7d10593e6d, type: 3}
---- !u!95 &5376431954783587412
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6265555571225936258}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 78e01bff93d7329469bd6dc715fb37de, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &9201607067294008899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,25 +222,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OpenDoor
   _connectedItems:
   - {fileID: 11400000, guid: 637dec7724261034db375ca2c27c7d57, type: 2}
-  animator: {fileID: 5376431954783587412}
+  _masterItems:
+  - {fileID: 11400000, guid: b5fb90d18c1b0054d8944ad1b396aa9f, type: 2}
+  animator: {fileID: 5097444246693307324}
   autoCloseDelay: 0
   closeDuration: 0
---- !u!114 &6427902667431623737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6265555571225936258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1869a5748218ecf4ba240b4531af9331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorSoundNotifier
-  cardSwipeSound: {fileID: 0}
-  doorTurnSound: {fileID: 2240085328201814450}
-  doorLockSound: {fileID: 5116366212361110703}
-  doorUnlockSound: {fileID: 6284605433221796914}
+  isOpen: 0
 --- !u!82 &2240085328201814450
 AudioSource:
   m_ObjectHideFlags: 0
@@ -555,6 +519,103 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &8999897253844569839
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6265555571225936258}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 1845842e817ea5f4691022544b24aa3d, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.15
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 6
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8579741154900731987
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +628,8 @@ GameObject:
   - component: {fileID: 5473375646133992780}
   - component: {fileID: 7787182730089318790}
   - component: {fileID: 8921688923850495232}
+  - component: {fileID: 5097444246693307324}
+  - component: {fileID: 2576059316547609522}
   m_Layer: 0
   m_Name: secured_single_door
   m_TagString: Untagged
@@ -588,6 +651,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1328963883233585625}
+  - {fileID: 4608548835851984841}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5473375646133992780
@@ -670,3 +734,108 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6281424698479989189, guid: 0cd6f5ffe2762d44cb25ba7d10593e6d, type: 3}
+--- !u!95 &5097444246693307324
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579741154900731987}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 78e01bff93d7329469bd6dc715fb37de, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2576059316547609522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579741154900731987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1869a5748218ecf4ba240b4531af9331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorSoundNotifier
+  cardSwipeSound: {fileID: 0}
+  doorTurnSound: {fileID: 2240085328201814450}
+  doorLockSound: {fileID: 5116366212361110703}
+  doorUnlockSound: {fileID: 6284605433221796914}
+  doorUnlockForcefullySound: {fileID: 8999897253844569839}
+--- !u!1001 &4660481976497333517
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8960630212305367785}
+    m_Modifications:
+    - target: {fileID: 8363837313183441022, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+      propertyPath: m_Name
+      value: CrowBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363837313183441022, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176507645383981764, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.245
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176507645383981764, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176507645383981764, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.245
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176507645383981764, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.29883623
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176507645383981764, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.29883623
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176507645383981764, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.64085644
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176507645383981764, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.64085644
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176507645383981764, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176507645383981764, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176507645383981764, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 130
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+--- !u!4 &4608548835851984841 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9176507645383981764, guid: 9d4d86d0c1809674d87e81af7783fade, type: 3}
+  m_PrefabInstance: {fileID: 4660481976497333517}
+  m_PrefabAsset: {fileID: 0}

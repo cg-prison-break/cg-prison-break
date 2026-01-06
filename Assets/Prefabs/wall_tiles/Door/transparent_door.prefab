@@ -190,6 +190,8 @@ GameObject:
   - component: {fileID: 7278623143078201267}
   - component: {fileID: 4820587071859979129}
   - component: {fileID: 6136083880508092411}
+  - component: {fileID: 5960518372633148242}
+  - component: {fileID: 687348207808120837}
   m_Layer: 0
   m_Name: transparent_door
   m_TagString: Untagged
@@ -292,6 +294,44 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 906605994396684581, guid: a93978949cbe9794eae4c2d14f9d15db, type: 3}
+--- !u!95 &5960518372633148242
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478100506372887212}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f034e72dfcdd6504d9c311691f2d219c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &687348207808120837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478100506372887212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1869a5748218ecf4ba240b4531af9331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorSoundNotifier
+  cardSwipeSound: {fileID: 0}
+  doorTurnSound: {fileID: 0}
+  doorLockSound: {fileID: 0}
+  doorUnlockSound: {fileID: 0}
 --- !u!1 &8602483240979271832
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,9 +343,7 @@ GameObject:
   - component: {fileID: 8887884753471356272}
   - component: {fileID: 3669659366870106064}
   - component: {fileID: 7690922837199718581}
-  - component: {fileID: 3881192187493937946}
   - component: {fileID: 8716500126345502433}
-  - component: {fileID: 9180282437501475328}
   - component: {fileID: 4341174046566273543}
   m_Layer: 7
   m_Name: Door
@@ -388,28 +426,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &3881192187493937946
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8602483240979271832}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f034e72dfcdd6504d9c311691f2d219c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8716500126345502433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,26 +439,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenDoor
   _connectedItems: []
-  animator: {fileID: 3881192187493937946}
+  _masterItems: []
+  animator: {fileID: 5960518372633148242}
   autoCloseDelay: 0
   closeDuration: 0
   isOpen: 1
---- !u!114 &9180282437501475328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8602483240979271832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1869a5748218ecf4ba240b4531af9331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorSoundNotifier
-  cardSwipeSound: {fileID: 0}
-  doorTurnSound: {fileID: 0}
-  doorLockSound: {fileID: 0}
-  doorUnlockSound: {fileID: 0}
 --- !u!64 &4341174046566273543
 MeshCollider:
   m_ObjectHideFlags: 0
