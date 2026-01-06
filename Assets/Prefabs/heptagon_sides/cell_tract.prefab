@@ -178,10 +178,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b206c2e7a3e683344ac3e36b23fda88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCSpawner
-  maxNPCs: 11
+  maxNPCs: 9
   spawnRadius: 3
   npcPrefab: {fileID: 39212841331837821, guid: 8571a604093819f48bf2b90e8dda2257, type: 3}
   spawnPointContainer: {fileID: 76017493633077835}
+  spawnState: 1
 --- !u!1 &1725813370699611782
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,10 +492,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b206c2e7a3e683344ac3e36b23fda88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCSpawner
-  maxNPCs: 6
+  maxNPCs: 4
   spawnRadius: 3
   npcPrefab: {fileID: 5349091927681148413, guid: 50376ebabd2da4845bce2776772dfed4, type: 3}
   spawnPointContainer: {fileID: 6811258257613665205}
+  spawnState: 1
 --- !u!1 &4201640527494625576
 GameObject:
   m_ObjectHideFlags: 0

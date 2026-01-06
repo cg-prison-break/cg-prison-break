@@ -14,7 +14,7 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private Toggle fullscreenToggle;
 
-    private Resolution[] _resolutions;
+    private readonly List<Vector2Int> _filteredResolutions = new List<Vector2Int>();
 
     private const string PREF_RES_INDEX = "res_index";
     private const string PREF_FULLSCREEN = "fullscreen";
@@ -40,28 +40,47 @@ public class OptionsMenu : MonoBehaviour
     // --- Resolution Picker Setup ---
     private void PopulateResolutions()
     {
-        _resolutions = Screen.resolutions;
         var options = new List<string>();
         var seen = new HashSet<string>();
         int currentIndex = 0;
 
         resolutionDropdown.ClearOptions();
+        _filteredResolutions.Clear();
 
-        for (int i = 0; i < _resolutions.Length; i++)
+        Vector2Int[] fixedResolutions =
         {
-            Resolution r = _resolutions[i];
-            string key = $"{r.width}x{r.height}";
+            new Vector2Int(1280, 720),
+            new Vector2Int(1366, 768),
+            new Vector2Int(1600, 900),
+            new Vector2Int(1920, 1080),
+            new Vector2Int(2560, 1440),
+            new Vector2Int(3840, 2160)
+        };
+
+        for (int i = 0; i < fixedResolutions.Length; i++)
+        {
+            Vector2Int r = fixedResolutions[i];
+            string key = $"{r.x}x{r.y}";
             if (seen.Add(key))
             {
-                options.Add($"{r.width} x {r.height}");
-                if (r.width == Screen.currentResolution.width && r.height == Screen.currentResolution.height)
+                options.Add($"{r.x} x {r.y}");
+                _filteredResolutions.Add(r);
+                if (r.x == Screen.currentResolution.width && r.y == Screen.currentResolution.height)
                     currentIndex = options.Count - 1;
             }
         }
 
         resolutionDropdown.AddOptions(options);
-        _currentResIndex = PlayerPrefs.GetInt(PREF_RES_INDEX, currentIndex);
-        resolutionDropdown.value = Mathf.Clamp(_currentResIndex, 0, options.Count - 1);
+        if (options.Count == 0)
+        {
+            _currentResIndex = 0;
+            resolutionDropdown.value = 0;
+            resolutionDropdown.RefreshShownValue();
+            return;
+        }
+
+        _currentResIndex = Mathf.Clamp(PlayerPrefs.GetInt(PREF_RES_INDEX, currentIndex), 0, options.Count - 1);
+        resolutionDropdown.value = _currentResIndex;
         resolutionDropdown.RefreshShownValue();
     }
 
@@ -79,7 +98,6 @@ public class OptionsMenu : MonoBehaviour
             masterVolumeSlider.value = Mathf.Clamp01(lin);
         }
 
-        ApplyResolution(_currentResIndex, savedFullscreen);
     }
 
     // --- Callbacks ---
@@ -127,10 +145,10 @@ public class OptionsMenu : MonoBehaviour
     // --- Helpers ---
     private void ApplyResolution(int index, bool fullscreen)
     {
-        if (index < 0 || index >= _resolutions.Length) return;
+        if (index < 0 || index >= _filteredResolutions.Count) return;
 
-        Resolution chosen = _resolutions[index];
-        Screen.SetResolution(chosen.width, chosen.height, fullscreen);
+        Vector2Int chosen = _filteredResolutions[index];
+        Screen.SetResolution(chosen.x, chosen.y, fullscreen);
     }
 
     private void ApplyAudioImmediate(float db)
