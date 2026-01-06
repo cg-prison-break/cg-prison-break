@@ -6,6 +6,7 @@ public class DoorSoundNotifier : MonoBehaviour
     [SerializeField] private AudioSource doorTurnSound;
     [SerializeField] private AudioSource doorLockSound;
     [SerializeField] private AudioSource doorUnlockSound;
+    [SerializeField] private AudioSource doorUnlockForcefullySound;
 
 
     public void OnCardSwiped()
@@ -26,5 +27,10 @@ public class DoorSoundNotifier : MonoBehaviour
     public void OnDoorUnlocked()
     {
         doorUnlockSound?.Play();
+    }
+
+    public void OnDoorUnlockedForcefully()
+    {
+        doorUnlockForcefullySound?.Play();
     }
 }
