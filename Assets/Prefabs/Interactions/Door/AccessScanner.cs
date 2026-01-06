@@ -27,6 +27,10 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
             {
                 interactionPrompt = "Drücke F, um mit der Sicherheitskarte die Tür zu öffnen.";
             }
+            else
+            {
+                interactionPrompt = "Finde eine passende Sicherheitskarte, um die Tür zu öffnen.";
+            }
             return interactionPrompt;
         }
         set

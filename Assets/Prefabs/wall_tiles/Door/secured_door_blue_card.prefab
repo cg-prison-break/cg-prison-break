@@ -457,7 +457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d6f5c719d50a34c98457f5dfaf8c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenDoor
-  _connectedItems: []
+  _connectedItems:
+  - {fileID: 11400000, guid: 365f4621ae9cfc949bc23cff98170c9b, type: 2}
   _masterItems:
   - {fileID: 11400000, guid: b5fb90d18c1b0054d8944ad1b396aa9f, type: 2}
   animator: {fileID: 4194216185938241805}
