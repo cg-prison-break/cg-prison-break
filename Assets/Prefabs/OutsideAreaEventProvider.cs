@@ -8,7 +8,7 @@ public class OutsideAreaEventProvider : MonoBehaviour
     {
         if (eventTriggered) return;
         eventTriggered = true;
-        NPCEventManager.MakeAllPrisonGuardsAlwaysSuspcious();
+        NPCEventManager.MakeAllPrisonGuardsAlwaysSuspicious();
     }
     
     public bool EventTriggered => eventTriggered;

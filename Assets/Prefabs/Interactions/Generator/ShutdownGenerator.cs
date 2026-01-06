@@ -13,7 +13,7 @@ public class ShutdownGenerator : MonoBehaviour, IInteractable
     public void Interact(Player player)
     {
         OpenDoors();
-        NPCEventManager.AlertAllPrisonGuards();
+        NPCEventManager.MakeAllPrisonGuardsAlwaysSuspicious();
     }
 
     private void OpenDoors()
