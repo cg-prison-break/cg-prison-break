@@ -369,7 +369,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5063847457355969262}
-  - component: {fileID: 5400635645245412185}
   m_Layer: 0
   m_Name: generator_watch_room
   m_TagString: Untagged
@@ -399,19 +398,6 @@ Transform:
   - {fileID: 6843999986144614960}
   m_Father: {fileID: 2298595808927351461}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5400635645245412185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2836774572699123959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c7027bb90d34014e96e1a7fcab6a4bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShutdownGenerator
-  generatorControllers: []
 --- !u!1 &3289176361791652334
 GameObject:
   m_ObjectHideFlags: 0
