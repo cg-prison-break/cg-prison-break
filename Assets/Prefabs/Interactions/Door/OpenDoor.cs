@@ -21,6 +21,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     [SerializeField] private float closeDuration = 1.0f;
 
     [SerializeField] private bool isOpen = false;
+    [SerializeField] private GameData gameData;
     private Coroutine autoCloseCoroutine;
 
     public string InteractionPrompt
@@ -168,5 +169,37 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
             yield return null;
         }
         onComplete.Invoke();
+    }
+    
+    private void FixedUpdate()
+    {
+        var player = PlayerRegistry.Player;
+        // check if the player is near to the object, then set the layer of the object and all of its children to "Interactable"
+        if (Vector3.Distance(transform.position, player.transform.position) < gameData.interactableDisplayDistance)
+        {
+            SetLayerRecursively(gameObject, LayerMask.NameToLayer(GetInteractableLayerName()));
+            if (!gameData.playWithInteractableShader)
+            {
+                // todo: implement logic for making lights on when shader is disabled
+            }
+        }
+        else
+        {
+            SetLayerRecursively(gameObject, LayerMask.NameToLayer("Default"));
+        }
+    }
+        
+    private void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
+        }
+    }
+    
+    private string GetInteractableLayerName()
+    {
+        return gameData.playWithInteractableShader ? "Interactable" : "InteractableNoOutline";
     }
 }

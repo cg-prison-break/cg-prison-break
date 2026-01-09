@@ -8,7 +8,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject optionsPanel;     // assign OptionsPanel
     [SerializeField] private GameObject optionsFirstSelectable; // e.g., ResolutionDropdown
     [SerializeField] private GameObject menuFirstSelectable;    // e.g., PlayButton
-    
     [SerializeField] private GameData gameData;
 
     public void PlayGame()

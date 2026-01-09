@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 931b1eea703300749bd20a735f7d1985, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 931b1eea703300749bd20a735f7d1985, type: 3}
       propertyPath: m_Name
       value: CrowBar
@@ -101,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Crowbar
   _itemData: {fileID: 11400000, guid: b5fb90d18c1b0054d8944ad1b396aa9f, type: 2}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
 --- !u!65 &3336962801496811615
 BoxCollider:
   m_ObjectHideFlags: 0

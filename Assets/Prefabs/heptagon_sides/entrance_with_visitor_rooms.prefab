@@ -28272,7 +28272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4859363102389276917, guid: fffbaf426d6c47e44bd8c186ef10003d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8445574376293360358, guid: fffbaf426d6c47e44bd8c186ef10003d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31685,6 +31685,7 @@ MonoBehaviour:
   waitingPlayerPosition: {fileID: 3702924409501391468}
   _connectedItems:
   - {fileID: 11400000, guid: 7f4cc2d3ee4afdb4aa6118379594fc31, type: 2}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
 --- !u!82 &7644387244811660841
 AudioSource:
   m_ObjectHideFlags: 0

@@ -566,6 +566,7 @@ MonoBehaviour:
   _connectedItems: []
   MasterCard: {fileID: 0}
   door: {fileID: 8643196746903089201}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
 --- !u!1 &6009837920485896127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1042,7 @@ MonoBehaviour:
   closeDuration: 1
   isOpen: 0
   isSecuredSomehow: 1
+  gameData: {fileID: 0}
 --- !u!208 &3657007403337229983
 NavMeshObstacle:
   m_ObjectHideFlags: 0

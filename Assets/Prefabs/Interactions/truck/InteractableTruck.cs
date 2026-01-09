@@ -14,6 +14,7 @@ namespace Prefabs.Interactions.truck
         [SerializeField] private List<ItemData> _connectedItems;
     
         public List<ItemData> ConnectedItems => _connectedItems;
+        [SerializeField] private GameData gameData;
         
         public string InteractionPrompt
         {
@@ -73,6 +74,38 @@ namespace Prefabs.Interactions.truck
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
             GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("Truck2"));
             Destroy(gameObject);
+        }
+        
+        private void FixedUpdate()
+        {
+            var player = PlayerRegistry.Player;
+            // check if the player is near to the object, then set the layer of the object and all of its children to "Interactable"
+            if (Vector3.Distance(transform.position, player.transform.position) < gameData.interactableDisplayDistance)
+            {
+                SetLayerRecursively(gameObject, LayerMask.NameToLayer(GetInteractableLayerName()));
+                if (!gameData.playWithInteractableShader)
+                {
+                    // todo: implement logic for making lights on when shader is disabled
+                }
+            }
+            else
+            {
+                SetLayerRecursively(gameObject, LayerMask.NameToLayer("Default"));
+            }
+        }
+        
+        private void SetLayerRecursively(GameObject obj, int layer)
+        {
+            obj.layer = layer;
+            foreach (Transform child in obj.transform)
+            {
+                SetLayerRecursively(child.gameObject, layer);
+            }
+        }
+        
+        private string GetInteractableLayerName()
+        {
+            return gameData.playWithInteractableShader ? "Interactable" : "InteractableNoOutline";
         }
     }
 }

@@ -117,6 +117,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8643196746903089201}
     - target: {fileID: 7076557734021199980, guid: e0e9ea355994fa94781bf19d802bab02, type: 3}
+      propertyPath: gameData
+      value: 
+      objectReference: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
+    - target: {fileID: 7076557734021199980, guid: e0e9ea355994fa94781bf19d802bab02, type: 3}
       propertyPath: _connectedItem
       value: 
       objectReference: {fileID: 11400000, guid: 365f4621ae9cfc949bc23cff98170c9b, type: 2}
@@ -465,6 +469,8 @@ MonoBehaviour:
   autoCloseDelay: 5
   closeDuration: 1
   isOpen: 0
+  isSecuredSomehow: 1
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
 --- !u!82 &2499469330747229970
 AudioSource:
   m_ObjectHideFlags: 0

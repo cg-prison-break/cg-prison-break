@@ -71,7 +71,7 @@ public class InteractWithObject : MonoBehaviour
 
         if (Physics.SphereCast(checkRay, 0.05f, out var hit, interactionDistance))
         {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("InteractableNoOutline"))
             {
                 Collider targetCollider = hit.collider;
                 GameObject targetObject = targetCollider.gameObject;

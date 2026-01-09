@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Prefabs.StartAnimation
 {
@@ -27,6 +26,7 @@ namespace Prefabs.StartAnimation
         [SerializeField] private GameObject backButton;
         [SerializeField] private GameObject forwardButton;
         [SerializeField] private GameObject exitButton;
+        [SerializeField] private GameData gameData;
         private List<GameObject> _tutorialPages = new List<GameObject>();
         private int _currentTutorialIndex = 0;
 
@@ -113,6 +113,12 @@ namespace Prefabs.StartAnimation
             }
 
             int nextIndex = _currentTutorialIndex + 1;
+
+            if (nextIndex == 2 && gameData.playWithInteractableShader == false)
+            {
+                nextIndex += 2; // skip the shader tutorial page if not playing with it
+            }
+
             if (nextIndex >= _tutorialPages.Count)
             {
                 return;
@@ -131,6 +137,12 @@ namespace Prefabs.StartAnimation
             }
 
             int nextIndex = _currentTutorialIndex - 1;
+
+            if (nextIndex == 3 && gameData.playWithInteractableShader == false)
+            {
+                nextIndex -= 2; // skip the shader tutorial page if not playing with it
+            }
+
             if (nextIndex < 0)
             {
                 return;
