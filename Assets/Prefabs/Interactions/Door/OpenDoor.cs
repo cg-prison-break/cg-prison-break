@@ -21,7 +21,6 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     [SerializeField] private float closeDuration = 1.0f;
 
     [SerializeField] private bool isOpen = false;
-    [SerializeField] private bool isSecuredSomehow = true;
     [SerializeField] private GameData gameData;
     private Coroutine autoCloseCoroutine;
 

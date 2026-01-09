@@ -97,11 +97,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 3258870750762222540}
     m_Modifications:
     - target: {fileID: 4791313767131368353, guid: e0e9ea355994fa94781bf19d802bab02, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
     - target: {fileID: 5653728085381633230, guid: e0e9ea355994fa94781bf19d802bab02, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
     - target: {fileID: 5947811117195612077, guid: e0e9ea355994fa94781bf19d802bab02, type: 3}
@@ -129,7 +129,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7076557734021199980, guid: e0e9ea355994fa94781bf19d802bab02, type: 3}
-      propertyPath: _connectedItems.Array.data[0]
+      propertyPath: '_connectedItems.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 365f4621ae9cfc949bc23cff98170c9b, type: 2}
     - target: {fileID: 7201218189875784349, guid: e0e9ea355994fa94781bf19d802bab02, type: 3}
@@ -280,11 +280,11 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1158315993814442110, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0da42f37180c9924fb6cb0e71b03278e, type: 2}
     - target: {fileID: 1158315993814442110, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
-      propertyPath: m_Materials.Array.data[2]
+      propertyPath: 'm_Materials.Array.data[2]'
       value: 
       objectReference: {fileID: 2100000, guid: dff06ded3acfb4e4c901b78b0fdfda8b, type: 2}
     - target: {fileID: 2665807206848649778, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
@@ -292,11 +292,11 @@ PrefabInstance:
       value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 4611164815108111335, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0da42f37180c9924fb6cb0e71b03278e, type: 2}
     - target: {fileID: 4611164815108111335, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: dff06ded3acfb4e4c901b78b0fdfda8b, type: 2}
     - target: {fileID: 6078484839721483090, guid: ba561473287cfa045bae6fe3f8604ece, type: 3}
@@ -461,14 +461,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d6f5c719d50a34c98457f5dfaf8c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenDoor
-  _connectedItems: [{fileID: 11400000, guid: 365f4621ae9cfc949bc23cff98170c9b, type: 2}]
+  _connectedItems:
+  - {fileID: 11400000, guid: 365f4621ae9cfc949bc23cff98170c9b, type: 2}
   _masterItems:
   - {fileID: 11400000, guid: b5fb90d18c1b0054d8944ad1b396aa9f, type: 2}
   animator: {fileID: 4194216185938241805}
   autoCloseDelay: 5
   closeDuration: 1
   isOpen: 0
-  gameData: {fileID: 0}
+  isSecuredSomehow: 1
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
 --- !u!82 &2499469330747229970
 AudioSource:
   m_ObjectHideFlags: 0
