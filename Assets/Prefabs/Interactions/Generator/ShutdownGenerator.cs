@@ -50,7 +50,7 @@ public class ShutdownGenerator : MonoBehaviour, IInteractable
     {
         var player = PlayerRegistry.Player;
         // check if the player is near to the object, then set the layer of the object and all of its children to "Interactable"
-        if (Vector3.Distance(transform.position, player.transform.position) < gameData.interactableDisplayDistance)
+        if (!shutdown && Vector3.Distance(transform.position, player.transform.position) < gameData.interactableDisplayDistance)
         {
             gameObject.layer = LayerMask.NameToLayer(GetInteractableLayerName());
             if (!gameData.playWithInteractableShader)

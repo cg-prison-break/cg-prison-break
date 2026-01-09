@@ -137,6 +137,7 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         animator.SetBool("locked", false);
         animator.SetBool("open", true);
         animator.SetBool("start", false);
+        animator.SetBool("master", true);
     }
 
     public void Close()
