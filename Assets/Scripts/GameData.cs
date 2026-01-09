@@ -11,5 +11,5 @@ public class GameData : ScriptableObject
     public bool telemetryLoggingBootstrapped = false;
 
     public bool playWithInteractableShader = true;
-
+    public float interactableDisplayDistance = 5.5f;
 }

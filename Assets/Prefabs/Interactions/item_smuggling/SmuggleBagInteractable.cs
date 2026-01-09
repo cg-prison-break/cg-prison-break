@@ -29,7 +29,7 @@ public class SmuggleBagInteractable : MonoBehaviour, IInteractableItem
     {
         var player = PlayerRegistry.Player;
         // check if the player is near to the object, then set the layer of the object and all of its children to "Interactable"
-        if (Vector3.Distance(transform.position, player.transform.position) < 5.5f)
+        if (Vector3.Distance(transform.position, player.transform.position) < gameData.interactableDisplayDistance)
         {
             SetLayerRecursively(gameObject, LayerMask.NameToLayer(GetInteractableLayerName()));
             if (!gameData.playWithInteractableShader)
