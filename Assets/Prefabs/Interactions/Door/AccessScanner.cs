@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using Objects.Interactables;
 
@@ -13,6 +11,8 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
 
     [Header("Door Interaction")]
     [SerializeField] private OpenDoor door;
+    
+    [SerializeField] private GameData gameData;
 
     // Interaction prompt (read-only external)
     public string InteractionPrompt
@@ -29,6 +29,10 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
             {
                 interactionPrompt = "Drücke F, um mit der Sicherheitskarte die Tür zu öffnen.";
             }
+            else
+            {
+                interactionPrompt = "Finde eine passende Sicherheitskarte, um die Tür zu öffnen.";
+            }
             return interactionPrompt;
         }
         set
@@ -39,8 +43,23 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
 
     public void Interact(Player player)
     {
-        GameObject usedCardPrefab = player.HasOneOf(ConnectedItems) ? ConnectedItems[0].prefab :
-                              player.HasItem(MasterCard) ? MasterCard.prefab : null;
+        GameObject usedCardPrefab;
+        if (player.HasOneOf(ConnectedItems))
+        {
+            usedCardPrefab = ConnectedItems[0].prefab;
+            GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(ConnectedItems[0].itemName));
+        }
+        else if (player.HasItem(MasterCard))
+        {
+            usedCardPrefab = MasterCard.prefab;
+            GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(MasterCard.itemName));
+        }
+        else
+        {
+            Debug.Log("Access denied: You need a valid access card.");
+            return; // no valid card
+        }
+
         if (usedCardPrefab == null) return; // no valid card
 
         // get used card material
@@ -59,9 +78,43 @@ public class AccessScanner : MonoBehaviour, IInteractableConnected
             }
         }
         // notify about suspicious action
-        NPCEventManager.NotifyNPCsAboutSuspiciousAction(player.transform.position);
-        
+        SusPoint[] allSusPoints = GetComponentsInChildren<SusPoint>();
+        NPCEventManager.NotifyNPCsAboutSuspiciousAction(allSusPoints[Random.Range(0, allSusPoints.Length)].transform.position);
+        GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("AccessScanner"));
+
         // open the door
         door.Open();
+    }
+    
+    private void FixedUpdate()
+    {
+        var player = PlayerRegistry.Player;
+        // check if the player is near to the object, then set the layer of the object and all of its children to "Interactable"
+        if (Vector3.Distance(transform.position, player.transform.position) < gameData.interactableDisplayDistance)
+        {
+            SetLayerRecursively(gameObject, LayerMask.NameToLayer(GetInteractableLayerName()));
+            if (!gameData.playWithInteractableShader)
+            {
+                // todo: implement logic for making lights on when shader is disabled
+            }
+        }
+        else
+        {
+            SetLayerRecursively(gameObject, LayerMask.NameToLayer("Default"));
+        }
+    }
+
+    private string GetInteractableLayerName()
+    {
+        return gameData.playWithInteractableShader ? "Interactable" : "InteractableNoOutline";
+    }
+
+    private void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
+        }
     }
 }

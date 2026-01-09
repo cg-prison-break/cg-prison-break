@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6710560974790347709}
   - component: {fileID: 4663051120281060684}
   - component: {fileID: 4934078707779778903}
+  - component: {fileID: 464425970897401696}
   - component: {fileID: 5385041757885866229}
   m_Layer: 7
   m_Name: Prisoner
@@ -59,7 +60,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1.75
   m_Direction: 1
-  m_Center: {x: 0, y: 0.86680514, z: 0}
+  m_Center: {x: 0, y: 0.875, z: 0}
 --- !u!95 &6710560974790347709
 Animator:
   serializedVersion: 7
@@ -73,7 +74,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: a0ea65c9644dc2c40bc492ce484e41b8, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -90,7 +91,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39212841331837821}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -334000983
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -116,9 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549e4ce505b1f7340a9a6c2888d90744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Prisoner
-  animator: {fileID: 6710560974790347709}
-  navMeshAgent: {fileID: 4663051120281060684}
-  speed: 1
+  sightRange: 5
+  fieldOfViewAngle: 110
   audioSource: {fileID: 5385041757885866229}
   soundSet:
     interactionSounds:
@@ -126,6 +126,19 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 76f71aacf782d9c4e811b2639f26f03f, type: 3}
     - {fileID: 8300000, guid: a3b720dbf652a4a4da8dc85d45d9c753, type: 3}
     - {fileID: 8300000, guid: 06005a99748656b4a86082545054cf60, type: 3}
+--- !u!114 &464425970897401696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39212841331837821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c782a55505242d41b2565493b19e4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCMovement
+  defaultSpeed: 2
 --- !u!82 &5385041757885866229
 AudioSource:
   m_ObjectHideFlags: 0
@@ -788,7 +801,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 128
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d8d67b477316f8f44b5a0a328463c6e1, type: 2}
@@ -1223,7 +1236,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 128
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d8d67b477316f8f44b5a0a328463c6e1, type: 2}
@@ -1425,7 +1438,7 @@ Transform:
   m_GameObject: {fileID: 4252965867021382055}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.145, z: 0}
+  m_LocalPosition: {x: 0, y: -0.035, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1595,7 +1608,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 128
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d8d67b477316f8f44b5a0a328463c6e1, type: 2}
@@ -2026,7 +2039,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 128
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d8d67b477316f8f44b5a0a328463c6e1, type: 2}
@@ -2196,7 +2209,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 128
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d8d67b477316f8f44b5a0a328463c6e1, type: 2}
@@ -2517,7 +2530,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 128
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d8d67b477316f8f44b5a0a328463c6e1, type: 2}
@@ -2688,7 +2701,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 128
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d8d67b477316f8f44b5a0a328463c6e1, type: 2}

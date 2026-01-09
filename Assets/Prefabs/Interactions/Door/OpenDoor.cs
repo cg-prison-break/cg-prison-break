@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 
 using Objects.Interactables;
 
@@ -10,6 +9,10 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     [SerializeField] private List<ItemData> _connectedItems;
     public List<ItemData> ConnectedItems => _connectedItems;
 
+    [SerializeField] private List<ItemData> _masterItems; // crowbar or similar
+
+    public List<ItemData> MasterItems => _masterItems;
+
     [SerializeField] private Animator animator;
 
     [Header("Auto close")]
@@ -17,21 +20,32 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
     [SerializeField] private float autoCloseDelay = 5.0f;
     [SerializeField] private float closeDuration = 1.0f;
 
-    // internal state
-    private bool isOpen = false;
+    [SerializeField] private bool isOpen = false;
+    [SerializeField] private GameData gameData;
     private Coroutine autoCloseCoroutine;
 
-    // Interaction prompt (read-only external)
     public string InteractionPrompt
     {
         get
         {
-            return "Drücke F, um zu öffnen.";
+            var prompt = "";
+            var player = PlayerRegistry.Player;
+            if (player == null)
+            {
+                Debug.LogError("Player was not found.");
+            }
+            if (CanInteract(player))
+            {
+                isOpen = animator.GetBool("open");
+                prompt = $"Drücke F, um zu {(isOpen ? "schließen" : "öffnen")}.";
+            }
+            else
+            {
+                prompt = "Die Tür ist verschlossen. Suche nach einem passenden Gegenstand, um sie zu öffnen.";
+            }
+            return prompt;
         }
-        set
-        {
-            // intentionally left empty
-        }
+        set => InteractionPrompt = value;
     }
 
     void Start()
@@ -48,14 +62,45 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         }
 
         // closed -> try to open
-        if (ConnectedItems != null && !player.HasOneOf(ConnectedItems))
+        if (!CanInteract(player))
         {
             Debug.Log("Door is locked, you need the required item.");
             return;
         }
 
-        // open the door
+        var usedItems = new List<ItemData>();
+        if (player.HasOneOf(ConnectedItems))
+        {
+            usedItems = ConnectedItems;
+            animator.SetBool("master", false);
+        }
+        else if (player.HasOneOf(MasterItems))
+        {
+            usedItems = MasterItems;
+            animator.SetBool("master", true);
+            gameObject.layer = LayerMask.NameToLayer("Default"); // disable further interaction as door is now forced open
+            // TODO remove master item from inventory?
+            player.RemoveItem(MasterItems[0]);
+        }
+
+        // open the door and log used items
+        foreach (var item in usedItems)
+        {
+            GameTelemetryLogger.LogTelemetryEvent(new ItemUsedData(item.itemName));
+        }
         Open();
+    }
+
+    public bool CanInteract(Player player)
+    {
+        return !Lockable()
+            || (ConnectedItems.Count > 0 && player.HasOneOf(ConnectedItems))
+            || (MasterItems.Count > 0 && player.HasOneOf(MasterItems));
+    }
+
+    public bool Lockable()
+    {
+        return ConnectedItems.Count > 0 || MasterItems.Count > 0;
     }
 
     public void Open()
@@ -66,6 +111,13 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
         StartCoroutine(InvokeAfter(closeDuration, () =>
         {
             isOpen = true;
+            // inform NPCs when door is an actual lockable door
+            if (Lockable())
+            {
+                NPCEventManager.NotifyNPCsAboutSuspiciousAction(transform.position);
+                GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("SecuredDoorOpened"));
+            }
+
             // start auto close timer if enabled
             if (autoCloseDelay > 0)
             {
@@ -73,7 +125,19 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
                 autoCloseCoroutine = StartCoroutine(AutoCloseAfterDelay());
             }
             animator.SetBool("open", true);
+            animator.SetBool("start", false);
         }));
+    }
+
+    public void OpenInstantly()
+    {
+        if (isOpen) return;
+
+        isOpen = true;
+        animator.SetBool("locked", false);
+        animator.SetBool("open", true);
+        animator.SetBool("start", false);
+        animator.SetBool("master", true);
     }
 
     public void Close()
@@ -116,5 +180,37 @@ public class OpenDoor : MonoBehaviour, IInteractableConnected
             yield return null;
         }
         onComplete.Invoke();
+    }
+    
+    private void FixedUpdate()
+    {
+        var player = PlayerRegistry.Player;
+        // check if the player is near to the object, then set the layer of the object and all of its children to "Interactable"
+        if (!animator.GetBool("master") && Vector3.Distance(transform.position, player.transform.position) < gameData.interactableDisplayDistance)
+        {
+            SetLayerRecursively(gameObject, LayerMask.NameToLayer(GetInteractableLayerName()));
+            if (!gameData.playWithInteractableShader)
+            {
+                // todo: implement logic for making lights on when shader is disabled
+            }
+        }
+        else
+        {
+            SetLayerRecursively(gameObject, LayerMask.NameToLayer("Default"));
+        }
+    }
+        
+    private void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
+        }
+    }
+    
+    private string GetInteractableLayerName()
+    {
+        return gameData.playWithInteractableShader ? "Interactable" : "InteractableNoOutline";
     }
 }

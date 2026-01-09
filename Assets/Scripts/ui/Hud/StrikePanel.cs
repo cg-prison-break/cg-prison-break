@@ -6,25 +6,29 @@ public class StrikePanel : MonoBehaviour
     [SerializeField] private GameObject imageOne;
     [SerializeField] private GameObject imageTwo;
     [SerializeField] private GameObject imageThree;
+    
+    [SerializeField] private GameData gameData;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        strikePanel.SetActive(false);
-        HideImages();   
+        if (gameData.strikes > 0)
+        {
+            strikePanel.SetActive(true);
+            ShowImages(gameData.strikes);
+        }
+        else 
+        {
+            strikePanel.SetActive(false);
+            HideImages();   
+        }
+         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!imageOne.activeSelf && !imageTwo.activeSelf && !imageThree.activeSelf)
-        {
-            strikePanel.SetActive(false);
-        }
-        else
-        {
-            strikePanel.SetActive(true);
-        }
+
     }
 
     void ShowImages(int amount)

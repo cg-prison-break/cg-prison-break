@@ -7,6 +7,7 @@ namespace Prefabs.Interactions.screwdriver
     {
         private int amountScrews = 4;
         public GameObject windowWithoutGridWindow;
+        [SerializeField] private GameData gameData;
         
         public void notifyAboutUnscrewAction()
         {
@@ -20,13 +21,14 @@ namespace Prefabs.Interactions.screwdriver
         
         private void HandleWindowUnscrewed()
         {
-            gameObject.layer = LayerMask.NameToLayer("Interactable");
+            gameObject.layer = LayerMask.NameToLayer(GetInteractableLayerName());
         }
 
         public void Interact(Player interactor)
         {
             Instantiate(windowWithoutGridWindow, transform.position, transform.rotation);
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("WindowUnscrewed"));
             Destroy(gameObject);
         }
         
@@ -34,6 +36,11 @@ namespace Prefabs.Interactions.screwdriver
         {
             get => "Drücke F, um Fenster zu entfernen.";
             set => InteractionPrompt = value;   
+        }
+        
+        private string GetInteractableLayerName()
+        {
+            return gameData.playWithInteractableShader ? "Interactable" : "InteractableNoOutline";
         }
     }
 }

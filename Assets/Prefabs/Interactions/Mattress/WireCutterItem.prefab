@@ -20,9 +20,21 @@ PrefabInstance:
       propertyPath: pickupSoundClip
       value: 
       objectReference: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
+    - target: {fileID: 4721814585684299415, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195002772951201121, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 7816319729534905308, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7848313267304808693, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 8327969599184899598, guid: 1eed0a7e898e18346aa78db770dd16d9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -107,7 +119,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.17, y: 0.27, z: 0.05}
+  m_Size: {x: 0.2, y: 0.33, z: 0.12}
   m_Center: {x: 0, y: 0.07, z: 0}
 --- !u!114 &140266228678355129
 MonoBehaviour:
@@ -122,4 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WireCutterInteractbale
   _itemData: {fileID: 11400000, guid: 5fa56feb408cad44ebef3182b5fcdf5c, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}

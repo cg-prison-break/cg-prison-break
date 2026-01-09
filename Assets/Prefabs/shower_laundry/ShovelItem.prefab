@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5010047185654747055}
   - component: {fileID: 962180101528877929}
   - component: {fileID: 122114662863384786}
-  - component: {fileID: 6231454982701896235}
   - component: {fileID: 3170312921994204558}
+  - component: {fileID: 731796497385740974}
   m_Layer: 7
   m_Name: ShovelItem
   m_TagString: Untagged
@@ -57,7 +57,7 @@ MeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 256
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9dead9b307148664f878c0919b88e1b7, type: 2}
@@ -91,8 +91,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3831815959832633928}
   m_Mesh: {fileID: 8556253635750604653, guid: 21508a0dcdbaf2646a5f3cd4db1db6de, type: 3}
---- !u!64 &6231454982701896235
-MeshCollider:
+--- !u!114 &3170312921994204558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3831815959832633928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08da6476a47c4074385068165bc79d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _shovelItemData: {fileID: 11400000, guid: 3a370c544c248cc479e12c438d061401, type: 2}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
+--- !u!65 &731796497385740974
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,21 +123,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8556253635750604653, guid: 21508a0dcdbaf2646a5f3cd4db1db6de, type: 3}
---- !u!114 &3170312921994204558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3831815959832633928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08da6476a47c4074385068165bc79d05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  _shovelItemData: {fileID: 11400000, guid: 3a370c544c248cc479e12c438d061401, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.33, y: 1.26, z: 0.18}
+  m_Center: {x: -0.00017622113, y: -0.071773104, z: -0.000000038184226}

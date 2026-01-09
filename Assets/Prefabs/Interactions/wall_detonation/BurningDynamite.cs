@@ -34,6 +34,7 @@ namespace Prefabs.Interactions.wall_detonation
         private void Explode(GameObject explosionObject)
         {
             NPCEventManager.NotifyNPCsAboutSuspiciousAction(transform.position);
+            GameTelemetryLogger.LogTelemetryEvent(new SuspiciousEventTriggeredData("DynamiteExplosion"));
             Destroy(_parentWall);
             Destroy(explosionObject);
             Destroy(gameObject);

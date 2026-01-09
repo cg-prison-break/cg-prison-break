@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -1264573149489053871, guid: 3cd5fcb4fdd25f44c9441d8f881b421a, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3cd5fcb4fdd25f44c9441d8f881b421a, type: 3}
       propertyPath: m_Name
       value: conceilment
@@ -63,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 3082657399214164846, guid: 3cd5fcb4fdd25f44c9441d8f881b421a, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982796238117135810, guid: 3cd5fcb4fdd25f44c9441d8f881b421a, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -99,7 +107,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 0.08, z: 2}
+  m_Size: {x: 2.12, y: 0.1, z: 2.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4569909354751567980
 MonoBehaviour:
@@ -114,4 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _itemData: {fileID: 11400000, guid: 7f4cc2d3ee4afdb4aa6118379594fc31, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}

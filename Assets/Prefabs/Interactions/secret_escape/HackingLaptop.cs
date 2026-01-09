@@ -14,7 +14,8 @@ namespace Prefabs.Interactions.secret_escape
         private static IEnumerator WaitForSoundAndEndGame()
         {
             yield return new WaitForSeconds(10f);
-            SceneManager.LoadScene("MainMenu");
+            EndingContext.NextEnding = EndingType.SecretEscapeUsed;
+            SceneManager.LoadScene(GameScene.Ending);
         }
     }
 }

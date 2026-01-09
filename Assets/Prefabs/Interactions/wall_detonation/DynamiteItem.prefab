@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 896716428846141985}
   - component: {fileID: 5321287207769708948}
   - component: {fileID: 2644937772078795470}
-  - component: {fileID: 7208558596351519221}
   - component: {fileID: 5696015009865449260}
+  - component: {fileID: 2487048934949676597}
   m_Layer: 7
   m_Name: DynamiteItem
   m_TagString: Untagged
@@ -65,7 +65,7 @@ MeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 256
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 03f909dc732095145a19553ea3d05019, type: 2}
@@ -91,28 +91,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7208558596351519221
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4222069078793698799}
-  m_Material: {fileID: 13400000, guid: 37f21d359d99e734fbe9fe66454222ae, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6411623747838446336, guid: c8a18a5b0fb2cf54f891b9b70dfe16a5, type: 3}
 --- !u!114 &5696015009865449260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,4 +104,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DynamiteItem
   _itemData: {fileID: 11400000, guid: 02d05bce80508aa4797f5502efe84e10, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
+--- !u!65 &2487048934949676597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4222069078793698799}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8, y: 0.36, z: 0.45}
+  m_Center: {x: 0.03243789, y: 0.13616468, z: 0.018145546}

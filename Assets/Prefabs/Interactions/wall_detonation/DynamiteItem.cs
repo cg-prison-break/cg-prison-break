@@ -4,7 +4,7 @@ using UnityEngine;
 public class DynamiteItem : MonoBehaviour, IInteractableItem
 {
     [SerializeField] private ItemData _itemData;
-    public AudioClip pickupSoundClip;
+    [SerializeField] private GameData gameData;
     
     public ItemData itemData
     {
@@ -22,8 +22,38 @@ public class DynamiteItem : MonoBehaviour, IInteractableItem
     {   
         var pickedUp = interactor.AddItem(itemData);
         Debug.Log($"Item Name: {_itemData.itemName}");
-        interactor.GetComponents<AudioSource>()[0].PlayOneShot(pickupSoundClip);
-        NPCEventManager.NotifyNPCsAboutSuspiciousAction(interactor.transform.position);
         if (pickedUp) Destroy(gameObject);
+    }
+    
+    private void FixedUpdate()
+    {
+        var player = PlayerRegistry.Player;
+        // check if the player is near to the object, then set the layer of the object and all of its children to "Interactable"
+        if (Vector3.Distance(transform.position, player.transform.position) < gameData.interactableDisplayDistance)
+        {
+            SetLayerRecursively(gameObject, LayerMask.NameToLayer(GetInteractableLayerName()));
+            if (!gameData.playWithInteractableShader)
+            {
+                // todo: implement logic for making lights on when shader is disabled
+            }
+        }
+        else
+        {
+            SetLayerRecursively(gameObject, LayerMask.NameToLayer("Default"));
+        }
+    }
+        
+    private void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
+        }
+    }
+        
+    private string GetInteractableLayerName()
+    {
+        return gameData.playWithInteractableShader ? "Interactable" : "InteractableNoOutline";
     }
 }

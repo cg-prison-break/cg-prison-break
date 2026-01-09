@@ -76,6 +76,7 @@ MonoBehaviour:
   parent: {fileID: 1483841931926196232}
   animatedWireCutter: {fileID: 6693916308117128004}
   cutWireClip: {fileID: 8300000, guid: a61aad11d5381c34cbed7fed7770d4de, type: 3}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
 --- !u!1 &1483841931926196232
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +89,7 @@ GameObject:
   - component: {fileID: 2914850790884836631}
   - component: {fileID: 1123461259340411357}
   - component: {fileID: 1440206975179652261}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SM_fence
   m_TagString: Stone
   m_Icon: {fileID: 0}
@@ -266,6 +267,7 @@ MonoBehaviour:
   parent: {fileID: 1483841931926196232}
   animatedWireCutter: {fileID: 8245055187782968481}
   cutWireClip: {fileID: 8300000, guid: a61aad11d5381c34cbed7fed7770d4de, type: 3}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
 --- !u!1001 &4889780285971841975
 PrefabInstance:
   m_ObjectHideFlags: 0

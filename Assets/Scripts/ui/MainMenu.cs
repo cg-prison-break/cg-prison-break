@@ -4,13 +4,20 @@ using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private string firstSceneName = "MainScene";
     [SerializeField] private GameObject mainMenuRoot;     // assign MainMenuRoot
     [SerializeField] private GameObject optionsPanel;     // assign OptionsPanel
     [SerializeField] private GameObject optionsFirstSelectable; // e.g., ResolutionDropdown
     [SerializeField] private GameObject menuFirstSelectable;    // e.g., PlayButton
+    [SerializeField] private GameData gameData;
 
-    public void PlayGame() => SceneManager.LoadScene(firstSceneName);
+    public void PlayGame()
+    {
+        gameData.strikes = 0;
+        gameData.timer = 0.0f;
+        GameTelemetryLogger.LogTelemetryEvent(new GameStartData());
+        SceneManager.LoadScene(gameData.animationPlayed ? GameScene.MainScene : GameScene.StartScene);
+    } 
+        
 
     public void OpenOptions()
     {

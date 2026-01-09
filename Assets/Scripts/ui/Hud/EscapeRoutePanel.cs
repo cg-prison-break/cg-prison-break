@@ -1,5 +1,3 @@
-using System;
-using Unity.AppUI.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +10,8 @@ public class EscapeRoutePanel : MonoBehaviour
     [SerializeField] private GameObject playerObject;
     [SerializeField] private EscapeRouteDetailPanel detailPanel;
     [SerializeField] private GameObject minimap;
-
+    [SerializeField] private GameObject timerPanel;
+    [SerializeField] private GameObject strikePanel;
     private PlayerInput playerInput;
     private PlayerController playerController;
 
@@ -28,10 +27,6 @@ public class EscapeRoutePanel : MonoBehaviour
         isActive = false;
         escapeRoutePanel?.SetActive(false);
         detailPanel?.Hide();
-        interactPanel?.SetActive(true);
-        itemPanel?.SetActive(true);
-        crosshair?.SetActive(true);
-        minimap?.SetActive(true);
     }
 
     private void Update()
@@ -61,16 +56,20 @@ public class EscapeRoutePanel : MonoBehaviour
         itemPanel?.SetActive(!active);
         crosshair?.SetActive(!active);
         minimap?.SetActive(!active);
+        timerPanel?.SetActive(!active);
+        strikePanel?.SetActive(!active);
 
         if (active)
         {
             DisablePlayerControl();
             ShowCursor();
+            GameTelemetryLogger.LogTelemetryEvent(new SpreadsheetOpenedData());
         }
         else
         {
             EnablePlayerControl();
             RestoreCursor();
+            GameTelemetryLogger.LogTelemetryEvent(new SpreadsheetClosedData());
         }
     }
 
@@ -124,6 +123,7 @@ public class EscapeRoutePanel : MonoBehaviour
 
         escapeRoutePanel?.SetActive(false);
         detailPanel?.Show(title, description, image);
+        GameTelemetryLogger.LogTelemetryEvent(new SpreadsheetRouteClickedData(title));
     }
 
     public void ShowRoutesList()

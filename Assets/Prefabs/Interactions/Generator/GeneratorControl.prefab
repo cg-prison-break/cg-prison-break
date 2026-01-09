@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2390877088366086691
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.02550006
+      objectReference: {fileID: 0}
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3193333
+      objectReference: {fileID: 0}
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.71228504
+      objectReference: {fileID: 0}
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0000029504295
+      objectReference: {fileID: 0}
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 533140459142001117, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 877578232994229095, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_Name
+      value: GeneratorControl
+      objectReference: {fileID: 0}
+    - target: {fileID: 877578232994229095, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 877578232994229095, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1193370641467472922}
+  m_SourcePrefab: {fileID: 100100000, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+--- !u!1 &3243667929070444868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 877578232994229095, guid: b59a8dbb3387883468b8f6fe90271c6a, type: 3}
+  m_PrefabInstance: {fileID: 2390877088366086691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1193370641467472922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3243667929070444868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7027bb90d34014e96e1a7fcab6a4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShutdownGenerator
+  generatorControllers: []
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}

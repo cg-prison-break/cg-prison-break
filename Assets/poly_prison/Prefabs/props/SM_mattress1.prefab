@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6637170662626748894}
   - component: {fileID: 7760876540221318779}
   - component: {fileID: 5499136289307169457}
-  - component: {fileID: -5115436992794639640}
   - component: {fileID: 2539203376756825634}
+  - component: {fileID: 3681671841332867871}
   m_Layer: 7
   m_Name: SM_mattress1
   m_TagString: Untagged
@@ -65,7 +65,7 @@ MeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 256
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: e333fc30156441642ac45584792bb402, type: 2}
@@ -91,8 +91,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-5115436992794639640
-MeshCollider:
+--- !u!114 &2539203376756825634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6291571706170618724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5412e455451dc544093f2fde54795e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mattress
+  _itemData: {fileID: 11400000, guid: 2963b93d5c21d484e8cc265655b103ac, type: 2}
+  gameData: {fileID: 11400000, guid: 091ad5f53170b775d922635483410ba6, type: 2}
+--- !u!65 &3681671841332867871
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,21 +123,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1189896975930846426, guid: 2b30091bd56da214ea31f7b32db91272, type: 3}
---- !u!114 &2539203376756825634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6291571706170618724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5412e455451dc544093f2fde54795e30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Mattress
-  _itemData: {fileID: 11400000, guid: 2963b93d5c21d484e8cc265655b103ac, type: 2}
-  pickupSoundClip: {fileID: 8300000, guid: fd01e13dfe0ee1247965c2509d776b6c, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.79, y: 0.5, z: 0.6}
+  m_Center: {x: 0, y: 0.2338024, z: -0.2630804}

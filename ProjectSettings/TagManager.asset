@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Sand
   - Stone
+  - Background
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Interactable
   - Sitting
   - Ignore Minimap
-  - 
+  - InteractableNoOutline
   - 
   - 
   - 
@@ -51,4 +53,6 @@ TagManager:
   - Light Layer 4
   - Light Layer 5
   - Light Layer 6
-  - Light Layer 7
+  - NPC Render Layer
+  - Item Render Layer
+  - Spread Sheet Render Layer

@@ -3,10 +3,7 @@ using UnityEngine;
 
 public class SuspiciousState : NPCState
 {
-    private readonly float distanceThreshold = 0.2f;
     private readonly Vector3 suspiciousLocation;
-    private readonly float sightRange;
-    private readonly float fieldOfViewAngle;
     private readonly float cooldownDuration;
     private readonly float searchRadius;
 
@@ -14,32 +11,22 @@ public class SuspiciousState : NPCState
 
     protected override Color? StateHintColor => Color.yellow;
 
-    public SuspiciousState(Vector3 suspiciousLocation, float sightRange, float fieldOfViewAngle, float cooldownDuration = 8f, float searchRadius = 2f)
+    public SuspiciousState(Vector3 suspiciousLocation, float cooldownDuration = 8f, float searchRadius = 2f)
     {
         this.suspiciousLocation = suspiciousLocation;
-        this.sightRange = sightRange;
-        this.fieldOfViewAngle = fieldOfViewAngle;
         this.cooldownDuration = cooldownDuration;
         this.searchRadius = searchRadius;
     }
 
     public override void EnterState(NPC npc)
     {
-        npc.navMeshAgent.isStopped = true;
-        npc.navMeshAgent.ResetPath();
-        npc.navMeshAgent.SetDestination(suspiciousLocation);
+        npc.Movement.SetSpeed(npc.Movement.defaultSpeed + 1.5f);
+        npc.Movement.TryMoveToDestination(suspiciousLocation);
+        npc.Movement.StartWalking();
 
-        npc.navMeshAgent.speed = npc.speed + 1.5f;
-        npc.navMeshAgent.isStopped = false;
-        npc.animator.SetBool("isWalking", true);
-
-        // Reset search state when entering
-        if (searchCoroutine != null)
-        {
-            npc.StopCoroutine(searchCoroutine);
-            searchCoroutine = null;
-        }
         UpdateStateHint(npc);
+
+        GameTelemetryLogger.LogTelemetryEvent(new SuspiciousPrisonGuardData(npc.transform.position));
     }
 
     public override void ExitState(NPC npc)
@@ -51,32 +38,28 @@ public class SuspiciousState : NPCState
             searchCoroutine = null;
         }
 
-        npc.navMeshAgent.isStopped = true;
-        npc.animator.SetBool("isWalking", false);
-        // Ensure agent rotation behavior is normal when exiting
-        npc.navMeshAgent.updateRotation = true;
-        npc.navMeshAgent.speed = npc.speed;
+        npc.Movement.StopWalking();
+        npc.Movement.SetSpeed(npc.Movement.defaultSpeed);
     }
 
     public override void UpdateState(NPC npc)
     {
         // If player spotted at any time -> immediate alerted
-        if (IsPlayerInSight(npc))
+        if (npc.HasPlayerInsight())
         {
-            if (searchCoroutine != null)
-            {
-                npc.StopCoroutine(searchCoroutine);
-                searchCoroutine = null;
-            }
             npc.ChangeState(new AlertedState());
             return;
         }
 
-        float distance = npc.navMeshAgent.remainingDistance;
-        bool destinationReached = distance <= distanceThreshold;
+        // If stuck while going to suspicious location -> abandon and go to random movement
+        if (npc.Movement.IsStuck())
+        {
+            npc.ChangeState(npc.SpawnState);
+            return;
+        }
 
         // Start the search behaviour once we reached the suspicious location
-        if (destinationReached && searchCoroutine == null)
+        if (npc.Movement.HasReachedDestination() && searchCoroutine == null)
         {
             searchCoroutine = npc.StartCoroutine(SearchAndLookRoutine(npc));
         }
@@ -89,12 +72,7 @@ public class SuspiciousState : NPCState
         while (Time.time < endTime)
         {
             // pick a random reachable point near the suspicious location
-            Vector3 rand = Random.insideUnitSphere * searchRadius;
-            rand.y = 0f;
-            Vector3 candidate = suspiciousLocation + rand;
-
-            UnityEngine.AI.NavMeshHit hit;
-            if (!UnityEngine.AI.NavMesh.SamplePosition(candidate, out hit, searchRadius, UnityEngine.AI.NavMesh.AllAreas))
+            if (!NavMeshUtils.TryFindValidNavMeshPosition(suspiciousLocation, searchRadius, 0.2f, out var samplePoint))
             {
                 // couldn't find navmesh sample, try next frame
                 yield return null;
@@ -102,25 +80,32 @@ public class SuspiciousState : NPCState
             }
 
             // walk to the sampled point
-            npc.navMeshAgent.isStopped = false;
-            npc.navMeshAgent.SetDestination(hit.position);
-            npc.animator.SetBool("isWalking", true);
+            npc.Movement.TryMoveToDestination(samplePoint);
 
             // wait until agent reaches the point (or player is seen)
-            while (npc.navMeshAgent.pathPending)
+            while (!npc.Movement.HasReachedDestination())
             {
-                if (IsPlayerInSight(npc)) goto OnAlert;
-                yield return null;
-            }
-            while (npc.navMeshAgent.hasPath && npc.navMeshAgent.remainingDistance > distanceThreshold)
-            {
-                if (IsPlayerInSight(npc)) goto OnAlert;
+                if (npc.HasPlayerInsight())
+                {
+                    // change to alerted
+                    searchCoroutine = null;
+                    npc.ChangeState(new AlertedState());
+                    yield break;
+                }
+
+                if (npc.Movement.IsStuck())
+                {
+                    // stuck -> abandon search
+                    searchCoroutine = null;
+                    npc.ChangeState(npc.SpawnState);
+                    yield break;
+                }
+
                 yield return null;
             }
 
             // arrived: stop and do focused look (left/right)
-            npc.navMeshAgent.isStopped = true;
-            npc.animator.SetBool("isWalking", false);
+            npc.Movement.StopWalking();
 
             // perform left/right head/body turns
             yield return npc.StartCoroutine(LookLeftRight(npc));
@@ -131,24 +116,12 @@ public class SuspiciousState : NPCState
 
         // cooldown finished -> resume random movement
         searchCoroutine = null;
-        npc.ChangeState(new RandomMovementState());
-        yield break;
-
-    OnAlert:
-        // cleanup and change to alerted
-        searchCoroutine = null;
-        npc.navMeshAgent.isStopped = true;
-        npc.animator.SetBool("isWalking", false);
-        npc.ChangeState(new AlertedState());
+        npc.ChangeState(npc.SpawnState);
         yield break;
     }
 
     private IEnumerator LookLeftRight(NPC npc)
     {
-        // Temporarily disable NavMeshAgent rotation so we can control facing
-        bool prevUpdateRotation = npc.navMeshAgent.updateRotation;
-        npc.navMeshAgent.updateRotation = false;
-
         Quaternion original = npc.transform.rotation;
         float lookAngle = 60f; // degrees left/right
         float smallTurnTime = 0.35f;
@@ -162,63 +135,84 @@ public class SuspiciousState : NPCState
         float t = 0f;
         while (t < smallTurnTime)
         {
+            if (npc.HasPlayerInsight())
+            {
+                // restore rotation behaviour and alert
+                searchCoroutine = null;
+                npc.transform.rotation = original;
+                npc.ChangeState(new AlertedState());
+                yield break;
+            }
             npc.transform.rotation = Quaternion.Slerp(original, left, t / smallTurnTime);
             t += Time.deltaTime;
             yield return null;
         }
         npc.transform.rotation = left;
-        yield return new WaitForSeconds(pause);
+
+        // pause but check sight each frame
+        float pp = 0f;
+        while (pp < pause)
+        {
+            if (npc.HasPlayerInsight())
+            {
+                searchCoroutine = null;
+                npc.transform.rotation = original;
+                npc.ChangeState(new AlertedState());
+                yield break;
+            }
+            pp += Time.deltaTime;
+            yield return null;
+        }
 
         // sweep from left to right
         t = 0f;
         while (t < acrossTime)
         {
+            if (npc.HasPlayerInsight())
+            {
+                // restore rotation behaviour and alert
+                searchCoroutine = null;
+                npc.transform.rotation = original;
+                npc.ChangeState(new AlertedState());
+                yield break;
+            }
             npc.transform.rotation = Quaternion.Slerp(left, right, t / acrossTime);
             t += Time.deltaTime;
             yield return null;
         }
         npc.transform.rotation = right;
-        yield return new WaitForSeconds(pause);
+
+        // pause but check sight each frame
+        pp = 0f;
+        while (pp < pause)
+        {
+            if (npc.HasPlayerInsight())
+            {
+                searchCoroutine = null;
+                npc.transform.rotation = original;
+                npc.ChangeState(new AlertedState());
+                yield break;
+            }
+            pp += Time.deltaTime;
+            yield return null;
+        }
 
         // return to original
         t = 0f;
         while (t < smallTurnTime)
         {
+            if (npc.HasPlayerInsight())
+            {
+                // restore rotation behaviour and alert
+                searchCoroutine = null;
+                npc.transform.rotation = original;
+                npc.ChangeState(new AlertedState());
+                yield break;
+            }
             npc.transform.rotation = Quaternion.Slerp(right, original, t / smallTurnTime);
             t += Time.deltaTime;
             yield return null;
         }
         npc.transform.rotation = original;
-
-        // restore agent rotation behaviour
-        npc.navMeshAgent.updateRotation = prevUpdateRotation;
-    }
-
-    private bool IsPlayerInSight(NPC npc)
-    {
-        var playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj == null) return false;
-        var player = playerObj.transform;
-
-        Vector3 toPlayer = player.position - npc.transform.position;
-        float angle = Vector3.Angle(toPlayer, npc.transform.forward);
-
-        Debug.DrawRay(npc.transform.position, toPlayer.normalized * Mathf.Min(toPlayer.magnitude, sightRange), Color.green);
-
-        // check if the player is in the field of view
-        if (angle < fieldOfViewAngle / 2f)
-        {
-            if (toPlayer.magnitude < sightRange)
-            {
-                if (Physics.Raycast(npc.transform.position, toPlayer.normalized, out RaycastHit hit, sightRange, LayerMask.GetMask("Default")))
-                {
-                    if (hit.collider != null && hit.collider.CompareTag("Player"))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
     }
 }
