@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public static class SessionManager
 {
@@ -9,12 +8,6 @@ public static class SessionManager
     public static void Initialize()
     {
         SessionId = Guid.NewGuid().ToString();
-
-        ParticipantId = PlayerPrefs.GetString(
-            "participant_id",
-            "P_" + UnityEngine.Random.Range(100000, 999999)
-        );
-
-        PlayerPrefs.SetString("participant_id", ParticipantId);
+        ParticipantId = "P_" + UnityEngine.Random.Range(100000, 999999);
     }
 }
