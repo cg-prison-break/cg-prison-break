@@ -120,7 +120,10 @@ public class Player : MonoBehaviour
             return false;
         }
 
-        Instantiate(_inventory[index].prefab, transform.position + transform.forward, Quaternion.identity);
+        // render the dropped item in front of the player (incl. shader/no shader)
+        var itemObj = Instantiate(_inventory[index].prefab, transform.position + transform.forward, Quaternion.identity);
+        SetLayerRecursively(itemObj, LayerMask.NameToLayer(GetInteractableLayerName()));
+
         GameTelemetryLogger.LogTelemetryEvent(new ItemDroppedData(_inventory[index].name, index));
         _inventory[index] = null;
         itemHud.RefreshIcons();
@@ -218,5 +221,19 @@ public class Player : MonoBehaviour
         if (gameData.collectedItems.Contains(name)) return;
         gameData.collectedItems.Add(name);
         itemHud.ShowNewItemHint();
+    }
+
+    private void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
+        }
+    }
+
+    private string GetInteractableLayerName()
+    {
+        return gameData.playWithInteractableShader ? "Interactable" : "InteractableNoOutline";
     }
 }
