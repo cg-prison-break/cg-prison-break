@@ -58551,6 +58551,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.254
       objectReference: {fileID: 0}
+    - target: {fileID: 1769926047934459230, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+      propertyPath: 'generatorControllers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 997596050}
+    - target: {fileID: 1769926047934459230, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+      propertyPath: 'generatorControllers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 997596050}
+    - target: {fileID: 1769926047934459230, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+      propertyPath: 'generatorControllers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 997596049}
     - target: {fileID: 2298595808927351461, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.7876
@@ -58591,6 +58603,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3922163684198424619, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+      propertyPath: 'generatorControllers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 997596050}
+    - target: {fileID: 3922163684198424619, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+      propertyPath: 'generatorControllers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 997596051}
+    - target: {fileID: 3922163684198424619, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+      propertyPath: 'generatorControllers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 997596049}
+    - target: {fileID: 7096461642041177721, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+      propertyPath: 'generatorControllers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 997596050}
+    - target: {fileID: 7096461642041177721, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+      propertyPath: 'generatorControllers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 997596049}
+    - target: {fileID: 7096461642041177721, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+      propertyPath: 'generatorControllers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 997596049}
     - target: {fileID: 7551198799519348247, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
       propertyPath: m_Name
       value: director_office_generator_room_caretaker_chamber_watch_room
@@ -58626,6 +58662,39 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+--- !u!114 &997596049 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7096461642041177721, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+  m_PrefabInstance: {fileID: 997596048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7027bb90d34014e96e1a7fcab6a4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShutdownGenerator
+--- !u!114 &997596050 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1769926047934459230, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+  m_PrefabInstance: {fileID: 997596048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7027bb90d34014e96e1a7fcab6a4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShutdownGenerator
+--- !u!114 &997596051 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3922163684198424619, guid: be497cba44f055c4ab737537d23d6fda, type: 3}
+  m_PrefabInstance: {fileID: 997596048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7027bb90d34014e96e1a7fcab6a4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShutdownGenerator
 --- !u!1001 &998652613
 PrefabInstance:
   m_ObjectHideFlags: 0
