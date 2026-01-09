@@ -20,7 +20,8 @@ public enum TelemetryEventType
     SpreadsheetRouteClicked,
     SuspiciousEventTriggered,
     SuspiciousPrisonGuard,
-    AlertedPrisonGuard
+    AlertedPrisonGuard,
+    GeneratorShutdown
 }
 
 [Serializable]
@@ -231,5 +232,14 @@ public class AlertedPrisonGuardData : TelemetryEventDataBase
     {
         eventType = TelemetryEventType.AlertedPrisonGuard;
         prison_guard_location = location;
+    }
+}
+
+[Serializable]
+public class GeneratorShutdownData : TelemetryEventDataBase
+{
+    public GeneratorShutdownData()
+    {
+        eventType = TelemetryEventType.GeneratorShutdown;
     }
 }

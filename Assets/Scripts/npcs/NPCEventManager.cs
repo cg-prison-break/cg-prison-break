@@ -18,7 +18,7 @@ public class NPCEventManager : MonoBehaviour
         OnResetPrisonGuardsToSpawnStateEvent?.Invoke();
     }
 
-    public static void MakeAllPrisonGuardsAlwaysSuspcious()
+    public static void MakeAllPrisonGuardsAlwaysSuspicious()
     {
         OnMakeAllPrisonGuardsSuspiciousEvent?.Invoke();
     }
