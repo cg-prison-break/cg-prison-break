@@ -1,0 +1,14 @@
+[project]
+name = "evaluation"
+version = "0.1.0"
+description = "Evaluation of Prison Escape 3D"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "ipykernel>=7.1.0",
+    "nbformat>=4.2.0",
+    "pandas>=2.3.3",
+    "pip>=25.3",
+    "plotly>=6.5.2",
+    "scipy>=1.17.0",
+]
